@@ -7,10 +7,10 @@ export default function App() {
 
   return (
     <BrowserRouter>
-      <ul>
-        <li><Link to="/" >Home</Link></li>
-        <li><Link to="/teams" >Teams</Link></li>
-        <li><Link to="/races">Races</Link></li>
+      <ul className="nav" >
+        <li><Link className="nav-links" to="/" >Home</Link></li>
+        <li><Link className="nav-links" to="/teams" >Teams</Link></li>
+        <li><Link className="nav-links" to="/races">Races</Link></li>
       </ul>
 
       <Routes>
