@@ -34,7 +34,7 @@ export default function AllTeams() {
                 {allTeams.map((team) => {
 
                     return (
-                        <div key={team.Constructor.constructor.id}>
+                        <div key={team.Constructor.constructorId}>
 
                             <h3>{team.Constructor.name}</h3>
 
