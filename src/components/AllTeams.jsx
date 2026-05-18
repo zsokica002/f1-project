@@ -4,9 +4,9 @@ import axios from "axios";
 
 export default function AllTeams() {
     const [allTeams, setAllTeams] = useState([]);
-    const [loading, setLoader] = useState(true);
+    const [loading, setLoading] = useState(true);
 
-    useEffect = (() => {
+    useEffect(() => {
         getAllTeams();
     }, []);
 
@@ -14,13 +14,13 @@ export default function AllTeams() {
         const url = "https://api.jolpi.ca/ergast/f1/2025/constructorStandings.json";
 
         const response = await axios.get(url);
-        setAllTeams(response.data);
+        setAllTeams(response.data.MRData.StandingsTable.StandingsLists[0]
+            .ConstructorStandings);
         setLoading(false);
-    }
+    };
 
     if (loading) {
-        return
-        <Loader />;
+        return <Loader />;
     }
 
 
@@ -31,18 +31,18 @@ export default function AllTeams() {
 
             <h2>All Teams 2025</h2>
             <div>
-                {allTeams.map((allTeam) => {
+                {allTeams.map((team) => {
 
                     return (
-                        <div key={allTeam.id}>
-                            <p>{allTeam.season}</p>
-                            <p>{allTeam.round}</p>
-                            <p>{allTeam.position}</p>
-                            <p>{allTeam.points}</p>
-                            <p>{allTeam.wins}</p>
-                            <p>{allTeam.name}</p>
-                            <p>{allTeam.nationality}</p>
-                            <p></p>
+                        <div key={team.Constructor.constructor.id}>
+
+                            <h3>{team.Constructor.name}</h3>
+
+                            <p>Position: {team.position}</p>
+                            <p>Points: {team.points}</p>
+                            <p>Wins: {team.wins}</p>
+                            <p>Nationality: {team.Constructor.nationality}</p>
+
                         </div>
 
                     );
