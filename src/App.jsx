@@ -5,8 +5,13 @@ import Drivers from "./components/Drivers";
 export default function App() {
 
   return (
-    <>
-      <Drivers />
-    </>
+    <BrowserRouter>
+      <Link to="/" >Home</Link>
+
+      <Routes>
+        <Route path="/" element={<Drivers />} />
+      </Routes>
+
+    </BrowserRouter>
   )
 }
