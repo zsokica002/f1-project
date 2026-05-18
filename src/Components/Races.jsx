@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import Loader from "./Components/Loader";
+import Loader from "./Loader";
 
 export default function App() {
     const [allRaces, setAllRaces] = useState();
