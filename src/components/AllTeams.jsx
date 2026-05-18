@@ -27,14 +27,14 @@ export default function AllTeams() {
 
 
     return (
-        <div>
+        <div className="container">
 
             <h2>All Teams 2025</h2>
-            <div>
+            <div className="team-container">
                 {allTeams.map((team, i) => {
 
                     return (
-                        <div key={i}>
+                        <div key={i} className="team">
 
                             <h3>{team.Constructor.name}</h3>
 
