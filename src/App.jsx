@@ -1,10 +1,9 @@
-import { BrowserRouter, Routes, Route, Link } from "react-router"
+import Loader from "./Components/Loader";
 
 export default function App() {
 
   return (
     <>
-
     </>
   )
 }
