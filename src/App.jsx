@@ -1,5 +1,6 @@
-export default function App() {
+import { BrowserRouter, Routes, Route, Link } from "react-router"
 
+export default function App() {
 
   return (
     <>
@@ -7,5 +8,3 @@ export default function App() {
     </>
   )
 }
-
-
