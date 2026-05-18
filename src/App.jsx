@@ -6,7 +6,11 @@ export default function App() {
 
   return (
     <BrowserRouter>
-      <Link to="/" >Home</Link>
+      <ul>
+        <li><Link to="/" >Home</Link></li>
+        <li><Link to="/teams" >Teams</Link></li>
+        <li><Link to="/races"></Link></li>
+      </ul>
 
       <Routes>
         <Route path="/" element={<Drivers />} />
