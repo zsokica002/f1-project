@@ -25,10 +25,10 @@ export default function Drivers() {
 
       {drivers.map((driver) => {
         return (
-            <div key={driver.Driver.permanentNumber}>
-              {/* OVO JE SAMO PRIVREMENO DA PROVERIM DA LI MI DOBRO RADI MAP */}
-              <p>{driver.Driver.code}</p>
-            </div>
+          <div key={driver.Driver.permanentNumber}>
+            {/* OVO JE SAMO PRIVREMENO DA PROVERIM DA LI MI DOBRO RADI MAP */}
+            <p>{driver.Driver.code}</p>
+          </div>
         );
       })}
     </>

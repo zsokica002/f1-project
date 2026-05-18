@@ -31,10 +31,10 @@ export default function AllTeams() {
 
             <h2>All Teams 2025</h2>
             <div>
-                {allTeams.map((team) => {
+                {allTeams.map((team, i) => {
 
                     return (
-                        <div key={team.Constructor.constructorId}>
+                        <div key={i}>
 
                             <h3>{team.Constructor.name}</h3>
 
