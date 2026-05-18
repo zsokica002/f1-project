@@ -11,9 +11,10 @@ export default function App() {
 
       <Routes>
         <Route path="/" element={<Drivers />} />
+        <Route path="/" element={<AllTeams />} />
       </Routes>
 
-      <AllTeams/>
+    
 
     </BrowserRouter>
   )
