@@ -13,12 +13,12 @@ const params = useParams();
     }, [])
 
      const getTeamsDetails = async () => {
-        const url = `https://api.jolpi.ca/ergast/f1/2025/constructors/+id+/constructorStandings.json ${params.id}`;
+        const url = `https://api.jolpi.ca/ergast/f1/2025/constructors/constructorId/constructorStandings.json ${params.id}`;
 
 
         const response = await axios.get(url);
         console.log(response);
-        setTeamsDetails(response.data);
+        setTeamsDetails(Object.values(response.data))
         setLoading(false);
     };
 
@@ -29,12 +29,12 @@ const params = useParams();
 
 
     return (
-        <div className="">
-            <h2>Team details</h2>
-            <p> {teamsDetails.url}  </p>
+            <div  key={teamsDetails.constructorId}>
+                
+
+            </div>
             
 
-        </div>
 
     )
 
