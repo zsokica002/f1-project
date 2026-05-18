@@ -1,5 +1,7 @@
+import { useState } from "react";
+
 export default function TeamsDetails() {
-    const [details, setDetails] = useState(null);
+    const [teamsDetails, setTeamsDetails] = useState(null);
 
 
 
