@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, Link } from "react-router";
 import Drivers from "./components/Drivers";
 import AllTeams from "./components/AllTeams";
+import Races from "./components/Races";
 
 export default function App() {
 
