@@ -30,7 +30,7 @@ const params = useParams();
 
     return (
             <div  key={teamsDetails.constructorId}>
-                
+
 
             </div>
             
