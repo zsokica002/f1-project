@@ -1,6 +1,6 @@
-import MoonLoader  from "react-spinners"
-export default function Loader() {
+import { MoonLoader } from "react-spinners"
 
+export default function Loader() {
     return (
         <MoonLoader />
     );
