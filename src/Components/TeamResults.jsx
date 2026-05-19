@@ -8,7 +8,7 @@ export default function TeamResults() {
     const [teamResults, setTeamResults] = useState([]);
     const [loading, setLoading] = useState(true);
     const [year, setYear] = useState("");
-    
+
     const params = useParams();
     console.log("params ", params);
 
@@ -22,7 +22,9 @@ export default function TeamResults() {
 
         const response = await axios.get(url);
         console.log(response);
-        setTeamResults(response.data.MRData.RaceTable.Races);
+        setTeamResults(response.data.MRData.RaceTable.Races); 
+        setYear(response.data.MRData.StandingsTable.season);
+
         setLoading(false);
     };
 
