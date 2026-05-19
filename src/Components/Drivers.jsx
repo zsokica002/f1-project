@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-
+import Loader from "./Loader";
 
 export default function Drivers() {
-
+  const [loading, setLoading] = useState(true);
   const [drivers, setDrivers] = useState([]);
 
 
@@ -16,19 +16,26 @@ export default function Drivers() {
     const response = await axios.get(url);
     setDrivers(response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings);
     console.log(response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings);
-
+    setLoading(false);
   }
 
+  if(loading){
+    return <Loader/>
+  }
   return (
     <>
-      <h1>HELLo tHERE!</h1>
+      <h1>Drivers Championship</h1>
 
       {drivers.map((driver) => {
         return (
-          <div key={driver.Driver.permanentNumber}>
-            {/* OVO JE SAMO PRIVREMENO DA PROVERIM DA LI MI DOBRO RADI MAP */}
-            <p>{driver.Driver.code}</p>
-          </div>
+          <table key={driver.Driver.permanentNumber}>
+            <tr>
+              <td>{driver.position}</td>
+              <td>{driver.Driver.givenName} {driver.Driver.familyName}</td>
+              <td>{driver.Constructors.name}</td>
+              <td>{driver.points}</td>
+            </tr>
+          </table>
         );
       })}
     </>
