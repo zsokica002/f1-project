@@ -44,10 +44,11 @@ export default function AllTeams() {
 
            <thead ><tr><th colSpan={4}>Constructors Championship Standings - {year}</th></tr></thead>
     
-                {allTeams.map((team, i) => {
+                {allTeams.map((team) => {
 
                     return (
-                        <tbody key={i} className="team">
+                        <>
+                        <tbody key={team.Constructor.constructorId} className="team">
 <tr>
                             <td>{team.Constructor.name}</td>
 
@@ -55,17 +56,20 @@ export default function AllTeams() {
                             <td><Flags />Points: {team.points}</td>
                             <td>{team.wins}</td>
                             <td>{team.Constructor.nationality}</td>
+                            <td>      <input type="button" value="Details" className="btn" 
+ onClick={() => handleClickDetails(team.Constructor.constructorId)}/></td>
                             </tr>
-                            <input type="button" value="Details" className="btn" 
-                            onClick={() => handleClickDetails(team.id)}/>
+                           
                         </tbody>
 
+ </>
                     );
                 })}
 
          
 
         </table>
+
         </>
 
     );
