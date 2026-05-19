@@ -40,7 +40,7 @@ export default function AllTeams() {
                     return (
                         <tbody key={i} className="team">
 <tr>
-                            <h3>{team.Constructor.name}</h3>
+                            <td>{team.Constructor.name}</td>
 
                             <td>Position: {team.position}</td>
                             <td><Flags />Points: {team.points}</td>
