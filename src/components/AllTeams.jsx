@@ -7,6 +7,7 @@ import Flags from "./Flags";
 export default function AllTeams() {
     const [allTeams, setAllTeams] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [year, setYear] = useState("");
 
     useEffect(() => {
         getAllTeams();
@@ -33,7 +34,7 @@ export default function AllTeams() {
 <h2>All Teams 2025</h2>
         <table className="container">
 
-           <thead ><tr><th colSpan={4}>Constructors Championship Standings - </th></tr></thead>
+           <thead ><tr><th colSpan={4}>Constructors Championship Standings - {year}</th></tr></thead>
     
                 {allTeams.map((team, i) => {
 
@@ -42,10 +43,10 @@ export default function AllTeams() {
 <tr>
                             <td>{team.Constructor.name}</td>
 
-                            <td>Position: {team.position}</td>
+                            <td>{team.position}</td>
                             <td><Flags />Points: {team.points}</td>
-                            <td>Wins: {team.wins}</td>
-                            <td>Nationality: {team.Constructor.nationality}</td>
+                            <td>{team.wins}</td>
+                            <td>{team.Constructor.nationality}</td>
                             </tr>
                         </tbody>
 
