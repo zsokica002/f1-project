@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import Loader from "./Loader";
 import axios from "axios";
+import Flags from "./Flags";
+
 
 export default function AllTeams() {
     const [allTeams, setAllTeams] = useState([]);
@@ -27,30 +29,33 @@ export default function AllTeams() {
 
 
     return (
+<>
+<h2>All Teams 2025</h2>
+        <table className="container">
 
-        <div className="container">
-
-            <h2>All Teams 2025</h2>
+           <thead ><tr><th colSpan={4}>Constructors Championship Standings - {year}</th></tr></thead>
             <div className="team-container">
                 {allTeams.map((team, i) => {
 
                     return (
-                        <div key={i} className="team">
-
+                        <tbody key={i} className="team">
+<tr>
                             <h3>{team.Constructor.name}</h3>
 
-                            <p>Position: {team.position}</p>
-                            <p>Points: {team.points}</p>
-                            <p>Wins: {team.wins}</p>
-                            <p>Nationality: {team.Constructor.nationality}</p>
-
-                        </div>
+                            <td>Position: {team.position}</td>
+                            <td><Flags />Points: {team.points}</td>
+                            <td>Wins: {team.wins}</td>
+                            <td>Nationality: {team.Constructor.nationality}</td>
+                            </tr>
+                        </tbody>
 
                     );
                 })}
 
             </div>
 
-        </div>
+        </table>
+        </>
+
     );
 }
