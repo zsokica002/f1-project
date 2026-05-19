@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Loader from "./Loader";
 import Flag from "react-flagkit";
+import DriverDetails from "./DriverDetails";
 import { useNavigate } from "react-router";
 
 export default function Drivers(props) {
-  // console.log(props);
   const [loading, setLoading] = useState(true);
   const [drivers, setDrivers] = useState([]);
   const [year, setYear] = useState("");
@@ -26,24 +26,21 @@ export default function Drivers(props) {
 
   const handleClickDriver = (id) => {
     navigate(`/driverDetails/${id}`);
+
   }
 
   const handleClickConstructor = () => {
-    // console.log("click...constructor");
+    console.log("click...constructor");
   }
 
   const getCountryFlag = (nation) => {
-    // console.log(3);
     const flagA2 = props.flags.find(flag => flag.nationality === nation);
     return flagA2?.alpha_2_code;
   }
 
-
   if (loading) {
     return <Loader />
   }
-
-  console.log(drivers);
 
   return (
     <>
@@ -67,6 +64,8 @@ export default function Drivers(props) {
           );
         })}
       </table>
+
+      <p>HELP</p>
     </>
   );
 }
