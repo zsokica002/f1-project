@@ -10,7 +10,7 @@ export default function TeamResults() {
     const [year, setYear] = useState("");
 
     const params = useParams();
-    console.log("params ", params);
+    // console.log("params ", params);
 
 
     useEffect(() => {
@@ -21,12 +21,15 @@ export default function TeamResults() {
         const url = `https://api.jolpi.ca/ergast/f1/2025/constructors/${params.id}/results.json`;
 
         const response = await axios.get(url);
-        console.log(response);
-        setTeamResults(response.data.MRData.RaceTable.Races); 
+        // console.log(response);
+        setTeamResults(response.data.MRData.RaceTable.Races);
+        // console.log(response.data.MRData);
         setYear(response.data.MRData.RaceTable.season);
 
         setLoading(false);
     };
+
+    console.log(teamResults);
 
 
 
@@ -35,31 +38,43 @@ export default function TeamResults() {
         return <Loader />;
     }
 
-
     return (
 
         <div>
-            <h1>Team Results</h1>
+            <h1>{teamResults[0].Results[0].Constructor.name} results</h1>
+
+            <div>
+                <p>{teamResults[0].Results[0].Constructor.name}</p>
+                <p>{teamResults[0].Results[0].Constructor.nationality}</p>
+
+            </div>
+
             <table>
-            <thead>
+                <thead>
                     <tr>
                         <th colSpan={5}>Formula 1 {year} Results</th>
                     </tr>
+                    <tr>
+                        <th>Round</th>
+                        <th>Grand Prix</th>
+                        <th>{teamResults[0].Results[0].Driver.familyName}</th>
+                        <th>{teamResults[0].Results[1].Driver.familyName}</th>
+                        <th>Points</th>
+                    </tr>
                 </thead>
-              <tbody>  
-            {teamResults.map((race) => (
-                <tr key={race.round}>
-       
-                    <td>{race.raceName}</td>
-                    <td>{race.date}</td>
-                  
-                    <td> <button onClick={() => navigate("/")}>
-                Back
-            </button></td>
-                </tr>
-            ))}
-</tbody>
-           
+                <tbody>
+                    {teamResults.map((race) => (
+                        <tr key={race.round}>
+
+                            <td>{race.round}</td>
+                            <td>{race.raceName}</td>
+                            <td>{race.Results[0].position}</td>
+                            <td>{race.Results[1].position}</td>
+                            <td>{Number(race.Results[0].points) + Number(race.Results[1].points)}</td>
+                        </tr>
+                    ))}
+                </tbody>
+
             </table>
         </div>
 
