@@ -27,6 +27,7 @@ export default function AllTeams() {
 
 
     return (
+
         <div className="container">
 
             <h2>All Teams 2025</h2>
