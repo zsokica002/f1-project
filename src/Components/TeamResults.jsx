@@ -7,6 +7,7 @@ export default function TeamResults() {
 
     const [teamResults, setTeamResults] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [year, setYear] = useState("");
 
     const params = useParams();
     console.log("params ", params);
@@ -21,7 +22,9 @@ export default function TeamResults() {
 
         const response = await axios.get(url);
         console.log(response);
-        setTeamResults(response.data.MRData.RaceTable.Races);
+        setTeamResults(response.data.MRData.RaceTable.Races); 
+        setYear(response.data.MRData.RaceTable.season);
+
         setLoading(false);
     };
 
@@ -37,16 +40,25 @@ export default function TeamResults() {
 
         <div>
             <h1>Team Results</h1>
+            <table>
+            <thead>
+                    <tr>
+                        <th colSpan={4}>Formula 1 {year} Results</th>
+                    </tr>
+                </thead>
+              <tbody>  
             {teamResults.map((race) => (
-                <div key={race.round}>
-                    <h2>{race.raceName}</h2>
-                    <p>{race.date}</p>
-                </div>
-            ))}
-
-            <button onClick={() => navigate("/")}>
+                <tr key={race.round}>
+                    <td>{race.raceName}</td>
+                    <td>{race.date}</td>
+                    <td> <button onClick={() => navigate("/")}>
                 Back
-            </button>
+            </button></td>
+                </tr>
+            ))}
+</tbody>
+           
+            </table>
         </div>
 
 
