@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router";
+import { useParams } from "react-router";
 import Loader from "./Loader";
 
 export default function RaceDetails() {
@@ -8,29 +8,33 @@ export default function RaceDetails() {
     const [qualis, setQualis] = useState([]);
     const [loading, setLoading] = useState(true);
     const [raceResults, setRaceResults] = useState([]);
+    const [raceDetails, setRaceDetails] = useState("");
 
     const params = useParams();
-    const navigate = useNavigate();
 
     useEffect(() => {
-        getQualis();
-        getRaceResults();
+        getRaceDetails();
     }, [])
 
-    const getQualis = async () => {
-        const url = `https://api.jolpi.ca/ergast/f1/2025/${params.id}/qualifying.json`;
-        const response = await axios.get(url);
-        setQualis(response.data.MRData.RaceTable.Races[0].QualifyingResults);
-        // console.log(response.data.MRData.RaceTable.Races[0].QualifyingResults);
-        setLoading(false);
-    }
+    const getRaceDetails = async () => {
+        const urlRaceDetails = `https://api.jolpi.ca/ergast/f1/2025/${params.id}/results/1.json`;
+        const urlQualis = `https://api.jolpi.ca/ergast/f1/2025/${params.id}/qualifying.json`;
+        const urlRaceResults = `https://api.jolpi.ca/ergast/f1/2025/${params.id}/results.json`;
 
-    const getRaceResults = async () => {
-        const url = `https://api.jolpi.ca/ergast/f1/2025/${params.id}/results.json`;
-        const response = await axios.get(url);
-        setRaceResults(response.data.MRData.RaceTable.Races[0].Results);
-        console.log(response.data.MRData.RaceTable.Races[0].Results);
-    }
+        const responseRaceDetails = await axios.get(urlRaceDetails);
+        // console.log(responseRaceDetails.data.MRData.RaceTable.Races);
+        const responseQualis = await axios.get(urlQualis);
+        // console.log(responseQualis.data.MRData.RaceTable.Races[0].QualifyingResults);
+        const responseRaceResults = await axios.get(urlRaceResults);
+        // console.log(responseRaceResults.data.MRData.RaceTable.Races[0].Results);
+
+        setQualis(responseQualis.data.MRData.RaceTable.Races[0].QualifyingResults);
+        setRaceResults(responseRaceResults.data.MRData.RaceTable.Races[0].Results);
+        setRaceDetails(responseRaceDetails.data.MRData.RaceTable.Races[0]);
+
+        setLoading(false);
+    };
+
 
     const getBestTime = (q1, q2, q3) => {
         // console.log(q1, q2, q3);
@@ -43,12 +47,22 @@ export default function RaceDetails() {
 
     if (loading) {
         return <Loader />
-    }
+    };
+
+    console.log(raceDetails);
 
     return (
         <>
 
             <h3>Hello from RaceResults component!</h3>
+
+            <div>
+                <p>Country: {raceDetails.Circuit.Location.country}</p>
+                <p>Location: {raceDetails.Circuit.Location.locality}</p>
+                <p>date: {raceDetails.date}</p>
+                <p>Full report: <a target="_blank" href={raceDetails.url}>ikonica!!!</a></p>
+            </div>
+
 
             <table>
                 <thead>
@@ -99,7 +113,7 @@ export default function RaceDetails() {
                                 <td>{result.position}</td>
                                 <td>{result.Driver.familyName}</td>
                                 <td>{result.Constructor.name}</td>
-                                <td>{result.Time.time}</td>
+                                <td>{result.Time ? result.Time.time : result.status}</td>
                                 <td>{result.points}</td>
                             </tr>
                         );

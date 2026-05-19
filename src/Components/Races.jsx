@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
 import Loader from "./Loader";
 import axios from "axios";
+import { useNavigate } from "react-router";
 
 export default function Races() {
     const [races, setRaces] = useState([]);
     const [loading, setLoading] = useState(true);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         getRaces();
@@ -15,11 +18,15 @@ export default function Races() {
         const url = "https://api.jolpi.ca/ergast/f1/2025/results/1.json";
 
         const response = await axios.get(url);
-        console.log(response.data.MRData.RaceTable.Races);
+        // console.log(response.data.MRData.RaceTable.Races);
 
         setRaces(response.data.MRData.RaceTable.Races);
         setLoading(false);
     }
+
+    const handleClickDetails = (id) => {
+        navigate(`/raceDetails/${id}`)
+    };
 
     if (loading) {
         return <Loader />
@@ -30,7 +37,7 @@ export default function Races() {
         <table>
             <thead>
                 <tr>
-                    <td>Race calendar 2025</td>
+                    <th colSpan={5}>Race calendar 2025</th>
                 </tr>
                 <tr>
                     <th>Round</th>
@@ -46,7 +53,7 @@ export default function Races() {
                     return (
                         <tr key={i}>
                             <td>{race.round}</td>
-                            <td>{race.raceName} </td>
+                            <td onClick={() => handleClickDetails(race.round)}> {race.raceName} </td>
                             <td>{race.Circuit.circuitName}</td>
                             <td>{race.date}</td>
                             <td>{race.Results[0].Driver.familyName}</td>

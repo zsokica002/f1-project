@@ -4,6 +4,13 @@ body {
     padding: 0;
 }
 
+.loader-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
 .nav {
     list-style: none;
     display: flex;
@@ -18,7 +25,6 @@ body {
     margin: 0;
     padding: 5px;
     text-decoration: none;
-    // border-radius: 10px;
 
     &:hover {
         background-color: rgb(54, 54, 54);
