@@ -33,43 +33,35 @@ export default function AllTeams() {
         return <Loader />;
     }
 
-
+    console.log(allTeams);
 
 
     return (
         <>
             <h2>All Teams 2025</h2>
             <table className="container">
+                <thead>
+                    <tr>
+                        <th colSpan={4}>Constructors Championship Standings - {year}</th>
+                    </tr>
+                </thead>
 
-                <thead ><tr><th colSpan={4}>Constructors Championship Standings - {year}</th></tr></thead>
-
-                {allTeams.map((team) => {
-
-                    return (
-                        <>
-                            <tbody key={team.Constructor.constructorId} className="team">
-                                <tr>
-                                    <td>{team.Constructor.name}</td>
-
-                                    <td>{team.position}</td>
-                                    <td>Points: {team.points}</td>
-                                    <td>{team.wins}</td>
-                                    <td>{team.Constructor.nationality}</td>
-                                    <td>      <input type="button" value="Details" className="btn"
-                                        onClick={() => handleClickDetails(team.Constructor.constructorId)} /></td>
-                                </tr>
-
-                            </tbody>
-
-                        </>
-                    );
-                })}
-
-
-
+                <tbody className="team">
+                    {allTeams.map((team) => {
+                        return (
+                            <tr key={team.Constructor.constructorId}>
+                                <td>{team.Constructor.name}</td>
+                                <td>{team.position}</td>
+                                <td>Points: {team.points}</td>
+                                <td>{team.wins}</td>
+                                <td>{team.Constructor.nationality}</td>
+                                <td> <input type="button" value="Details" className="btn"
+                                    onClick={() => handleClickDetails(team.Constructor.constructorId)} /></td>
+                            </tr>
+                        );
+                    })}
+                </tbody>
             </table>
-
         </>
-
     );
 }
