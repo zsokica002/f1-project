@@ -1,9 +1,4 @@
-import { useParams } from "react-router";
-
-export default function DriverDetails() {
-
-    const params = useParams();
-
+export default function DriverDetails(props) {
     return (
         <>
             <h1>Driver Details</h1>
