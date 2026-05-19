@@ -56,7 +56,6 @@ export default function TeamsDetails() {
         <>
             <div>
                 
-            {/* <p>total:{response.data.MRData.total} </p> */}
 
             </div>
 

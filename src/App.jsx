@@ -32,10 +32,12 @@ export default function App() {
       </ul>
 
       <Routes>
-        <Route path="/" element={<Drivers flags = {flags}/>} />
+        <Route path="/" element={<Drivers flags={flags} />} />
+        <Route path="/driverDetails/:id" element={<DriverDetails />} />
         <Route path="/teams" element={<AllTeams />} />
         <Route path="/details/:id" element={<TeamResults />} />
         <Route path="/races" element={<Races />} />
+        <Route path="/raceDetails/:id" element={<RaceDetails />} />
         <Route path="/teamsDetails/:id" element={<TeamsDetails />} />
       </Routes>
 
