@@ -21,9 +21,8 @@ export default function TeamResults() {
         const url = `https://api.jolpi.ca/ergast/f1/2025/constructors/${params.id}/results.json`;
 
         const response = await axios.get(url);
-        // console.log(response);
+        console.log(response);
         setTeamResults(response.data.MRData.RaceTable.Races);
-        // console.log(response.data.MRData);
         setYear(response.data.MRData.RaceTable.season);
 
         setLoading(false);

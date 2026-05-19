@@ -59,7 +59,12 @@ export default function AllTeams() {
                                 > {team.Constructor.name}</td>
                                 <td><a target="_blank" href={team.Constructor.url}>Details</a></td>
 
+
+
                                 <td>{team.points}</td>
+                                {/*<td>{team.wins}</td>
+                                <td>{team.Constructor.nationality}</td>*/}
+
                             </tr>
                         );
                     })}
