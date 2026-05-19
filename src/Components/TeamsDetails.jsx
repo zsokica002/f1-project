@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Loader from "./Loader";
 import axios from "axios";
+import {useNavigate, useParams} from "react-router";
 
 export default function TeamsDetails() {
     const [teamsDetails, setTeamsDetails] = useState(null);
@@ -27,7 +28,7 @@ const params = useParams();
         return <Loader />;
     }
 
-
+const navigate = useNavigate();
     return (
             <div  key={teamsDetails.constructorId}>
 
