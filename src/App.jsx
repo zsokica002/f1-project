@@ -5,7 +5,7 @@ import Races from "./components/Races";
 import TeamsDetails from "./components/TeamsDetails";
 import RaceDetails from "./components/RaceDetails";
 import DriverDetails from "./components/DriverDetails";
-
+import TeamResults from "./components/TeamResults";
 
 export default function App() {
 
@@ -20,7 +20,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Drivers />} />
         <Route path="/teams" element={<AllTeams />} />
-        <Route path="/team/:id" element={<TeamResults />} />
+        <Route path="/details/:id" element={<TeamResults />} />
         <Route path="/races" element={<Races />} />
         <Route path="/teamsDetails/:id" element={<TeamsDetails />} />
       </Routes>

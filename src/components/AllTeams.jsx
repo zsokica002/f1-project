@@ -2,11 +2,12 @@ import { useState, useEffect } from "react";
 import Loader from "./Loader";
 import axios from "axios";
 import Flags from "./Flags";
-
+import {useNavigate} from "react-router";
 
 export default function AllTeams() {
     const [allTeams, setAllTeams] = useState([]);
     const [loading, setLoading] = useState(true);
+    const navigate = useNavigate();
     const [year, setYear] = useState("");
 
     useEffect(() => {
@@ -19,7 +20,14 @@ export default function AllTeams() {
         const response = await axios.get(url);
         setAllTeams(response.data.MRData.StandingsTable.StandingsLists[0]
             .ConstructorStandings);
+            setYear(response.data.MRData.StandingsTable.season);
         setLoading(false);
+    };
+
+    const handleClickDetails = (id) => {
+        console.log("handleClickDetails ", id);
+        navigate(`/details/${id}`);
+        
     };
 
     if (loading) {
