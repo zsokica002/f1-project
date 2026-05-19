@@ -38,8 +38,8 @@ export default function DriverDetails(props) {
     return driverFlagA2?.alpha_2_code;
     }
 
-    const getRaceNationality = (nation)=> {
-        const raceFlagA2 = props.flags.find(flag=> flag.country === nation)
+    const getRaceLocation = (nation)=> {
+        const raceFlagA2 = props.flags.find(flag => flag.en_short_name === nation)
         return raceFlagA2?.alpha_2_code;
     }
 
@@ -53,10 +53,10 @@ export default function DriverDetails(props) {
 
             <div>
                 <div>
-                    <img src="/" alt="driver img"  width={50}/>
+                    <img src = {`/public/drivers2025/${driverInfo.Driver.driverId}.jpg`} alt={driverInfo.Driver.driverId}  width={250}/>
                     <div>
                         <p>{driverInfo.Driver.givenName} {driverInfo.Driver.familyName}</p>
-                        <div> <Flag country={getDriverNationality(driverInfo.Driver.nationality)}/></div>    
+                        <div> <Flag country={getDriverNationality(driverInfo.Driver.nationality)} size={50}/></div>    
                     </div>    
                     <p><b>Country: </b>{driverInfo.Driver.nationality}</p>
                     <p><b>Team: </b>{driverInfo.Constructors[0].name}</p>
@@ -80,7 +80,7 @@ export default function DriverDetails(props) {
                        return(
                          <tr key={i}>
                         <td>{result.Circuit.circuitName}</td>
-                        <td><Flag country={getRaceNationality(result.Circuit.Location.country)}/>{result.Circuit.Location.country}</td>
+                        <td><Flag country={getRaceLocation(result.Circuit.Location.country)}/>{result.Circuit.Location.country}</td>
                         <td>{result.Results[0].Constructor.name}</td>
                         <td>{result.Results[0].grid}</td>
                         <td>{result.Results[0].position}</td>
