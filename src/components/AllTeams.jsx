@@ -33,8 +33,8 @@ export default function AllTeams() {
 <h2>All Teams 2025</h2>
         <table className="container">
 
-           <thead ><tr><th colSpan={4}>Constructors Championship Standings - {year}</th></tr></thead>
-            <div className="team-container">
+           <thead ><tr><th colSpan={4}>Constructors Championship Standings - </th></tr></thead>
+    
                 {allTeams.map((team, i) => {
 
                     return (
@@ -52,7 +52,7 @@ export default function AllTeams() {
                     );
                 })}
 
-            </div>
+         
 
         </table>
         </>
