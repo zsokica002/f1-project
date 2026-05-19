@@ -1,11 +1,7 @@
 import { useState, useEffect } from "react";
 import Loader from "./Loader";
 import axios from "axios";
-<<<<<<< HEAD
-import {useNavigate, useParams} from "react-router";
-=======
 import { useNavigate, useParams } from "react-router";
->>>>>>> 563277c8016f66b4d1f1eef1888c6d1fb327aa40
 
 export default function TeamsDetails() {
     const [teamsDetails, setTeamsDetails] = useState(null);
@@ -33,7 +29,6 @@ export default function TeamsDetails() {
         return <Loader />;
     }
 
-const navigate = useNavigate();
     return (
         <>
             <p>Teams details</p>
