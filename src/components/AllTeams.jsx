@@ -1,10 +1,14 @@
 import { useState, useEffect } from "react";
 import Loader from "./Loader";
 import axios from "axios";
+import Flags from "./Flags";
+import {useNavigate} from "react-router";
 
 export default function AllTeams() {
     const [allTeams, setAllTeams] = useState([]);
     const [loading, setLoading] = useState(true);
+    const navigate = useNavigate();
+    const [year, setYear] = useState("");
 
     useEffect(() => {
         getAllTeams();
@@ -16,7 +20,14 @@ export default function AllTeams() {
         const response = await axios.get(url);
         setAllTeams(response.data.MRData.StandingsTable.StandingsLists[0]
             .ConstructorStandings);
+            setYear(response.data.MRData.StandingsTable.season);
         setLoading(false);
+    };
+
+    const handleClickDetails = (id) => {
+        console.log("handleClickDetails ", id);
+        navigate(`/details/${id}`);
+        
     };
 
     if (loading) {
@@ -27,29 +38,33 @@ export default function AllTeams() {
 
 
     return (
-        <div className="container">
+<>
+<h2>All Teams 2025</h2>
+        <table className="container">
 
-            <h2>All Teams 2025</h2>
-            <div className="team-container">
+           <thead ><tr><th colSpan={4}>Constructors Championship Standings - {year}</th></tr></thead>
+    
                 {allTeams.map((team, i) => {
 
                     return (
-                        <div key={i} className="team">
+                        <tbody key={i} className="team">
+<tr>
+                            <td>{team.Constructor.name}</td>
 
-                            <h3>{team.Constructor.name}</h3>
-
-                            <p>Position: {team.position}</p>
-                            <p>Points: {team.points}</p>
-                            <p>Wins: {team.wins}</p>
-                            <p>Nationality: {team.Constructor.nationality}</p>
-
-                        </div>
+                            <td>{team.position}</td>
+                            <td><Flags />Points: {team.points}</td>
+                            <td>{team.wins}</td>
+                            <td>{team.Constructor.nationality}</td>
+                            </tr>
+                        </tbody>
 
                     );
                 })}
 
-            </div>
+         
 
-        </div>
+        </table>
+        </>
+
     );
 }

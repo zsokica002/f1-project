@@ -7,6 +7,9 @@ import Qualifiers from "./components/Qualifiers";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
+import RaceDetails from "./components/RaceDetails";
+import DriverDetails from "./components/DriverDetails";
+import TeamResults from "./components/TeamResults";
 
 export default function App() {
   const [flags, setFlags] = useState([]);
@@ -33,9 +36,9 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Drivers flags = {flags}/>} />
         <Route path="/teams" element={<AllTeams />} />
+        <Route path="/details/:id" element={<TeamResults />} />
         <Route path="/races" element={<Races />} />
         <Route path="/teamsDetails/:id" element={<TeamsDetails />} />
-        <Route path="/quali/:id" element={<Qualifiers />} />
       </Routes>
 
     </BrowserRouter>
