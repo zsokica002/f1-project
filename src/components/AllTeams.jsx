@@ -7,7 +7,7 @@ import {useNavigate} from "react-router";
 export default function AllTeams() {
     const [allTeams, setAllTeams] = useState([]);
     const [loading, setLoading] = useState(true);
-    const navigate = useNavigate();
+ 
     const [year, setYear] = useState("");
 
     useEffect(() => {
@@ -23,7 +23,7 @@ export default function AllTeams() {
             setYear(response.data.MRData.StandingsTable.season);
         setLoading(false);
     };
-
+    const navigate = useNavigate();
     const handleClickDetails = (id) => {
         console.log("handleClickDetails ", id);
         navigate(`/details/${id}`);
@@ -56,6 +56,8 @@ export default function AllTeams() {
                             <td>{team.wins}</td>
                             <td>{team.Constructor.nationality}</td>
                             </tr>
+                            <input type="button" value="Details" className="btn" 
+                            onClick={() => handleClickDetails(team.id)}/>
                         </tbody>
 
                     );
