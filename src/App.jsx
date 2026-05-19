@@ -20,6 +20,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Drivers />} />
         <Route path="/teams" element={<AllTeams />} />
+        <Route path="/team/:id" element={<TeamResults />} />
         <Route path="/races" element={<Races />} />
         <Route path="/teamsDetails/:id" element={<TeamsDetails />} />
       </Routes>
