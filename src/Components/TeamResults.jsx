@@ -23,7 +23,7 @@ export default function TeamResults() {
         const response = await axios.get(url);
         console.log(response);
         setTeamResults(response.data.MRData.RaceTable.Races); 
-        setYear(response.data.MRData.StandingsTable.season);
+        setYear(response.data.MRData.RaceTable.season);
 
         setLoading(false);
     };
