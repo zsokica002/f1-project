@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-
+import Loader from "./Loader";
+import Flags from "./Flags";
 
 export default function Drivers() {
-
+  const [loading, setLoading] = useState(true);
   const [drivers, setDrivers] = useState([]);
-
+  const [year, setYear] = useState("");
 
   useEffect(() => {
     getDrivers();
@@ -15,22 +16,33 @@ export default function Drivers() {
     const url = "https://api.jolpi.ca/ergast/f1/2025/driverStandings.json"
     const response = await axios.get(url);
     setDrivers(response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings);
+    setYear(response.data.MRData.StandingsTable.season);
     console.log(response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings);
-
+    setLoading(false);
   }
 
+  if (loading) {
+    return <Loader />
+  }
   return (
     <>
-      <h1>HELLo tHERE!</h1>
+      <h1>Drivers Championship</h1>
 
-      {drivers.map((driver) => {
-        return (
-          <div key={driver.Driver.permanentNumber}>
-            {/* OVO JE SAMO PRIVREMENO DA PROVERIM DA LI MI DOBRO RADI MAP */}
-            <p>{driver.Driver.code}</p>
-          </div>
-        );
-      })}
+      <table >
+        <thead><tr><th colSpan={4}>Drivers Championship Standings - {year}</th></tr></thead>
+        {drivers.map((driver) => {
+          return (
+            <tbody key={driver.Driver.permanentNumber}>
+              <tr >
+                <td>{driver.position}</td>
+                <td><Flags /> {driver.Driver.givenName} {driver.Driver.familyName}</td>
+                <td>{driver.Constructors[0].name}</td>
+                <td>{driver.points}</td>
+              </tr>
+            </tbody>
+          );
+        })}
+      </table>
     </>
   );
 }

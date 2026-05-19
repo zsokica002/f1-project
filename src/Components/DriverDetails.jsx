@@ -1,8 +1,6 @@
-
-
-export default function DriverRaces() {
-
-
-
-
+export default function DriverDetails() {
+    return (
+        <>
+        </>
+    );
 }
