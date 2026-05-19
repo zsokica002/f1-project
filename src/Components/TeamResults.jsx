@@ -43,14 +43,16 @@ export default function TeamResults() {
             <table>
             <thead>
                     <tr>
-                        <th colSpan={4}>Formula 1 {year} Results</th>
+                        <th colSpan={5}>Formula 1 {year} Results</th>
                     </tr>
                 </thead>
               <tbody>  
             {teamResults.map((race) => (
                 <tr key={race.round}>
+       
                     <td>{race.raceName}</td>
                     <td>{race.date}</td>
+                  
                     <td> <button onClick={() => navigate("/")}>
                 Back
             </button></td>

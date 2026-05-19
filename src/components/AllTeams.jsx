@@ -50,13 +50,14 @@ export default function AllTeams() {
                     {allTeams.map((team) => {
                         return (
                             <tr key={team.Constructor.constructorId}>
-                                <td>{team.Constructor.name}</td>
                                 <td>{team.position}</td>
-                                <td>Points: {team.points}</td>
-                                <td>{team.wins}</td>
-                                <td>{team.Constructor.nationality}</td>
+                                <td>{team.Constructor.name}</td>
                                 <td> <input type="button" value="Details" className="btn"
                                     onClick={() => handleClickDetails(team.Constructor.constructorId)} /></td>
+                                <td>{team.points}</td>
+                                {/*<td>{team.wins}</td>
+                                <td>{team.Constructor.nationality}</td>*/}
+                               
                             </tr>
                         );
                     })}
