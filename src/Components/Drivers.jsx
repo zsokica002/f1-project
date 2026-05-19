@@ -3,11 +3,14 @@ import axios from "axios";
 import Loader from "./Loader";
 import Flag from "react-flagkit";
 import DriverDetails from "./DriverDetails";
+import { useNavigate } from "react-router";
 
 export default function Drivers(props) {
   const [loading, setLoading] = useState(true);
   const [drivers, setDrivers] = useState([]);
   const [year, setYear] = useState("");
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     getDrivers();
@@ -21,17 +24,17 @@ export default function Drivers(props) {
     setLoading(false);
   };
 
-  const handleClickDriver = () => {
-    console.log("click...driver");
-  
+  const handleClickDriver = (id) => {
+    navigate(`/driverDetails/${id}`);
+
   }
 
-  const handleClickConstructor = ()=>{
+  const handleClickConstructor = () => {
     console.log("click...constructor");
   }
 
-  const getCountryFlag =(nation)=>{
-    const flagA2 = props.flags.find(flag=> flag.nationality === nation);
+  const getCountryFlag = (nation) => {
+    const flagA2 = props.flags.find(flag => flag.nationality === nation);
     return flagA2?.alpha_2_code;
   }
 
@@ -53,7 +56,7 @@ export default function Drivers(props) {
             <tbody key={driver.Driver.permanentNumber}>
               <tr>
                 <td>{driver.position}</td>
-                <td onClick={() => handleClickDriver()}><Flag country= {getCountryFlag(driver.Driver.nationality)} />  {driver.Driver.givenName} {driver.Driver.familyName}</td>
+                <td onClick={() => handleClickDriver(driver.Driver.driverId)}><Flag country={getCountryFlag(driver.Driver.nationality)} />  {driver.Driver.givenName} {driver.Driver.familyName}</td>
                 <td onClick={() => handleClickConstructor()}>{driver.Constructors[0].name}</td>
                 <td>{driver.points}</td>
               </tr>
