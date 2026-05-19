@@ -22,7 +22,7 @@ export default function TeamResults() {
 
         const response = await axios.get(url);
         console.log(response);
-        setTeamResults(response.data.MRData.RaceTable.Races); 
+        setTeamResults(response.data.MRData.RaceTable.Races);
         setYear(response.data.MRData.RaceTable.season);
 
         setLoading(false);
@@ -41,25 +41,26 @@ export default function TeamResults() {
         <div>
             <h1>Team Results</h1>
             <table>
-            <thead>
+                <thead>
                     <tr>
                         <th colSpan={5}>Formula 1 {year} Results</th>
                     </tr>
                 </thead>
-              <tbody>  
-            {teamResults.map((race) => (
-                <tr key={race.round}>
-       
-                    <td>{race.raceName}</td>
-                    <td>{race.date}</td>
-                  
-                    <td> <button onClick={() => navigate("/")}>
-                Back
-            </button></td>
-                </tr>
-            ))}
-</tbody>
-           
+                <tbody>
+                    {teamResults.map((race) => (
+
+                        <tr key={race.round}>
+
+                            <td>{race.raceName}</td>
+                            <td>{race.date}</td>
+
+                            <td> <button onClick={() => navigate("/")}>
+                                Back
+                            </button></td>
+                        </tr>
+                    ))}
+                </tbody>
+
             </table>
         </div>
 
