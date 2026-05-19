@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Loader from "./Loader";
-import Flags from "./Flags";
+import Flag from "react-flagkit";
 
-export default function Drivers() {
+export default function Drivers(props) {
+  console.log(props);
   const [loading, setLoading] = useState(true);
   const [drivers, setDrivers] = useState([]);
   const [year, setYear] = useState("");
@@ -17,9 +18,23 @@ export default function Drivers() {
     const response = await axios.get(url);
     setDrivers(response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings);
     setYear(response.data.MRData.StandingsTable.season);
-    console.log(response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings);
     setLoading(false);
+  };
+
+  const handleClickDriver = () => {
+    console.log("click...driver");
   }
+
+  const handleClickConstructor = ()=>{
+    console.log("click...constructor");
+  }
+
+  const getCountryFlag =(nation)=>{
+    console.log(3);
+    const flagA2 = props.flags.find(flag=> flag.nationality === nation);
+    return flagA2?.alpha_2_code;
+  }
+
 
   if (loading) {
     return <Loader />
@@ -27,16 +42,19 @@ export default function Drivers() {
   return (
     <>
       <h1>Drivers Championship</h1>
-
       <table >
-        <thead><tr><th colSpan={4}>Drivers Championship Standings - {year}</th></tr></thead>
+        <thead>
+          <tr>
+            <th colSpan={4}>Drivers Championship Standings - {year}</th>
+          </tr>
+        </thead>
         {drivers.map((driver) => {
           return (
             <tbody key={driver.Driver.permanentNumber}>
-              <tr >
+              <tr>
                 <td>{driver.position}</td>
-                <td><Flags /> {driver.Driver.givenName} {driver.Driver.familyName}</td>
-                <td>{driver.Constructors[0].name}</td>
+                <td onClick={() => handleClickDriver()}><Flag country= {getCountryFlag(driver.Driver.nationality)} />  {driver.Driver.givenName} {driver.Driver.familyName}</td>
+                <td onClick={() => handleClickConstructor()}>{driver.Constructors[0].name}</td>
                 <td>{driver.points}</td>
               </tr>
             </tbody>
