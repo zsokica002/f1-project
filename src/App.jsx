@@ -4,9 +4,23 @@ import AllTeams from "./components/AllTeams";
 import Races from "./components/Races";
 import TeamsDetails from "./components/TeamsDetails";
 import Qualifiers from "./components/Qualifiers";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 
 export default function App() {
+  const [flags, setFlags] = useState([]);
+
+  useEffect(() => {
+    getFlags();
+  }, []);
+
+  const getFlags = async () => {
+    const url = "https://raw.githubusercontent.com/Imagin-io/country-nationality-list/refs/heads/master/countries.json";
+    const response = await axios.get(url);
+    setFlags(response.data);
+    console.log(response.data);
+  }
 
   return (
     <BrowserRouter>
@@ -17,7 +31,7 @@ export default function App() {
       </ul>
 
       <Routes>
-        <Route path="/" element={<Drivers />} />
+        <Route path="/" element={<Drivers flags = {flags}/>} />
         <Route path="/teams" element={<AllTeams />} />
         <Route path="/races" element={<Races />} />
         <Route path="/teamsDetails/:id" element={<TeamsDetails />} />
