@@ -67,6 +67,8 @@ export default function Drivers(props) {
           );
         })}
       </table>
+
+      <p>HELP</p>
     </>
   );
 }
