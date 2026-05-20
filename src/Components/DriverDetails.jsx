@@ -57,7 +57,7 @@ export default function DriverDetails(props) {
 
             <div>
 
-                <img src={`/public/drivers2025/${driverInfo.Driver.driverId}.jpg`} alt={driverInfo.Driver.driverId} width={250} />
+                <img src={`/drivers2025/${driverInfo.Driver.driverId}.jpg`} alt={driverInfo.Driver.driverId} width={250} />
                 <div>
                     <p>{driverInfo.Driver.givenName} {driverInfo.Driver.familyName}</p>
                     <div> <Flag country={getFlagByNationality(props.flags, driverInfo.Driver.nationality)} size={50} /></div>
