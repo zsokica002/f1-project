@@ -4,6 +4,7 @@ import Loader from "./Loader";
 import axios from "axios";
 import Flag from "react-flagkit";
 import { getFlagByNationality, getFlagByRaceLocation } from "../helpers/getFlags";
+// import Breadcrumbs from "./Breadcrumbs";
 
 export default function DriverDetails(props) {
 
@@ -40,6 +41,10 @@ export default function DriverDetails(props) {
         navigate(`/teamDetails/${id}`);
     };
 
+    const handleRaceDetails = (id) => {
+        navigate(`/raceDetails/${id}`)
+    };
+
 
 
     if (loading) {
@@ -51,11 +56,12 @@ export default function DriverDetails(props) {
 
     return (
         <>
+            {/* <Breadcrumbs /> */}
             <h1>Driver Details</h1>
 
             <div>
 
-                <img src={`/public/drivers2025/${driverInfo.Driver.driverId}.jpg`} alt={driverInfo.Driver.driverId} width={250} />
+                <img src={`/drivers2025/${driverInfo.Driver.driverId}.jpg`} alt={driverInfo.Driver.driverId} width={250} />
                 <div>
                     <p>{driverInfo.Driver.givenName} {driverInfo.Driver.familyName}</p>
                     <div> <Flag country={getFlagByNationality(props.flags, driverInfo.Driver.nationality)} size={50} /></div>
@@ -68,7 +74,7 @@ export default function DriverDetails(props) {
 
             </div>
 
-            <table>
+            <table className="table">
                 <thead>
                     <tr>
                         <th>Round</th>
@@ -83,7 +89,8 @@ export default function DriverDetails(props) {
                         return (
                             <tr key={i}>
                                 <td><a target="_blank" href={result.Circuit.url}>{result.Circuit.circuitName}</a></td>
-                                <td><Flag country={getFlagByRaceLocation(props.flags, result.Circuit.Location.country)} />{result.Circuit.Location.country}</td>
+                                <td onClick={() => handleRaceDetails(result.round)}
+                                ><Flag country={getFlagByRaceLocation(props.flags, result.Circuit.Location.country)} />{result.Circuit.Location.country}</td>
                                 <td onClick={() => handleClickDetails(result.Results[0].Constructor.constructorId)}
                                 >{result.Results[0].Constructor.name}</td>
                                 <td>{result.Results[0].grid}</td>
