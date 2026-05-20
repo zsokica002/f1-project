@@ -65,7 +65,7 @@ export default function TeamResults() {
 
             </div>
 
-            <table>
+            <table className="table" border={1}>
                 <thead>
                     <tr>
                         <th colSpan={5}>Formula 1 {year} Results</th>
