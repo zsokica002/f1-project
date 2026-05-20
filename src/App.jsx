@@ -2,11 +2,11 @@ import { BrowserRouter, Routes, Route, Link } from "react-router";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Drivers from "./components/Drivers";
-import AllTeams from "./components/AllTeams";
+import Teams from "./components/Teams";
 import Races from "./components/Races";
 import RaceDetails from "./components/RaceDetails";
 import DriverDetails from "./components/DriverDetails";
-import TeamResults from "./components/TeamResults";
+import TeamDetails from "./components/TeamDetails";
 
 export default function App() {
   const [flags, setFlags] = useState([]);
@@ -32,9 +32,9 @@ export default function App() {
 
       <Routes>
         <Route path="/" element={<Drivers flags={flags} />} />
-        <Route path="/driverDetails/:id" element={<DriverDetails flags={flags}/>} />
-        <Route path="/teams" element={<AllTeams flags={flags}/>} />
-        <Route path="/teamDetails/:id" element={<TeamResults />} />
+        <Route path="/driverDetails/:id" element={<DriverDetails flags={flags} />} />
+        <Route path="/teams" element={<Teams flags={flags} />} />
+        <Route path="/teamDetails/:id" element={<TeamDetails />} />
         <Route path="/races" element={<Races flags={flags} />} />
         <Route path="/raceDetails/:id" element={<RaceDetails />} />
       </Routes>

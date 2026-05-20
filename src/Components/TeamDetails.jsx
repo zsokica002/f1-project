@@ -39,7 +39,7 @@ export default function TeamResults(props) {
     };
 
 
-    
+
     //console.log(teamResults);
     console.log(teamDetails);
 
@@ -56,11 +56,11 @@ export default function TeamResults(props) {
             <h1>{teamResults[0].Results[0].Constructor.name} results</h1>
 
             <div>
-               
-                 <img src={`/public/teamLogo/${teamDetails.Constructor.constructorId}.jpg`} alt="slika" width={250} />
 
-               
+                <img src={`/public/teamLogo/${teamDetails.Constructor.constructorId}.jpg`} alt="slika" width={250} />
 
+
+                <p>zastavica</p>
                 <p>{teamResults[0].Results[0].Constructor.name}</p>
                 <p>Nationality: {teamResults[0].Results[0].Constructor.nationality}</p>
                 <p>Position: {teamDetails.position}</p>
