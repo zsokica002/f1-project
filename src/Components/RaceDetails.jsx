@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import Loader from "./Loader";
 import Flag from "react-flagkit";
-import { getFlagByNationality } from "../helpers/getFlags";
+import { getFlagByNationality, getFlagByRaceLocation } from "../helpers/getFlags";
 
 export default function RaceDetails(props) {
 
@@ -59,7 +59,7 @@ export default function RaceDetails(props) {
             {/* <h3>Hello from RaceResults component!</h3> */}
 
             <div>
-                <p>ovde ide zastavica!</p>
+                <Flag country={getFlagByRaceLocation(props.flags, raceDetails.Circuit.Location.country)} />
                 <p>Country: {raceDetails.Circuit.Location.country}</p>
                 <p>Location: {raceDetails.Circuit.Location.locality}</p>
                 <p>date: {raceDetails.date}</p>
