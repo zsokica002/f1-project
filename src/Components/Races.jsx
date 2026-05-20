@@ -2,8 +2,10 @@ import { useEffect, useState } from "react";
 import Loader from "./Loader";
 import axios from "axios";
 import { useNavigate } from "react-router";
+import Flag from "react-flagkit";
+import { getFlagByNationality, getFlagByRaceLocation } from "../helpers/getFlags";
 
-export default function Races() {
+export default function Races(props) {
     const [races, setRaces] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -42,7 +44,7 @@ export default function Races() {
 
 
     return (
-        <table>
+        <table className="table" border={1}>
             <thead>
                 <tr>
                     <th colSpan={5}>Race calendar 2025</th>
@@ -61,11 +63,10 @@ export default function Races() {
                     return (
                         <tr key={i}>
                             <td>{race.round}</td>
-                            <td onClick={() => handleClickDetails(race.round)}> {race.raceName} </td>
+                            <td onClick={() => handleClickDetails(race.round)}> <Flag country={getFlagByRaceLocation(props.flags, race.Circuit.Location.country)} />  {race.raceName} </td>
                             <td><a target="_blank" href={race.Circuit.url}>{race.Circuit.circuitName}</a></td>
                             <td>{race.date}</td>
-                            <td onClick={() => handleClickDriver(race.Results[0].Driver.driverId)}
-                            >{race.Results[0].Driver.familyName}</td>
+                            <td onClick={() => handleClickDriver(race.Results[0].Driver.driverId)}> <Flag country={getFlagByNationality(props.flags, race.Results[0].Driver.nationality)} />{race.Results[0].Driver.familyName}</td>
                         </tr>
                     );
                 })}
