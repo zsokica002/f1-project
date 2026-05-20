@@ -46,7 +46,6 @@ export default function Drivers(props) {
       <Breadcrumbs />
       <h1>Drivers Championship</h1>
       <table className="table" border={1}>
-      <table className="table" >
         <thead>
           <tr>
             <th colSpan={4}>Drivers Championship Standings - {year}</th>
