@@ -5,6 +5,7 @@ import Flag from "react-flagkit";
 import DriverDetails from "./DriverDetails";
 import { useNavigate } from "react-router";
 import { getFlagByNationality } from "../helpers/getFlags";
+import Breadcrumbs from "./Breadcrumbs";
 
 
 export default function Drivers(props) {
@@ -42,8 +43,9 @@ export default function Drivers(props) {
 
   return (
     <>
+      <Breadcrumbs />
       <h1>Drivers Championship</h1>
-      <table >
+      <table className="table" >
         <thead>
           <tr>
             <th colSpan={4}>Drivers Championship Standings - {year}</th>
