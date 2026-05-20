@@ -93,7 +93,7 @@ export default function RaceDetails() {
                 </tbody>
             </table>
 
-            <table>
+            <table className="table">
                 <thead>
                     <tr>
                         <th colSpan={4}>Race Results</th>

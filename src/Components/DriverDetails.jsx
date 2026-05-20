@@ -41,6 +41,10 @@ export default function DriverDetails(props) {
         navigate(`/teamDetails/${id}`);
     };
 
+    const handleRaceDetails = (id) => {
+        navigate(`/raceDetails/${id}`)
+    };
+
 
 
     if (loading) {
@@ -85,7 +89,8 @@ export default function DriverDetails(props) {
                         return (
                             <tr key={i}>
                                 <td><a target="_blank" href={result.Circuit.url}>{result.Circuit.circuitName}</a></td>
-                                <td><Flag country={getFlagByRaceLocation(props.flags, result.Circuit.Location.country)} />{result.Circuit.Location.country}</td>
+                                <td onClick={() => handleRaceDetails(result.round)}
+                                ><Flag country={getFlagByRaceLocation(props.flags, result.Circuit.Location.country)} />{result.Circuit.Location.country}</td>
                                 <td onClick={() => handleClickDetails(result.Results[0].Constructor.constructorId)}
                                 >{result.Results[0].Constructor.name}</td>
                                 <td>{result.Results[0].grid}</td>
