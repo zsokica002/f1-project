@@ -122,12 +122,6 @@ export default function RaceDetails() {
 
                 </tbody>
             </table>
-
-
-
-
-
-
         </>
     );
 }
