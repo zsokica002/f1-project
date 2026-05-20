@@ -32,14 +32,16 @@ export default function Drivers(props) {
 
   }
 
-  const handleClickConstructor = () => {
-    console.log("click...constructor");
+  const handleClickConstructor = (id) => {
+    navigate(`/teamDetails/${id}`);
   }
 
 
   if (loading) {
     return <Loader />
   }
+
+  console.log(drivers);
 
   return (
     <>
@@ -56,7 +58,7 @@ export default function Drivers(props) {
               <tr>
                 <td>{driver.position}</td>
                 <td onClick={() => handleClickDriver(driver.Driver.driverId)}><Flag country={getFlagByNationality(props.flags, driver.Driver.nationality)} />  {driver.Driver.givenName} {driver.Driver.familyName}</td>
-                <td onClick={() => handleClickConstructor()}>{driver.Constructors[0].name}</td>
+                <td onClick={() => handleClickConstructor(driver.Constructors[0].constructorId)}>{driver.Constructors[0].name}</td>
                 <td>{driver.points}</td>
               </tr>
             </tbody>
