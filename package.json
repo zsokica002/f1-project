@@ -10,7 +10,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "ant": "^0.0.0",
+    "antd": "^6.4.3",
     "axios": "^1.16.1",
+    "d": "^1.0.2",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
     "react-flagkit": "^2.0.4",
