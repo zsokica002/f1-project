@@ -70,7 +70,7 @@ export default function DriverDetails(props) {
 
             </div>
 
-            <table className="table" border={1}>
+            <table className="table">
                 <thead>
                     <tr>
                         <th>Round</th>
