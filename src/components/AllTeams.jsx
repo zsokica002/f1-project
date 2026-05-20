@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import Loader from "./Loader";
+import Flag from "react-flagkit";
 import axios from "axios";
 import { useNavigate } from "react-router";
-import TeamResults from "./TeamResults";
 
-export default function AllTeams() {
+import { getFlagByNationality } from "../helpers/getFlags";
+
+export default function AllTeams(props) {
     const [allTeams, setAllTeams] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -55,8 +57,10 @@ export default function AllTeams() {
                         return (
                             <tr key={team.Constructor.constructorId}>
                                 <td>{team.position}</td>
-                                <td onClick={() => handleClickDetails(team.Constructor.constructorId)}
-                                > {team.Constructor.name}</td>
+                              <td onClick={() => handleClickDetails(team.Constructor.constructorId)}>
+                                <Flag country={getFlagByNationality(props.flags, team.Constructor.nationality)}/>
+                                {team.Constructor.name}</td>               
+                                
                                 <td><a target="_blank" href={team.Constructor.url}>Details</a></td>
 
                                 <td>{team.points}</td>
