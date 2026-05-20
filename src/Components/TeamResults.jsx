@@ -2,8 +2,10 @@ import { useState, useEffect } from "react";
 import Loader from "./Loader";
 import axios from "axios";
 import { useParams } from "react-router";
+import Flag from "react-flagkit";
+import { getFlagByNationality, getFlagByRaceLocation } from "../helpers/getFlags";
 
-export default function TeamResults() {
+export default function TeamResults(props) {
 
     const [teamResults, setTeamResults] = useState([]);
     const [teamDetails, setTeamDetails] = useState([]);
@@ -56,7 +58,9 @@ export default function TeamResults() {
             <div>
                
                  <img src={`/public/teamLogo/${teamDetails.Constructor.constructorId}.jpg`} alt="slika" width={250} />
-                <p>ovde ide zastava</p>
+
+               
+
                 <p>{teamResults[0].Results[0].Constructor.name}</p>
                 <p>Nationality: {teamResults[0].Results[0].Constructor.nationality}</p>
                 <p>Position: {teamDetails.position}</p>
@@ -83,7 +87,8 @@ export default function TeamResults() {
                         <tr key={race.round}>
 
                             <td>{race.round}</td>
-                            <td>{race.raceName}</td>
+                            <td><Flag />
+                                {race.raceName}</td>
                             <td>{race.Results[0].position}</td>
                             <td>{race.Results[1].position}</td>
                             <td>{Number(race.Results[0].points) + Number(race.Results[1].points)}</td>
