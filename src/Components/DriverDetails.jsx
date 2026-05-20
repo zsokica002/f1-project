@@ -4,6 +4,7 @@ import Loader from "./Loader";
 import axios from "axios";
 import Flag from "react-flagkit";
 import { getFlagByNationality, getFlagByRaceLocation } from "../helpers/getFlags";
+import Breadcrumbs from "./Breadcrumbs";
 
 export default function DriverDetails(props) {
 
@@ -51,6 +52,7 @@ export default function DriverDetails(props) {
 
     return (
         <>
+            <Breadcrumbs />
             <h1>Driver Details</h1>
 
             <div>
@@ -68,7 +70,7 @@ export default function DriverDetails(props) {
 
             </div>
 
-            <table>
+            <table className="table" border={1}>
                 <thead>
                     <tr>
                         <th>Round</th>
