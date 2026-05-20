@@ -37,7 +37,9 @@ export default function TeamResults() {
     };
 
 
-    // console.log(teamResults);
+    
+    //console.log(teamResults);
+    console.log(teamDetails);
 
 
 
@@ -52,7 +54,8 @@ export default function TeamResults() {
             <h1>{teamResults[0].Results[0].Constructor.name} results</h1>
 
             <div>
-                <img src="#" alt="slika!" />
+               
+                 <img src={`/public/teamLogo/${teamDetails.Constructor.constructorId}.jpg`} alt="slika" width={250} />
                 <p>ovde ide zastava</p>
                 <p>{teamResults[0].Results[0].Constructor.name}</p>
                 <p>Nationality: {teamResults[0].Results[0].Constructor.nationality}</p>
