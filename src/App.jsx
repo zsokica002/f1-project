@@ -36,7 +36,7 @@ export default function App() {
         <Route path="/teams" element={<Teams flags={flags} />} />
         <Route path="/teamDetails/:id" element={<TeamDetails />} />
         <Route path="/races" element={<Races flags={flags} />} />
-        <Route path="/raceDetails/:id" element={<RaceDetails />} />
+        <Route path="/raceDetails/:id" element={<RaceDetails flags={flags} />} />
       </Routes>
 
     </BrowserRouter>

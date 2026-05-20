@@ -2,8 +2,10 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import Loader from "./Loader";
+import Flag from "react-flagkit";
+import { getFlagByNationality } from "../helpers/getFlags";
 
-export default function RaceDetails() {
+export default function RaceDetails(props) {
 
     const [qualis, setQualis] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -83,7 +85,7 @@ export default function RaceDetails() {
                         return (
                             <tr key={i}>
                                 <td>{quali.position}</td>
-                                <td>{quali.Driver.familyName}</td>
+                                <td> <Flag country={getFlagByNationality(props.flags, quali.Driver.nationality)} />{quali.Driver.familyName}</td>
                                 <td>{quali.Constructor.name}</td>
                                 <td>{getBestTime(quali.Q1, quali.Q2, quali.Q3)}</td>
                             </tr>
@@ -112,7 +114,7 @@ export default function RaceDetails() {
                         return (
                             <tr key={i}>
                                 <td>{result.position}</td>
-                                <td>{result.Driver.familyName}</td>
+                                <td> <Flag country={getFlagByNationality(props.flags, result.Driver.nationality)} />{result.Driver.familyName}</td>
                                 <td>{result.Constructor.name}</td>
                                 <td>{result.Time ? result.Time.time : result.status}</td>
                                 <td>{result.points}</td>
