@@ -65,7 +65,7 @@ export default function RaceDetails() {
             </div>
 
 
-            <table>
+            <table className="table">
                 <thead>
                     <tr>
                         <th colSpan={4}>Qualifying Results</th>
