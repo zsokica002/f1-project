@@ -47,8 +47,8 @@ export default function TeamResults(props) {
         navigate(`/driverDetails/${id}`);
     };
 
-    console.log(teamResults);
-    // console.log(teamDetails);
+    // console.log(teamResults);
+    console.log(teamDetails);
 
 
 
@@ -67,7 +67,9 @@ export default function TeamResults(props) {
                 <img src={`/teamLogo/${teamDetails.Constructor.constructorId}.jpg`} alt="slika" width={250} />
 
 
-                <p>zastavica</p>
+
+                <Flag />
+
                 <p>{teamResults[0].Results[0].Constructor.name}</p>
                 <p>Nationality: {teamResults[0].Results[0].Constructor.nationality}</p>
                 <p>Position: {teamDetails.position}</p>
@@ -96,9 +98,7 @@ export default function TeamResults(props) {
                         <tr key={race.round}>
 
                             <td>{race.round}</td>
-                            <td onClick={() => handleClickDetails(race.round)}
-                            ><Flag />
-                                {race.raceName}</td>
+                            <td onClick={() => handleClickDetails(race.round)}> <Flag country={getFlagByRaceLocation(props.flags, race.Circuit.Location.country)} /> {race.raceName}</td>
                             <td>{race.Results[0].position}</td>
                             <td>{race.Results[1].position}</td>
                             <td>{Number(race.Results[0].points) + Number(race.Results[1].points)}</td>
