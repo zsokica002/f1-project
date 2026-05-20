@@ -4,7 +4,7 @@ import Loader from "./Loader";
 import axios from "axios";
 import Flag from "react-flagkit";
 import { getFlagByNationality, getFlagByRaceLocation } from "../helpers/getFlags";
-import Breadcrumbs from "./Breadcrumbs";
+// import Breadcrumbs from "./Breadcrumbs";
 
 export default function DriverDetails(props) {
 
@@ -52,7 +52,7 @@ export default function DriverDetails(props) {
 
     return (
         <>
-            <Breadcrumbs />
+            {/* <Breadcrumbs /> */}
             <h1>Driver Details</h1>
 
             <div>

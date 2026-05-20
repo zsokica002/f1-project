@@ -54,9 +54,10 @@ export default function RaceDetails() {
     return (
         <>
 
-            <h3>Hello from RaceResults component!</h3>
+            {/* <h3>Hello from RaceResults component!</h3> */}
 
             <div>
+                <p>ovde ide zastavica!</p>
                 <p>Country: {raceDetails.Circuit.Location.country}</p>
                 <p>Location: {raceDetails.Circuit.Location.locality}</p>
                 <p>date: {raceDetails.date}</p>
@@ -121,12 +122,6 @@ export default function RaceDetails() {
 
                 </tbody>
             </table>
-
-
-
-
-
-
         </>
     );
 }
