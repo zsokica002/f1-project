@@ -6,11 +6,11 @@ import { useParams } from "react-router";
 export default function TeamResults() {
 
     const [teamResults, setTeamResults] = useState([]);
+    const [teamDetails, setTeamDetails] = useState([]);
     const [loading, setLoading] = useState(true);
     const [year, setYear] = useState("");
 
     const params = useParams();
-    // console.log("params ", params);
 
 
     useEffect(() => {
@@ -18,17 +18,26 @@ export default function TeamResults() {
     }, []);
 
     const getTeamResults = async () => {
-        const url = `https://api.jolpi.ca/ergast/f1/2025/constructors/${params.id}/results.json`;
+        const urlResults = `https://api.jolpi.ca/ergast/f1/2025/constructors/${params.id}/results.json`;
+        const urlDetails = `https://api.jolpi.ca/ergast/f1/2025/constructors/${params.id}/constructorStandings.json`;
 
-        const response = await axios.get(url);
-        console.log(response);
-        setTeamResults(response.data.MRData.RaceTable.Races);
-        setYear(response.data.MRData.RaceTable.season);
+
+        const responseResults = await axios.get(urlResults);
+        const responseDetails = await axios.get(urlDetails);
+
+        // console.log(responseDetails.data.MRData.StandingsTable.StandingsLists[0].ConstructorStandings[0]);
+
+
+
+        setTeamResults(responseResults.data.MRData.RaceTable.Races);
+        setTeamDetails(responseDetails.data.MRData.StandingsTable.StandingsLists[0].ConstructorStandings[0]);
+        setYear(responseResults.data.MRData.RaceTable.season);
 
         setLoading(false);
     };
 
-    console.log(teamResults);
+
+    // console.log(teamResults);
 
 
 
@@ -43,8 +52,13 @@ export default function TeamResults() {
             <h1>{teamResults[0].Results[0].Constructor.name} results</h1>
 
             <div>
+                <img src="#" alt="slika!" />
+                <p>ovde ide zastava</p>
                 <p>{teamResults[0].Results[0].Constructor.name}</p>
-                <p>{teamResults[0].Results[0].Constructor.nationality}</p>
+                <p>Nationality: {teamResults[0].Results[0].Constructor.nationality}</p>
+                <p>Position: {teamDetails.position}</p>
+                <p>Points: {teamDetails.points}</p>
+                <p>History: <a target="_blank" href={teamDetails.Constructor.url}>ikonica!!!</a></p>
 
             </div>
 
