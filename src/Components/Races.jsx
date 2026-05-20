@@ -64,8 +64,8 @@ export default function Races() {
                             <td onClick={() => handleClickDetails(race.round)}> {race.raceName} </td>
                             <td><a target="_blank" href={race.Circuit.url}>{race.Circuit.circuitName}</a></td>
                             <td>{race.date}</td>
-                            {/* <td onClick={() => handleClickDriver(race.Results.Driver.driverId)}
-                            >{race.Results[0].Driver.familyName}</td> */}
+                            <td onClick={() => handleClickDriver(race.Results[0].Driver.driverId)}
+                            >{race.Results[0].Driver.familyName}</td>
                         </tr>
                     );
                 })}
