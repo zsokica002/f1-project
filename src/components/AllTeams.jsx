@@ -42,7 +42,7 @@ export default function AllTeams() {
     return (
         <>
             <h2>All Teams 2025</h2>
-            <table className="container">
+            <table className="container border" border={1} >
                 <thead>
                     <tr>
                         <th colSpan={3}>Constructors Championship Standings - {year}</th>
