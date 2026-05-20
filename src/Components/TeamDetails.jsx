@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Loader from "./Loader";
 import axios from "axios";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import Flag from "react-flagkit";
 import { getFlagByNationality, getFlagByRaceLocation } from "../helpers/getFlags";
 
@@ -13,6 +13,7 @@ export default function TeamResults(props) {
     const [year, setYear] = useState("");
 
     const params = useParams();
+    const navigate = useNavigate();
 
 
     useEffect(() => {
@@ -38,17 +39,23 @@ export default function TeamResults(props) {
         setLoading(false);
     };
 
+    const handleClickDetails = (id) => {
+        navigate(`/raceDetails/${id}`)
+    };
 
+    const handleClickDriver = (id) => {
+        navigate(`/driverDetails/${id}`);
+    };
 
-    //console.log(teamResults);
-    console.log(teamDetails);
+    console.log(teamResults);
+    // console.log(teamDetails);
 
 
 
 
     if (loading) {
         return <Loader />;
-    }
+    };
 
     return (
 
@@ -57,7 +64,7 @@ export default function TeamResults(props) {
 
             <div>
 
-                <img src={`/public/teamLogo/${teamDetails.Constructor.constructorId}.jpg`} alt="slika" width={250} />
+                <img src={`/teamLogo/${teamDetails.Constructor.constructorId}.jpg`} alt="slika" width={250} />
 
 
                 <p>zastavica</p>
@@ -77,8 +84,10 @@ export default function TeamResults(props) {
                     <tr>
                         <th>Round</th>
                         <th>Grand Prix</th>
-                        <th>{teamResults[0].Results[0].Driver.familyName}</th>
-                        <th>{teamResults[0].Results[1].Driver.familyName}</th>
+                        <th onClick={() => handleClickDriver(teamResults[0].Results[0].Driver.driverId)}
+                        >{teamResults[0].Results[0].Driver.familyName}</th>
+                        <th onClick={() => handleClickDriver(teamResults[0].Results[1].Driver.driverId)}
+                        >{teamResults[0].Results[1].Driver.familyName}</th>
                         <th>Points</th>
                     </tr>
                 </thead>
@@ -87,7 +96,8 @@ export default function TeamResults(props) {
                         <tr key={race.round}>
 
                             <td>{race.round}</td>
-                            <td><Flag />
+                            <td onClick={() => handleClickDetails(race.round)}
+                            ><Flag />
                                 {race.raceName}</td>
                             <td>{race.Results[0].position}</td>
                             <td>{race.Results[1].position}</td>
