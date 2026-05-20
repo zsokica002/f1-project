@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router";
 import Loader from "./Loader";
 import axios from "axios";
 import Flag from "react-flagkit";
+import { getFlagByNationality, getFlagByRaceLocation } from "../helpers/getFlags";
 
 export default function DriverDetails(props) {
 
@@ -34,19 +35,11 @@ export default function DriverDetails(props) {
 
     }
 
-    const getDriverNationality = (nation) => {
-        const driverFlagA2 = props.flags.find(flag => flag.nationality === nation);
-        return driverFlagA2?.alpha_2_code;
-    }
-
-    const getRaceLocation = (nation) => {
-        const raceFlagA2 = props.flags.find(flag => flag.en_short_name === nation)
-        return raceFlagA2?.alpha_2_code;
-    }
 
     const handleClickDetails = (id) => {
         navigate(`/teamDetails/${id}`);
     };
+
 
 
     if (loading) {
@@ -61,18 +54,18 @@ export default function DriverDetails(props) {
             <h1>Driver Details</h1>
 
             <div>
+
+                <img src={`/public/drivers2025/${driverInfo.Driver.driverId}.jpg`} alt={driverInfo.Driver.driverId} width={250} />
                 <div>
-                    <img src={`/public/drivers2025/${driverInfo.Driver.driverId}.jpg`} alt={driverInfo.Driver.driverId} width={250} />
-                    <div>
-                        <p>{driverInfo.Driver.givenName} {driverInfo.Driver.familyName}</p>
-                        <div> <Flag country={getDriverNationality(driverInfo.Driver.nationality)} size={50} /></div>
-                    </div>
-                    <p><b>Country: </b>{driverInfo.Driver.nationality}</p>
-                    <p onClick={() => handleClickDetails(driverInfo.Constructors[0].constructorId)}
-                    ><b>Team: </b>{driverInfo.Constructors[0].name}</p>
-                    <p><b>Birth: </b>{driverInfo.Driver.dateOfBirth}</p>
-                    <p><a href={driverInfo.Driver.url} target="_blank"><b>Biography</b></a></p>
+                    <p>{driverInfo.Driver.givenName} {driverInfo.Driver.familyName}</p>
+                    <div> <Flag country={getFlagByNationality(props.flags, driverInfo.Driver.nationality)} size={50} /></div>
                 </div>
+                <p><b>Country: </b>{driverInfo.Driver.nationality}</p>
+                <p onClick={() => handleClickDetails(driverInfo.Constructors[0].constructorId)}
+                ><b>Team: </b>{driverInfo.Constructors[0].name}</p>
+                <p><b>Birth: </b>{driverInfo.Driver.dateOfBirth}</p>
+                <p><a href={driverInfo.Driver.url} target="_blank"><b>Biography</b></a></p>
+
             </div>
 
             <table>
@@ -90,7 +83,7 @@ export default function DriverDetails(props) {
                         return (
                             <tr key={i}>
                                 <td><a target="_blank" href={result.Circuit.url}>{result.Circuit.circuitName}</a></td>
-                                <td><Flag country={getRaceLocation(result.Circuit.Location.country)} />{result.Circuit.Location.country}</td>
+                                <td><Flag country={getFlagByRaceLocation(props.flags, result.Circuit.Location.country)} />{result.Circuit.Location.country}</td>
                                 <td onClick={() => handleClickDetails(result.Results[0].Constructor.constructorId)}
                                 >{result.Results[0].Constructor.name}</td>
                                 <td>{result.Results[0].grid}</td>
