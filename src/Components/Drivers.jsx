@@ -4,6 +4,8 @@ import Loader from "./Loader";
 import Flag from "react-flagkit";
 import DriverDetails from "./DriverDetails";
 import { useNavigate } from "react-router";
+import { getFlagByNationality } from "../helpers/getFlags";
+
 
 export default function Drivers(props) {
   const [loading, setLoading] = useState(true);
@@ -33,10 +35,6 @@ export default function Drivers(props) {
     console.log("click...constructor");
   }
 
-  const getCountryFlag = (nation) => {
-    const flagA2 = props.flags.find(flag => flag.nationality === nation);
-    return flagA2?.alpha_2_code;
-  }
 
   if (loading) {
     return <Loader />
@@ -56,7 +54,7 @@ export default function Drivers(props) {
             <tbody key={driver.Driver.permanentNumber}>
               <tr>
                 <td>{driver.position}</td>
-                <td onClick={() => handleClickDriver(driver.Driver.driverId)}><Flag country={getCountryFlag(driver.Driver.nationality)} />  {driver.Driver.givenName} {driver.Driver.familyName}</td>
+                <td onClick={() => handleClickDriver(driver.Driver.driverId)}><Flag country={getFlagByNationality(props.flags, driver.Driver.nationality)} />  {driver.Driver.givenName} {driver.Driver.familyName}</td>
                 <td onClick={() => handleClickConstructor()}>{driver.Constructors[0].name}</td>
                 <td>{driver.points}</td>
               </tr>
@@ -64,8 +62,6 @@ export default function Drivers(props) {
           );
         })}
       </table>
-
-      <p>HELP</p>
     </>
   );
 }
