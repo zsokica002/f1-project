@@ -98,19 +98,12 @@ export default function TeamResults(props) {
                         <tr key={race.round}>
 
                             <td>{race.round}</td>
-<<<<<<< HEAD
                             <td onClick={() => handleClickDetails(race.round)}
                             ><Flag />
                                 {race.raceName}</td>
                             <td>{race.Results[0]?.position || "N/A"}</td>
                             <td>{race.Results[1]?.position || "N/A"}</td>
                             <td>{race.Results[1]?.points !== undefined ? Number(race.Results[0]?.points) + Number(race.Results[1]?.points) : "N/A"}</td>
-=======
-                            <td onClick={() => handleClickDetails(race.round)}> <Flag country={getFlagByRaceLocation(props.flags, race.Circuit.Location.country)} /> {race.raceName}</td>
-                            <td>{race.Results[0].position}</td>
-                            <td>{race.Results[1].position}</td>
-                            <td>{Number(race.Results[0].points) + Number(race.Results[1].points)}</td>
->>>>>>> e53ff1f98e29f4a0e06a7a6ed5b41d1366362eef
                         </tr>
                     ))}
                 </tbody>
