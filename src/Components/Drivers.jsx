@@ -12,12 +12,24 @@ export default function Drivers(props) {
   const [loading, setLoading] = useState(true);
   const [drivers, setDrivers] = useState([]);
   const [year, setYear] = useState("");
-
+  const [filteredDrivers, setFilteredDrivers] = useState([]);
+  // console.log(props);
+  const search = props.search;
+  console.log(search);
   const navigate = useNavigate();
 
   useEffect(() => {
     getDrivers();
   }, []);
+
+  useEffect(() => {
+        const result = drivers.filter((item) => {
+            return (
+                item.Driver.givenName.toLowerCase().includes(search.toLowerCase()) || item.Driver.familyName.toLowerCase().includes(search.toLowerCase())
+            );
+        });
+        setFilteredDrivers(result);
+    }, [search, drivers]);
 
   const getDrivers = async () => {
     const url = "https://api.jolpi.ca/ergast/f1/2025/driverStandings.json"
@@ -52,7 +64,7 @@ export default function Drivers(props) {
             <th colSpan={4}>Drivers Championship Standings - {year}</th>
           </tr>
         </thead>
-        {drivers.map((driver) => {
+        {filteredDrivers.map((driver) => {
           return (
             <tbody key={driver.Driver.permanentNumber}>
               <tr>
