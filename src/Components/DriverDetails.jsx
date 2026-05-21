@@ -66,7 +66,7 @@ export default function DriverDetails(props) {
                     <p>{driverInfo.Driver.givenName} {driverInfo.Driver.familyName}</p>
                     <div> <Flag country={getFlagByNationality(props.flags, driverInfo.Driver.nationality)} size={50} /></div>
                 </div>
-                <p><b>Country: </b>{driverInfo.Driver.nationality}</p>
+                <p><b>Nationality: </b>{driverInfo.Driver.nationality}</p>
                 <p onClick={() => handleClickDetails(driverInfo.Constructors[0].constructorId)}
                 ><b>Team: </b>{driverInfo.Constructors[0].name}</p>
                 <p><b>Birth: </b>{driverInfo.Driver.dateOfBirth}</p>
