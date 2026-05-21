@@ -1,13 +1,14 @@
-import { BrowserRouter, Routes, Route, Link } from "react-router";
-import axios from "axios";
+import { BrowserRouter, Routes, Route } from "react-router";
 import { useEffect, useState } from "react";
+import axios from "axios";
+import Navigation from "./components/Navigation";
+import Home from "./components/Home";
 import Drivers from "./components/Drivers";
 import Teams from "./components/Teams";
 import Races from "./components/Races";
 import RaceDetails from "./components/RaceDetails";
 import DriverDetails from "./components/DriverDetails";
 import TeamDetails from "./components/TeamDetails";
-import Navigation from "./components/Navigation";
 
 export default function App() {
   const [flags, setFlags] = useState([]);
@@ -28,7 +29,8 @@ export default function App() {
       <Navigation />
 
       <Routes>
-        <Route path="/" element={<Drivers flags={flags} />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/drivers" element={<Drivers flags={flags} />} />
         <Route path="/driverDetails/:id" element={<DriverDetails flags={flags} />} />
         <Route path="/teams" element={<Teams flags={flags} />} />
         <Route path="/teamDetails/:id" element={<TeamDetails flags={flags} />} />
