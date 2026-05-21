@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import Loader from "./Loader";
 import Flag from "react-flagkit";
 import { getFlagByNationality, getFlagByRaceLocation } from "../helpers/getFlags";
@@ -13,6 +13,7 @@ export default function RaceDetails(props) {
     const [raceDetails, setRaceDetails] = useState("");
 
     const params = useParams();
+    const navigate = useNavigate();
 
     useEffect(() => {
         getRaceDetails();

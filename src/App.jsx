@@ -7,6 +7,7 @@ import Races from "./components/Races";
 import RaceDetails from "./components/RaceDetails";
 import DriverDetails from "./components/DriverDetails";
 import TeamDetails from "./components/TeamDetails";
+import Navigation from "./components/Navigation";
 
 export default function App() {
   const [flags, setFlags] = useState([]);
@@ -24,11 +25,7 @@ export default function App() {
 
   return (
     <BrowserRouter>
-      <ul className="nav" >
-        <li><Link className="nav-links" to="/" >Drivers</Link></li>
-        <li><Link className="nav-links" to="/teams" >Teams</Link></li>
-        <li><Link className="nav-links" to="/races">Races</Link></li>
-      </ul>
+      <Navigation />
 
       <Routes>
         <Route path="/" element={<Drivers flags={flags} />} />
