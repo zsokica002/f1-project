@@ -1,6 +1,10 @@
 export function getFlagByNationality(flags, nationality) {
-    if (nationality === "Azerbaijan") {
-        return "AZ";
+    if (nationality === "Azerbaijani") {
+        return flags ="AZ";
+    } else if(nationality === "British"){
+        return flags = "UK";
+    } else if(nationality === "Emirati"){
+        return flags = "AE";
     }
 
     const flagA2 = flags.find(flag => flag.nationality === nationality);
@@ -9,7 +13,12 @@ export function getFlagByNationality(flags, nationality) {
 
 export function getFlagByRaceLocation(flags, location) {
     if (location === "Azerbaijan") {
-        return "AZ";
+        return  flags = "AZ";
+    }
+     else if(location === "UK"){
+        return flags = "GB";
+    } else if (location === "UAE"){
+        return flags = "AE";
     }
 
     const raceFlagA2 = flags.find(flag => flag.en_short_name === location)
