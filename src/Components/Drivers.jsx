@@ -25,7 +25,9 @@ export default function Drivers(props) {
   useEffect(() => {
         const result = drivers.filter((item) => {
             return (
-                item.Driver.givenName.toLowerCase().includes(search.toLowerCase()) || item.Driver.familyName.toLowerCase().includes(search.toLowerCase())
+                item.Driver.givenName.toLowerCase().includes(search.toLowerCase()) || 
+                item.Driver.familyName.toLowerCase().includes(search.toLowerCase()) ||
+                item.Constructors[0].name.toLowerCase().includes(search.toLowerCase())
             );
         });
         setFilteredDrivers(result);
