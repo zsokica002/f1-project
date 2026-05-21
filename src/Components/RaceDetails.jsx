@@ -38,6 +38,13 @@ export default function RaceDetails(props) {
         setLoading(false);
     };
 
+    const handleClickDriver = (id) => {
+        navigate(`/driverDetails/${id}`);
+    }
+
+    const handleClickDetails = (id) => {
+        navigate(`/teamDetails/${id}`);
+    };
 
     const getBestTime = (q1, q2, q3) => {
         // console.log(q1, q2, q3);
@@ -86,8 +93,10 @@ export default function RaceDetails(props) {
                         return (
                             <tr key={i}>
                                 <td>{quali.position}</td>
-                                <td> <Flag country={getFlagByNationality(props.flags, quali.Driver.nationality)} />{quali.Driver.familyName}</td>
-                                <td>{quali.Constructor.name}</td>
+                                <td onClick={() => handleClickDriver(quali.Driver.driverId)}
+                                > <Flag country={getFlagByNationality(props.flags, quali.Driver.nationality)} />{quali.Driver.familyName}</td>
+                                <td onClick={() => handleClickDetails(quali.Constructor.constructorId)}
+                                >{quali.Constructor.name}</td>
                                 <td>{getBestTime(quali.Q1, quali.Q2, quali.Q3)}</td>
                             </tr>
                         );
