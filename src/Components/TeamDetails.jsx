@@ -11,7 +11,9 @@ export default function TeamResults(props) {
     const [teamDetails, setTeamDetails] = useState([]);
     const [loading, setLoading] = useState(true);
     const [year, setYear] = useState("");
+    const [filteredTeamDetails, setFilteredTeamDetails] = useState([]);
 
+    const search = props.search; 
     const params = useParams();
     const navigate = useNavigate();
 
@@ -19,6 +21,17 @@ export default function TeamResults(props) {
     useEffect(() => {
         getTeamResults();
     }, []);
+
+    useEffect(() => {
+        const result = teamResults.filter((item) => {
+            return (
+                item.Circuit.circuitName.toLowerCase().includes(search.toLowerCase()) || 
+                item.Circuit.Location.country.toLowerCase().includes(search.toLowerCase())
+            );
+        });
+        setFilteredTeamDetails(result);
+    }, [search, teamResults]);
+
 
     const getTeamResults = async () => {
         const urlResults = `https://api.jolpi.ca/ergast/f1/2025/constructors/${params.id}/results.json`;
@@ -94,7 +107,7 @@ export default function TeamResults(props) {
                     </tr>
                 </thead>
                 <tbody>
-                    {teamResults.map((race) => (
+                    {filteredTeamDetails.map((race) => (
                         <tr key={race.round}>
 
                             <td>{race.round}</td>
