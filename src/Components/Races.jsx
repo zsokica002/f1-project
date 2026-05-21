@@ -4,6 +4,7 @@ import axios from "axios";
 import { useNavigate } from "react-router";
 import Flag from "react-flagkit";
 import { getFlagByNationality, getFlagByRaceLocation } from "../helpers/getFlags";
+import Breadcrumbs from "./Breadcrumbs";
 
 export default function Races(props) {
     const [races, setRaces] = useState([]);
@@ -41,38 +42,44 @@ export default function Races(props) {
 
     console.log(races);
 
-
+    const breadcrumbs = [
+        {
+            label: "Races",
+            route: ""
+        }
+    ];
 
     return (
-        <table className="table" border={1}>
-            <thead>
-                <tr>
-                    <th colSpan={5}>Race calendar 2025</th>
-                </tr>
-                <tr>
-                    <th>Round</th>
-                    <th>Grand Prix</th>
-                    <th>Circuit</th>
-                    <th>Date</th>
-                    <th>Winner</th>
-                </tr>
-            </thead>
+        <div>
+            <Breadcrumbs items={breadcrumbs} />
+            <table className="table" border={1}>
+                <thead>
+                    <tr>
+                        <th colSpan={5}>Race calendar 2025</th>
+                    </tr>
+                    <tr>
+                        <th>Round</th>
+                        <th>Grand Prix</th>
+                        <th>Circuit</th>
+                        <th>Date</th>
+                        <th>Winner</th>
+                    </tr>
+                </thead>
 
-            <tbody>
-                {races.map((race, i) => {
-                    return (
-                        <tr key={i}>
-                            <td>{race.round}</td>
-                            <td onClick={() => handleClickDetails(race.round)}> <Flag country={getFlagByRaceLocation(props.flags, race.Circuit.Location.country)} />  {race.raceName} </td>
-                            <td><a target="_blank" href={race.Circuit.url}>{race.Circuit.circuitName}</a></td>
-                            <td>{race.date}</td>
-                            <td onClick={() => handleClickDriver(race.Results[0].Driver.driverId)}> <Flag country={getFlagByNationality(props.flags, race.Results[0].Driver.nationality)} />{race.Results[0].Driver.familyName}</td>
-                        </tr>
-                    );
-                })}
-            </tbody>
-
-
-        </table >
+                <tbody>
+                    {races.map((race, i) => {
+                        return (
+                            <tr key={i}>
+                                <td>{race.round}</td>
+                                <td onClick={() => handleClickDetails(race.round)}> <Flag country={getFlagByRaceLocation(props.flags, race.Circuit.Location.country)} />  {race.raceName} </td>
+                                <td><a target="_blank" href={race.Circuit.url}>{race.Circuit.circuitName}</a></td>
+                                <td>{race.date}</td>
+                                <td onClick={() => handleClickDriver(race.Results[0].Driver.driverId)}> <Flag country={getFlagByNationality(props.flags, race.Results[0].Driver.nationality)} />{race.Results[0].Driver.familyName}</td>
+                            </tr>
+                        );
+                    })}
+                </tbody>
+            </table >
+        </div>
     )
 }

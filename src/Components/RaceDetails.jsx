@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router";
 import Loader from "./Loader";
 import Flag from "react-flagkit";
 import { getFlagByNationality, getFlagByRaceLocation } from "../helpers/getFlags";
+import Breadcrumbs from "./Breadcrumbs";
 
 export default function RaceDetails(props) {
 
@@ -59,15 +60,29 @@ export default function RaceDetails(props) {
         return <Loader />
     };
 
+    const breadcrumbs = [
+        {
+            label: "Races",
+            route: "/races"
+        },
+        {
+            label: raceDetails.raceName,
+            route: ""
+        }
+    ];
+
     console.log(raceDetails);
 
     return (
         <>
 
+            <Breadcrumbs items={breadcrumbs} />
+
             {/* <h3>Hello from RaceResults component!</h3> */}
 
             <div>
                 <Flag country={getFlagByRaceLocation(props.flags, raceDetails.Circuit.Location.country)} />
+                <p>{raceDetails.raceName}</p>
                 <p>Country: {raceDetails.Circuit.Location.country}</p>
                 <p>Location: {raceDetails.Circuit.Location.locality}</p>
                 <p>date: {raceDetails.date}</p>

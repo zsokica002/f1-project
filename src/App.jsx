@@ -29,19 +29,19 @@ export default function App() {
   return (
     <BrowserRouter>
       <div>
-        <input type="text" value={search} onChange={(e)=>setSearch(e.target.value)} />
+        <input name="search" type="text" value={search} onChange={(e) => setSearch(e.target.value)} />
         <Navigation />
       </div>
 
 
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/drivers" element={<Drivers flags={flags} search={search}/>} />
-        <Route path="/driverDetails/:id" element={<DriverDetails flags={flags} search={search}/>} />
-        <Route path="/teams" element={<Teams flags={flags} search={search}/>} />
-        <Route path="/teamDetails/:id" element={<TeamDetails flags={flags} search={search}/>} />
-        <Route path="/races" element={<Races flags={flags} search={search}/>} />
-        <Route path="/raceDetails/:id" element={<RaceDetails flags={flags} search={search}/>} />
+        <Route path="/drivers" element={<Drivers flags={flags} search={search} />} />
+        <Route path="/driverDetails/:id" element={<DriverDetails flags={flags} search={search} />} />
+        <Route path="/teams" element={<Teams flags={flags} search={search} />} />
+        <Route path="/teamDetails/:id" element={<TeamDetails flags={flags} search={search} />} />
+        <Route path="/races" element={<Races flags={flags} search={search} />} />
+        <Route path="/raceDetails/:id" element={<RaceDetails flags={flags} search={search} />} />
       </Routes>
 
     </BrowserRouter>

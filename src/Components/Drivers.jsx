@@ -2,10 +2,9 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Loader from "./Loader";
 import Flag from "react-flagkit";
-import DriverDetails from "./DriverDetails";
 import { useNavigate } from "react-router";
 import { getFlagByNationality } from "../helpers/getFlags";
-// import Breadcrumbs from "./Breadcrumbs";
+import Breadcrumbs from "./Breadcrumbs";
 
 
 export default function Drivers(props) {
@@ -18,20 +17,21 @@ export default function Drivers(props) {
   console.log(search);
   const navigate = useNavigate();
 
+
   useEffect(() => {
     getDrivers();
   }, []);
 
   useEffect(() => {
-        const result = drivers.filter((item) => {
-            return (
-                item.Driver.givenName.toLowerCase().includes(search.toLowerCase()) || 
-                item.Driver.familyName.toLowerCase().includes(search.toLowerCase()) ||
-                item.Constructors[0].name.toLowerCase().includes(search.toLowerCase())
-            );
-        });
-        setFilteredDrivers(result);
-    }, [search, drivers]);
+    const result = drivers.filter((item) => {
+      return (
+        item.Driver.givenName.toLowerCase().includes(search.toLowerCase()) ||
+        item.Driver.familyName.toLowerCase().includes(search.toLowerCase()) ||
+        item.Constructors[0].name.toLowerCase().includes(search.toLowerCase())
+      );
+    });
+    setFilteredDrivers(result);
+  }, [search, drivers]);
 
   const getDrivers = async () => {
     const url = "https://api.jolpi.ca/ergast/f1/2025/driverStandings.json"
@@ -55,10 +55,19 @@ export default function Drivers(props) {
     return <Loader />
   }
 
+  const breadcrumbs = [
+    {
+      label: "Drivers",
+      route: ""
+    }
+  ];
+
+
   console.log(drivers);
 
   return (
     <>
+      <Breadcrumbs items={breadcrumbs} />
       <h1>Drivers Championship</h1>
       <table className="table">
         <thead>

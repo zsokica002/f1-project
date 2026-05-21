@@ -4,7 +4,7 @@ import Loader from "./Loader";
 import axios from "axios";
 import Flag from "react-flagkit";
 import { getFlagByNationality, getFlagByRaceLocation } from "../helpers/getFlags";
-// import Breadcrumbs from "./Breadcrumbs";
+import Breadcrumbs from "./Breadcrumbs";
 
 export default function DriverDetails(props) {
 
@@ -13,19 +13,18 @@ export default function DriverDetails(props) {
     const [loading, setLoading] = useState(true);
     const [filteredDriverResults, setFilteredDriverResults] = useState([]);
 
-    const search = props.search;    
+    const search = props.search;
     const params = useParams();
     const navigate = useNavigate();
-
 
     useEffect(() => {
         getDriverDetails();
     }, []);
 
-   useEffect(() => {
+    useEffect(() => {
         const result = driverResults.filter((item) => {
             return (
-                item.Circuit.circuitName.toLowerCase().includes(search.toLowerCase()) || 
+                item.Circuit.circuitName.toLowerCase().includes(search.toLowerCase()) ||
                 item.Circuit.Location.country.toLowerCase().includes(search.toLowerCase())
             );
         });
@@ -61,12 +60,23 @@ export default function DriverDetails(props) {
         return <Loader />
     }
 
+    const breadcrumbs = [
+        {
+            label: "Drivers",
+            route: "/drivers"
+        },
+        {
+            label: driverInfo.Driver.givenName,
+            route: ""
+        }
+    ];
+
     console.log(driverResults);
 
 
     return (
         <>
-            {/* <Breadcrumbs /> */}
+            <Breadcrumbs items={breadcrumbs} />
             <h1>Driver Details</h1>
 
             <div>
