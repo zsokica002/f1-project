@@ -62,7 +62,7 @@ export default function TeamResults(props) {
         navigate(`/driverDetails/${id}`);
     };
 
-    console.log(teamResults);
+    // console.log(teamResults);
     // console.log(teamDetails);
 
 

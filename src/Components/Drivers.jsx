@@ -14,7 +14,7 @@ export default function Drivers(props) {
   const [filteredDrivers, setFilteredDrivers] = useState([]);
   // console.log(props);
   const search = props.search;
-  console.log(search);
+  // console.log(search);
   const navigate = useNavigate();
 
 
@@ -63,7 +63,7 @@ export default function Drivers(props) {
   ];
 
 
-  console.log(drivers);
+  // console.log(drivers);
 
   return (
     <>
