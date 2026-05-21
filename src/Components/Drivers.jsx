@@ -14,7 +14,7 @@ export default function Drivers(props) {
   const [filteredDrivers, setFilteredDrivers] = useState([]);
   // console.log(props);
   const search = props.search;
-  console.log(search);
+  // console.log(search);
   const navigate = useNavigate();
 
 
@@ -63,7 +63,7 @@ export default function Drivers(props) {
   ];
 
 
-  console.log(drivers);
+  // console.log(drivers);
 
   return (
     <>
@@ -80,8 +80,8 @@ export default function Drivers(props) {
             <tbody key={driver.Driver.permanentNumber}>
               <tr>
                 <td>{driver.position}</td>
-                <td onClick={() => handleClickDriver(driver.Driver.driverId)}><Flag country={getFlagByNationality(props.flags, driver.Driver.nationality)} />  {driver.Driver.givenName} {driver.Driver.familyName}</td>
-                <td onClick={() => handleClickConstructor(driver.Constructors[0].constructorId)}>{driver.Constructors[0].name}</td>
+                <td className="clickable" onClick={() => handleClickDriver(driver.Driver.driverId)}><Flag country={getFlagByNationality(props.flags, driver.Driver.nationality)} />  {driver.Driver.givenName} {driver.Driver.familyName}</td>
+                <td className="clickable" onClick={() => handleClickConstructor(driver.Constructors[0].constructorId)}>{driver.Constructors[0].name}</td>
                 <td>{driver.points}</td>
               </tr>
             </tbody>

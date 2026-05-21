@@ -62,7 +62,7 @@ export default function AllTeams(props) {
         }
     ];
 
-    console.log(allTeams);
+    // console.log(allTeams);
 
 
     return (
@@ -82,7 +82,7 @@ export default function AllTeams(props) {
                         return (
                             <tr key={team.Constructor.constructorId}>
                                 <td>{team.position}</td>
-                                <td onClick={() => handleClickDetails(team.Constructor.constructorId)}>
+                                <td className="clickable" onClick={() => handleClickDetails(team.Constructor.constructorId)}>
                                     <Flag country={getFlagByNationality(props.flags, team.Constructor.nationality)} />
                                     {team.Constructor.name}</td>
 

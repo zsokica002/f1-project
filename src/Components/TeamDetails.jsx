@@ -5,6 +5,7 @@ import { useNavigate, useParams } from "react-router";
 import Flag from "react-flagkit";
 import { getFlagByNationality, getFlagByRaceLocation } from "../helpers/getFlags";
 import Breadcrumbs from "./Breadcrumbs";
+import { ExportOutlined } from "@ant-design/icons";
 
 export default function TeamResults(props) {
 
@@ -61,7 +62,7 @@ export default function TeamResults(props) {
         navigate(`/driverDetails/${id}`);
     };
 
-    console.log(teamResults);
+    // console.log(teamResults);
     // console.log(teamDetails);
 
 
@@ -100,7 +101,7 @@ export default function TeamResults(props) {
                 <p>Nationality: {teamResults[0].Results[0].Constructor.nationality}</p>
                 <p>Position: {teamDetails.position}</p>
                 <p>Points: {teamDetails.points}</p>
-                <p>History: <a target="_blank" href={teamDetails.Constructor.url}>ikonica!!!</a></p>
+                <p>History: <a target="_blank" href={teamDetails.Constructor.url}><ExportOutlined /></a></p>
 
             </div>
 
@@ -112,9 +113,9 @@ export default function TeamResults(props) {
                     <tr>
                         <th>Round</th>
                         <th>Grand Prix</th>
-                        <th onClick={() => handleClickDriver(teamResults[0].Results[0].Driver.driverId)}
+                        <th className="clickable" onClick={() => handleClickDriver(teamResults[0].Results[0].Driver.driverId)}
                         >{teamResults[0].Results[0].Driver.familyName}</th>
-                        <th onClick={() => handleClickDriver(teamResults[0].Results[1].Driver.driverId)}
+                        <th className="clickable" onClick={() => handleClickDriver(teamResults[0].Results[1].Driver.driverId)}
                         >{teamResults[0].Results[1].Driver.familyName}</th>
                         <th>Points</th>
                     </tr>
@@ -124,7 +125,7 @@ export default function TeamResults(props) {
                         <tr key={race.round}>
 
                             <td>{race.round}</td>
-                            <td onClick={() => handleClickDetails(race.round)}
+                            <td className="clickable" onClick={() => handleClickDetails(race.round)}
                             ><Flag country={getFlagByRaceLocation(props.flags, race.Circuit.Location.country)} />
                                 {race.raceName}</td>
                             <td>{race.Results[0]?.position || "N/A"}</td>

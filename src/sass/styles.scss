@@ -4,6 +4,11 @@ body {
     padding: 0;
 }
 
+.clickable {
+    cursor: pointer;
+    background-color: pink;
+}
+
 .loader-container {
     display: flex;
     justify-content: center;

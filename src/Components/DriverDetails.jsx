@@ -5,6 +5,7 @@ import axios from "axios";
 import Flag from "react-flagkit";
 import { getFlagByNationality, getFlagByRaceLocation } from "../helpers/getFlags";
 import Breadcrumbs from "./Breadcrumbs";
+import { ExportOutlined } from "@ant-design/icons";
 
 export default function DriverDetails(props) {
 
@@ -66,12 +67,12 @@ export default function DriverDetails(props) {
             route: "/drivers"
         },
         {
-            label: driverInfo.Driver.givenName,
+            label: driverInfo.Driver.familyName,
             route: ""
         }
     ];
 
-    console.log(driverResults);
+    // console.log(driverResults);
 
 
     return (
@@ -86,11 +87,11 @@ export default function DriverDetails(props) {
                     <p>{driverInfo.Driver.givenName} {driverInfo.Driver.familyName}</p>
                     <div> <Flag country={getFlagByNationality(props.flags, driverInfo.Driver.nationality)} size={50} /></div>
                 </div>
-                <p><b>Nationality: </b>{driverInfo.Driver.nationality}</p>
+                <p>Nationality: {driverInfo.Driver.nationality}</p>
                 <p onClick={() => handleClickDetails(driverInfo.Constructors[0].constructorId)}
-                ><b>Team: </b>{driverInfo.Constructors[0].name}</p>
-                <p><b>Birth: </b>{driverInfo.Driver.dateOfBirth}</p>
-                <p><a href={driverInfo.Driver.url} target="_blank"><b>Biography</b></a></p>
+                >Team: {driverInfo.Constructors[0].name}</p>
+                <p>Birth: {driverInfo.Driver.dateOfBirth}</p>
+                <p>Biography: <a href={driverInfo.Driver.url} target="_blank"><ExportOutlined /></a></p>
 
             </div>
 
@@ -108,10 +109,10 @@ export default function DriverDetails(props) {
                     {filteredDriverResults.map((result, i) => {
                         return (
                             <tr key={i}>
-                                <td><a target="_blank" href={result.Circuit.url}>{result.Circuit.circuitName}</a></td>
-                                <td onClick={() => handleRaceDetails(result.round)}
+                                <td><a target="_blank" href={result.Circuit.url}>{result.Circuit.circuitName} <ExportOutlined /></a></td>
+                                <td className="clickable" onClick={() => handleRaceDetails(result.round)}
                                 ><Flag country={getFlagByRaceLocation(props.flags, result.Circuit.Location.country)} />{result.Circuit.Location.country}</td>
-                                <td onClick={() => handleClickDetails(result.Results[0].Constructor.constructorId)}
+                                <td className="clickable" onClick={() => handleClickDetails(result.Results[0].Constructor.constructorId)}
                                 >{result.Results[0].Constructor.name}</td>
                                 <td>{result.Results[0].grid}</td>
                                 <td>{result.Results[0].position}</td>
