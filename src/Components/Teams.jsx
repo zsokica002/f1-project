@@ -9,12 +9,28 @@ import { getFlagByNationality } from "../helpers/getFlags";
 export default function AllTeams(props) {
     const [allTeams, setAllTeams] = useState([]);
     const [loading, setLoading] = useState(true);
-
     const [year, setYear] = useState("");
+    const [filteredTeams, setFilteredTeams] = useState([]);
+
+    const search = props.search;
+    //console.log(search);
+    const navigate = useNavigate();
+
+
+
 
     useEffect(() => {
         getAllTeams();
     }, []);
+
+    useEffect(() => {
+    const result = allTeams.filter((item) => {
+        return (
+            item.Constructor.name.toLowerCase().includes(search.toLowerCase()) 
+        );
+    });
+    setFilteredTeams(result);
+}, [search, allTeams]);
 
     const getAllTeams = async () => {
         const url = "https://api.jolpi.ca/ergast/f1/2025/constructorStandings.json";
@@ -26,7 +42,8 @@ export default function AllTeams(props) {
         setLoading(false);
     };
 
-    const navigate = useNavigate();
+   
+    
 
     const handleClickDetails = (id) => {
         // console.log("handleClickDetails ", id);
@@ -53,7 +70,7 @@ export default function AllTeams(props) {
                 </thead>
 
                 <tbody className="team">
-                    {allTeams.map((team) => {
+                    {filteredTeams.map((team) => {
                         return (
                             <tr key={team.Constructor.constructorId}>
                                 <td>{team.position}</td>
