@@ -91,7 +91,7 @@ export default function DriverDetails(props) {
                 <p onClick={() => handleClickDetails(driverInfo.Constructors[0].constructorId)}
                 ><b>Team: </b>{driverInfo.Constructors[0].name}</p>
                 <p><b>Birth: </b>{driverInfo.Driver.dateOfBirth}</p>
-                <p><a href={driverInfo.Driver.url} target="_blank"><b>Biography</b></a></p>
+                <p><a href={driverInfo.Driver.url} target="_blank"><b>Biography <ExportOutlined /></b></a></p>
 
             </div>
 
@@ -110,9 +110,9 @@ export default function DriverDetails(props) {
                         return (
                             <tr key={i}>
                                 <td><a target="_blank" href={result.Circuit.url}>{result.Circuit.circuitName} <ExportOutlined /></a></td>
-                                <td onClick={() => handleRaceDetails(result.round)}
+                                <td className="clickable" onClick={() => handleRaceDetails(result.round)}
                                 ><Flag country={getFlagByRaceLocation(props.flags, result.Circuit.Location.country)} />{result.Circuit.Location.country}</td>
-                                <td onClick={() => handleClickDetails(result.Results[0].Constructor.constructorId)}
+                                <td className="clickable" onClick={() => handleClickDetails(result.Results[0].Constructor.constructorId)}
                                 >{result.Results[0].Constructor.name}</td>
                                 <td>{result.Results[0].grid}</td>
                                 <td>{result.Results[0].position}</td>

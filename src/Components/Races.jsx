@@ -83,10 +83,10 @@ export default function Races(props) {
                         return (
                             <tr key={i}>
                                 <td>{race.round}</td>
-                                <td onClick={() => handleClickDetails(race.round)}> <Flag country={getFlagByRaceLocation(props.flags, race.Circuit.Location.country)} />  {race.raceName} </td>
+                                <td className="clickable" onClick={() => handleClickDetails(race.round)}> <Flag country={getFlagByRaceLocation(props.flags, race.Circuit.Location.country)} />  {race.raceName} </td>
                                 <td><a target="_blank" href={race.Circuit.url}>{race.Circuit.circuitName} <ExportOutlined /></a></td>
                                 <td>{race.date}</td>
-                                <td onClick={() => handleClickDriver(race.Results[0].Driver.driverId)}> <Flag country={getFlagByNationality(props.flags, race.Results[0].Driver.nationality)} />{race.Results[0].Driver.familyName}</td>
+                                <td className="clickable" onClick={() => handleClickDriver(race.Results[0].Driver.driverId)}> <Flag country={getFlagByNationality(props.flags, race.Results[0].Driver.nationality)} />{race.Results[0].Driver.familyName}</td>
                             </tr>
                         );
                     })}
