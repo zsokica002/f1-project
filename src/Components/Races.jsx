@@ -8,13 +8,25 @@ import { getFlagByNationality, getFlagByRaceLocation } from "../helpers/getFlags
 export default function Races(props) {
     const [races, setRaces] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [filteredRaces, setFilteredRaces] = useState([]); 
 
+    const search = props.search;
     const navigate = useNavigate();
 
     useEffect(() => {
         getRaces();
 
     }, []);
+
+    useEffect(()=>{
+         const result = races.filter((item) => {
+            return (
+                item.Circuit.Location.country.toLowerCase().includes(search.toLowerCase()) || 
+                item.Circuit.circuitName.toLowerCase().includes(search.toLowerCase()) 
+            );
+        });
+        setFilteredRaces(result);
+    }, [races, search])
 
     const getRaces = async () => {
         const url = "https://api.jolpi.ca/ergast/f1/2025/results/1.json";
@@ -59,7 +71,7 @@ export default function Races(props) {
             </thead>
 
             <tbody>
-                {races.map((race, i) => {
+                {filteredRaces.map((race, i) => {
                     return (
                         <tr key={i}>
                             <td>{race.round}</td>
