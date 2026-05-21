@@ -9,6 +9,7 @@ import Races from "./components/Races";
 import RaceDetails from "./components/RaceDetails";
 import DriverDetails from "./components/DriverDetails";
 import TeamDetails from "./components/TeamDetails";
+import { SearchOutlined } from "@ant-design/icons";
 
 export default function App() {
   const [flags, setFlags] = useState([]);
@@ -29,7 +30,8 @@ export default function App() {
   return (
     <BrowserRouter>
       <div>
-        <input name="search" type="text" value={search} onChange={(e) => setSearch(e.target.value)} />
+        <SearchOutlined />
+        <input name="search" placeholder="Search for..." type="text" value={search} onChange={(e) => setSearch(e.target.value)} />
         <Navigation />
       </div>
 

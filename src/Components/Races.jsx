@@ -5,6 +5,7 @@ import { useNavigate } from "react-router";
 import Flag from "react-flagkit";
 import { getFlagByNationality, getFlagByRaceLocation } from "../helpers/getFlags";
 import Breadcrumbs from "./Breadcrumbs";
+import { ExportOutlined } from "@ant-design/icons";
 
 export default function Races(props) {
     const [races, setRaces] = useState([]);
@@ -51,7 +52,7 @@ export default function Races(props) {
         return <Loader />
     }
 
-    console.log(races);
+    // console.log(races);
 
     const breadcrumbs = [
         {
@@ -83,7 +84,7 @@ export default function Races(props) {
                             <tr key={i}>
                                 <td>{race.round}</td>
                                 <td onClick={() => handleClickDetails(race.round)}> <Flag country={getFlagByRaceLocation(props.flags, race.Circuit.Location.country)} />  {race.raceName} </td>
-                                <td><a target="_blank" href={race.Circuit.url}>{race.Circuit.circuitName}</a></td>
+                                <td><a target="_blank" href={race.Circuit.url}>{race.Circuit.circuitName} <ExportOutlined /></a></td>
                                 <td>{race.date}</td>
                                 <td onClick={() => handleClickDriver(race.Results[0].Driver.driverId)}> <Flag country={getFlagByNationality(props.flags, race.Results[0].Driver.nationality)} />{race.Results[0].Driver.familyName}</td>
                             </tr>

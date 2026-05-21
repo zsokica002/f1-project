@@ -5,6 +5,7 @@ import axios from "axios";
 import Flag from "react-flagkit";
 import { getFlagByNationality, getFlagByRaceLocation } from "../helpers/getFlags";
 import Breadcrumbs from "./Breadcrumbs";
+import { ExportOutlined } from "@ant-design/icons";
 
 export default function DriverDetails(props) {
 
@@ -71,7 +72,7 @@ export default function DriverDetails(props) {
         }
     ];
 
-    console.log(driverResults);
+    // console.log(driverResults);
 
 
     return (
@@ -108,7 +109,7 @@ export default function DriverDetails(props) {
                     {filteredDriverResults.map((result, i) => {
                         return (
                             <tr key={i}>
-                                <td><a target="_blank" href={result.Circuit.url}>{result.Circuit.circuitName}</a></td>
+                                <td><a target="_blank" href={result.Circuit.url}>{result.Circuit.circuitName} <ExportOutlined /></a></td>
                                 <td onClick={() => handleRaceDetails(result.round)}
                                 ><Flag country={getFlagByRaceLocation(props.flags, result.Circuit.Location.country)} />{result.Circuit.Location.country}</td>
                                 <td onClick={() => handleClickDetails(result.Results[0].Constructor.constructorId)}

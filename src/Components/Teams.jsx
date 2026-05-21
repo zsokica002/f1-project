@@ -62,7 +62,7 @@ export default function AllTeams(props) {
         }
     ];
 
-    console.log(allTeams);
+    // console.log(allTeams);
 
 
     return (

@@ -5,6 +5,7 @@ import { useNavigate, useParams } from "react-router";
 import Flag from "react-flagkit";
 import { getFlagByNationality, getFlagByRaceLocation } from "../helpers/getFlags";
 import Breadcrumbs from "./Breadcrumbs";
+import { ExportOutlined } from "@ant-design/icons";
 
 export default function TeamResults(props) {
 
@@ -100,7 +101,7 @@ export default function TeamResults(props) {
                 <p>Nationality: {teamResults[0].Results[0].Constructor.nationality}</p>
                 <p>Position: {teamDetails.position}</p>
                 <p>Points: {teamDetails.points}</p>
-                <p>History: <a target="_blank" href={teamDetails.Constructor.url}>ikonica!!!</a></p>
+                <p>History: <a target="_blank" href={teamDetails.Constructor.url}><ExportOutlined /></a></p>
 
             </div>
 
