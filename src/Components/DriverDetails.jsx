@@ -11,7 +11,9 @@ export default function DriverDetails(props) {
     const [driverInfo, setDriverInfo] = useState([]);
     const [driverResults, setDriverResults] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [filteredDriverResults, setFilteredDriverResults] = useState([]);
 
+    const search = props.search;    
     const params = useParams();
     const navigate = useNavigate();
 
@@ -19,6 +21,16 @@ export default function DriverDetails(props) {
     useEffect(() => {
         getDriverDetails();
     }, []);
+
+   useEffect(() => {
+        const result = driverResults.filter((item) => {
+            return (
+                item.Circuit.circuitName.toLowerCase().includes(search.toLowerCase()) || 
+                item.Circuit.Location.country.toLowerCase().includes(search.toLowerCase())
+            );
+        });
+        setFilteredDriverResults(result);
+    }, [search, driverResults]);
 
     const getDriverDetails = async () => {
         const urlDriverInfo = `https://api.jolpi.ca/ergast/f1/2025/drivers/${params.id}/driverStandings.json`;
@@ -33,9 +45,7 @@ export default function DriverDetails(props) {
         setDriverResults(response2.data.MRData.RaceTable.Races);
 
         setLoading(false);
-
     }
-
 
     const handleClickDetails = (id) => {
         navigate(`/teamDetails/${id}`);
@@ -85,7 +95,7 @@ export default function DriverDetails(props) {
                     </tr>
                 </thead>
                 <tbody>
-                    {driverResults.map((result, i) => {
+                    {filteredDriverResults.map((result, i) => {
                         return (
                             <tr key={i}>
                                 <td><a target="_blank" href={result.Circuit.url}>{result.Circuit.circuitName}</a></td>
