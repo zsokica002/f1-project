@@ -47,8 +47,8 @@ export default function TeamResults(props) {
         navigate(`/driverDetails/${id}`);
     };
 
-    // console.log(teamResults);
-    console.log(teamDetails);
+    console.log(teamResults);
+    // console.log(teamDetails);
 
 
 
@@ -68,7 +68,7 @@ export default function TeamResults(props) {
 
 
 
-                <Flag />
+                <Flag country={getFlagByNationality(props.flags, teamDetails.Constructor.nationality)} />
 
                 <p>{teamResults[0].Results[0].Constructor.name}</p>
                 <p>Nationality: {teamResults[0].Results[0].Constructor.nationality}</p>
@@ -99,7 +99,7 @@ export default function TeamResults(props) {
 
                             <td>{race.round}</td>
                             <td onClick={() => handleClickDetails(race.round)}
-                            ><Flag />
+                            ><Flag country={getFlagByRaceLocation(props.flags, race.Circuit.Location.country)} />
                                 {race.raceName}</td>
                             <td>{race.Results[0]?.position || "N/A"}</td>
                             <td>{race.Results[1]?.position || "N/A"}</td>
