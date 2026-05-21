@@ -66,7 +66,7 @@ export default function DriverDetails(props) {
             route: "/drivers"
         },
         {
-            label: driverInfo.Driver.givenName,
+            label: driverInfo.Driver.familyName,
             route: ""
         }
     ];

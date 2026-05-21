@@ -16,7 +16,6 @@ export default function Races(props) {
 
     useEffect(() => {
         getRaces();
-
     }, []);
 
     useEffect(() => {
@@ -91,7 +90,6 @@ export default function Races(props) {
                         );
                     })}
                 </tbody>
-
 
             </table>
 
