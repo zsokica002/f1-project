@@ -12,13 +12,31 @@ export default function RaceDetails(props) {
     const [loading, setLoading] = useState(true);
     const [raceResults, setRaceResults] = useState([]);
     const [raceDetails, setRaceDetails] = useState("");
+    const [filteredRaceResults, setFilteredRaceResults] = useState([]);
 
+    const search = props.search;
     const params = useParams();
     const navigate = useNavigate();
 
     useEffect(() => {
         getRaceDetails();
-    }, [])
+    }, []);
+
+    useEffect(() => {
+        const result = raceResults.filter((item) => {
+            return (
+                item.Driver.familyName.toLowerCase().includes(search.toLowerCase()) ||
+                item.Constructor.name.toLowerCase().includes(search.toLowerCase())
+            );
+        });
+        setFilteredRaceResults(result);
+    }, [search, raceResults]);
+
+
+
+
+
+
 
     const getRaceDetails = async () => {
         const urlRaceDetails = `https://api.jolpi.ca/ergast/f1/2025/${params.id}/results/1.json`;
@@ -71,7 +89,8 @@ export default function RaceDetails(props) {
         }
     ];
 
-    console.log(raceDetails);
+    console.log(raceResults);
+    // console.log(raceDetails);
 
     return (
         <>
@@ -104,13 +123,13 @@ export default function RaceDetails(props) {
                 </thead>
                 <tbody>
 
-                    {qualis.map((quali, i) => {
+                    {filteredRaceResults.map((quali, i) => {
                         return (
                             <tr key={i}>
                                 <td>{quali.position}</td>
                                 <td onClick={() => handleClickDriver(quali.Driver.driverId)}
                                 > <Flag country={getFlagByNationality(props.flags, quali.Driver.nationality)} />{quali.Driver.familyName}</td>
-                                <td onClick={() => handleClickDetails(quali.Constructor.constructorId)}
+                                <td onClick={() => handleClickDetails(quali.Constructor.constructorId)}                          
                                 >{quali.Constructor.name}</td>
                                 <td>{getBestTime(quali.Q1, quali.Q2, quali.Q3)}</td>
                             </tr>
@@ -135,7 +154,7 @@ export default function RaceDetails(props) {
                 </thead>
                 <tbody>
 
-                    {raceResults.map((result, i) => {
+                    {filteredRaceResults.map((result, i) => {
                         return (
                             <tr key={i}>
                                 <td>{result.position}</td>
