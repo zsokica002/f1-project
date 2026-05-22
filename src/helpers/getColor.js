@@ -27,9 +27,14 @@ export function getColor(position) {
 }
 
 export function getTopThreeClassName(position){
-    if(position === 1 || 2 || 3){
-        return "topThree";
-    } else{
-        return "";
+    switch(position){
+        case 1 : "1st";
+        break;
+        case 2: "2nd";
+        break;
+        case 3: "3rd";
+        break;
+        default: "";
+        break;
     }
 }
