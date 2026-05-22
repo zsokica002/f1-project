@@ -14,6 +14,10 @@ body {
     font-family: mainFontMaybe;
     margin: 0;
     padding: 0;
+
+
+
+    background-color: rgba(18, 19, 20);
 }
 
 // .home-body {
@@ -83,16 +87,12 @@ body {
                 // border: 5px solid black;
             }
         }
-
     }
-
-
-
 }
 
 .clickable {
     cursor: pointer;
-    // background-color: pink;
+
 
 
     display: flex;
@@ -100,7 +100,9 @@ body {
     align-items: center;
     padding: 0 10px;
 
-
+    &:hover {
+        background-color: rgb(34, 40, 49);
+    }
 }
 
 .loader-container {
@@ -115,7 +117,7 @@ body {
     display: flex;
     margin: 0;
     padding: 5px;
-    background-color: grey;
+    // background-color: grey;
 }
 
 .table {
@@ -123,19 +125,19 @@ body {
     border: 1px solid black;
 
     td {
-        // border: 1px solid black;
+        padding: 0;
     }
 }
 
 .nav-links {
-    background-color: grey;
+    // background-color: grey;
     color: white;
     margin: 0;
     padding: 5px;
     text-decoration: none;
 
     &:hover {
-        background-color: rgb(54, 54, 54);
+        background-color: rgb(34, 40, 49);
     }
 }
 
@@ -144,7 +146,6 @@ body {
 
 .proba {
 
-    background-color: rgba(18, 19, 20);
     color: white;
     padding: 10px;
 
@@ -153,9 +154,14 @@ body {
         width: 100%;
         background-color: rgb(57, 62, 70);
 
+        .vodeciNaslov {
+            background-color: rgb(34, 40, 49);
+        }
+
         th {
             padding: 10px;
             color: rgb(148, 137, 121);
+            background-color: rgba(34, 40, 49, 0.555);
 
         }
 
@@ -166,13 +172,19 @@ body {
             text-align: center;
             color: rgb(223, 208, 184);
         }
+
+        a {
+            text-decoration: none;
+            color: rgb(223, 208, 184);
+
+            &:visited {
+                color: brown;
+                // transition: 0.3s;
+            }
+
+            &:hover {
+                color: white;
+            }
+        }
     }
-
-
-
-
-
-
-
-
 }

@@ -67,7 +67,7 @@ export default function Races(props) {
             <table className="table" border={1}>
                 <thead >
                     <tr>
-                        <th colSpan={5}>Race calendar 2025</th>
+                        <th className="vodeciNaslov" colSpan={5}>Race calendar 2025</th>
                     </tr>
                     <tr>
                         <th>Round</th>
