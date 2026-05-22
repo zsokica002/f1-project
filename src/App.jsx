@@ -29,7 +29,7 @@ export default function App() {
 
   return (
     <BrowserRouter>
-      <div>
+      <div className="navig">
         <SearchOutlined />
         <input name="search" placeholder="Search for..." type="text" value={search}
           onChange={(e) => setSearch(e.target.value)}

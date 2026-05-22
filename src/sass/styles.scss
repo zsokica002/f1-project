@@ -1,3 +1,15 @@
+@font-face {
+    // MENJATI FONT // nije citak
+    font-family: homeTitleFonts;
+    src: url("/fonts/Formula1-Regular.ttf");
+}
+
+@font-face {
+    // za sada zadrzavamo!!
+    font-family: mainFontMaybe;
+    src: url("/fonts/formula1main.ttf");
+}
+
 body {
     font-family: Arial, Helvetica, sans-serif;
     margin: 0;
@@ -16,13 +28,67 @@ body {
     min-height: 100%;
 }
 
+.navig {
+    position: fixed;
+}
+
 .content {
     position: fixed;
-    background: rgba(0, 0, 0, 0.5);
-    color: #f1f1f1;
+    background: rgba(0, 0, 0, 0.75);
+    color: #ffffff;
     min-width: 100%;
     min-height: 100%;
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    h1 {
+        font-family: homeTitleFonts;
+        // text-shadow: -2px -2px 1px white, 2px 2px 1px black, 5px 5px 1px rgb(0, 145, 223);
+        // color: black;
+        // font-size: 90px;
+        // margin: 10px 50px;
+    }
+
+    p {
+        font-family: mainFontMaybe;
+        text-align: center;
+        line-height: 1.8;
+        margin: 20px 50px;
+    }
+
+    .buttons {
+
+        margin: 30px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        gap: 150px;
+
+        .btn {
+            background-color: rgba(0, 145, 223, 0.5);
+            color: black;
+            // border: 2px solid rgba(255, 0, 0, 0.5);
+            margin: 10px;
+            padding: 20px;
+            text-decoration: none;
+            font-family: homeTitleFonts;
+            font-size: 30px;
+            font-weight: bold;
+            text-shadow: 0.3px 0.3px white;
+
+            &:hover {
+                background-color: yellow;
+                // border: 5px solid black;
+            }
+        }
+
+    }
+
+
+
 }
 
 .clickable {
