@@ -30,11 +30,15 @@ export default function App() {
   return (
     <BrowserRouter>
       <div className="navig">
-        <SearchOutlined />
-        <input name="search" placeholder="Search for..." type="text" value={search}
+       <div className="search-bar">
+         <label for="search-field">
+          <SearchOutlined />
+        <input name="search" id="search-field" placeholder="Search for..." type="text" value={search}
           onChange={(e) => setSearch(e.target.value)}
           onBlur={() => setSearch("")}
         />
+        </label>
+       </div>
         <Navigation />
       </div>
 
