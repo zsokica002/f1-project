@@ -70,11 +70,7 @@ export default function AllTeams(props) {
         <>
             <Breadcrumbs items={breadcrumbs} />
             <h2>All Teams 2025</h2>
-<<<<<<< HEAD
-            <table className="table" border={1} >
-=======
             <table className="table">
->>>>>>> caa1658d0451a5ac25b1f28f62d06083cbd771ad
                 <thead>
                     <tr>
                         <th colSpan={3}>Constructors Championship Standings - {year}</th>
