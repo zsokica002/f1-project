@@ -38,18 +38,16 @@ body {
     color: #ffffff;
     min-width: 100%;
     min-height: 100%;
-    padding: 20px;
+    padding: 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 
+
     h1 {
         font-family: homeTitleFonts;
-        // text-shadow: -2px -2px 1px white, 2px 2px 1px black, 5px 5px 1px rgb(0, 145, 223);
-        // color: black;
         font-size: 70px;
-        // margin: 10px 50px;
         font-style: italic;
     }
 
@@ -58,7 +56,6 @@ body {
         text-align: center;
         line-height: 1.8;
         margin: 20px 50px;
-        font-weight: 100;
     }
 
     .buttons {
