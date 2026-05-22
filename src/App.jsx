@@ -14,11 +14,11 @@ import { SearchOutlined } from "@ant-design/icons";
 export default function App() {
   const [flags, setFlags] = useState([]);
   const [search, setSearch] = useState("");
+  const [year, setYear] = useState("2013");
 
   useEffect(() => {
     getFlags();
   }, []);
-
 
   const getFlags = async () => {
     const url = "https://raw.githubusercontent.com/Imagin-io/country-nationality-list/refs/heads/master/countries.json";
@@ -27,31 +27,51 @@ export default function App() {
     // console.log(response.data);
   }
 
-  
+  const yearArray = [];
+  for (let i = 2026; i >= 2000; i--) {
+    yearArray.push(i);
+  }
+
   return (
     <BrowserRouter>
       <div className="navig">
-       <div className="search-bar">
-         <label htmlFor="search-field">
-          <SearchOutlined />
-        <input name="search" id="search-field" placeholder="Search for..." type="text" value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          onBlur={() => setSearch("")}
-        />
-        </label>
-       </div>
+        <div className="search-bar">
+          <label htmlFor="search-field">
+            <SearchOutlined />
+            <input name="search" id="search-field" placeholder="Search for..." type="text" value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              onBlur={() => setSearch("")}
+            />
+          </label>
+        </div>
         <Navigation />
       </div>
 
+      <select name="year"
+        value={year}
+        onChange={(e) => setYear(e.target.value)}
+      >
+        <option value="" disabled>Select a year</option>
+        {yearArray.map((year) => {
+          return (
+            <option
+              value={year}
+              key={year}>
+              {year}
+            </option>
+          )
+        })
+        }
+      </select>
 
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/drivers" element={<Drivers flags={flags} search={search} />} />
-        <Route path="/driverDetails/:id" element={<DriverDetails flags={flags} search={search} />} />
-        <Route path="/teams" element={<Teams flags={flags} search={search} />} />
-        <Route path="/teamDetails/:id" element={<TeamDetails flags={flags} search={search} />} />
-        <Route path="/races" element={<Races flags={flags} search={search} />} />
-        <Route path="/raceDetails/:id" element={<RaceDetails flags={flags} search={search} />} />
+        <Route path="/drivers" element={<Drivers flags={flags} search={search} year={year} />} />
+        <Route path="/driverDetails/:id" element={<DriverDetails flags={flags} search={search} year={year} />} />
+        <Route path="/teams" element={<Teams flags={flags} search={search} year={year} />} />
+        <Route path="/teamDetails/:id" element={<TeamDetails flags={flags} search={search} year={year} />} />
+        <Route path="/races" element={<Races flags={flags} search={search} year={year} />} />
+        <Route path="/raceDetails/:id" element={<RaceDetails flags={flags} search={search} year={year} />} />
       </Routes>
 
     </BrowserRouter>
