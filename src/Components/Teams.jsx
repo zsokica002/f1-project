@@ -6,12 +6,15 @@ import { useNavigate } from "react-router";
 import { getFlagByNationality } from "../helpers/getFlags";
 import Breadcrumbs from "./Breadcrumbs";
 import { ExportOutlined } from "@ant-design/icons";
+import { getColor, getTopThreeClassName} from "../helpers/getColor";
 
 export default function AllTeams(props) {
     const [allTeams, setAllTeams] = useState([]);
     const [loading, setLoading] = useState(true);
     const [year, setYear] = useState("");
     const [filteredTeams, setFilteredTeams] = useState([]);
+    const [positionColor, setPositionColor] = useState([]);
+
 
     const search = props.search;
     //console.log(search);
@@ -82,7 +85,8 @@ export default function AllTeams(props) {
                     {filteredTeams.map((team) => {
                         return (
                             <tr key={team.Constructor.constructorId}>
-                                <td>{team.position}</td>
+                                <td style={{ backgroundColor: getColor(Number(team.position)) }}
+                 className={getTopThreeClassName(Number(team.position))}>{team.position}</td>
                                 <td className="clickable" onClick={() => handleClickDetails(team.Constructor.constructorId)}>
                                     <Flag country={getFlagByNationality(props.flags, team.Constructor.nationality)} />
                                     {team.Constructor.name}</td>
