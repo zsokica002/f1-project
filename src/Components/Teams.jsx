@@ -11,12 +11,13 @@ import { getColor, getTopThreeClassName} from "../helpers/getColor";
 export default function AllTeams(props) {
     const [allTeams, setAllTeams] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [year, setYear] = useState("");
+   // const [year, setYear] = useState("");
     const [filteredTeams, setFilteredTeams] = useState([]);
     const [positionColor, setPositionColor] = useState([]);
 
 
     const search = props.search;
+    const year = props.year;
     //console.log(search);
     const navigate = useNavigate();
 
@@ -25,7 +26,7 @@ export default function AllTeams(props) {
 
     useEffect(() => {
         getAllTeams();
-    }, []);
+    }, [year]);
 
     useEffect(() => {
         const result = allTeams.filter((item) => {
@@ -34,15 +35,15 @@ export default function AllTeams(props) {
             );
         });
         setFilteredTeams(result);
-    }, [search, allTeams]);
+    }, [search, allTeams, year]);
 
     const getAllTeams = async () => {
-        const url = "https://api.jolpi.ca/ergast/f1/2025/constructorStandings.json";
+        const url = `https://api.jolpi.ca/ergast/f1/${year}/constructorStandings.json`;
 
         const response = await axios.get(url);
 
         setAllTeams(response.data.MRData.StandingsTable.StandingsLists[0].ConstructorStandings);
-        setYear(response.data.MRData.StandingsTable.season);
+        //setYear(response.data.MRData.StandingsTable.season);
         setLoading(false);
     };
 
@@ -89,7 +90,7 @@ export default function AllTeams(props) {
                  className={getTopThreeClassName(Number(team.position))}>{team.position}</td>
                                 <td className="clickable" onClick={() => handleClickDetails(team.Constructor.constructorId)}>
                                     <Flag country={getFlagByNationality(props.flags, team.Constructor.nationality)} />
-                                    {team.Constructor.name}</td>
+                                      {team.Constructor.name}  </td>
 
                                 <td>Details <a target="_blank" href={team.Constructor.url}><ExportOutlined /></a></td>
 
