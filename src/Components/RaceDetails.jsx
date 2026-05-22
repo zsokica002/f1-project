@@ -14,6 +14,7 @@ export default function RaceDetails(props) {
     const [raceResults, setRaceResults] = useState([]);
     const [raceDetails, setRaceDetails] = useState("");
     const [filteredRaceResults, setFilteredRaceResults] = useState([]);
+    const [filteredQualis, setFilteredQualis] = useState([]);
 
     const search = props.search;
     const params = useParams();
@@ -24,14 +25,23 @@ export default function RaceDetails(props) {
     }, []);
 
     useEffect(() => {
-        const result = raceResults.filter((item) => {
+        const resultRaceResults = raceResults.filter((item) => {
             return (
                 item.Driver.familyName.toLowerCase().includes(search.toLowerCase()) ||
                 item.Constructor.name.toLowerCase().includes(search.toLowerCase())
             );
         });
-        setFilteredRaceResults(result);
-    }, [search, raceResults]);
+
+        const resultQualis = qualis.filter((item) => {
+            return (
+                item.Driver.familyName.toLowerCase().includes(search.toLowerCase()) ||
+                item.Constructor.name.toLowerCase().includes(search.toLowerCase())
+            );
+        });
+
+        setFilteredRaceResults(resultRaceResults);
+        setFilteredQualis(resultQualis);
+    }, [search, raceResults, qualis]);
 
 
 
@@ -67,12 +77,15 @@ export default function RaceDetails(props) {
     };
 
     const getBestTime = (q1, q2, q3) => {
-        // console.log(q1, q2, q3);
+        console.log("q1 => ", q1, "q2 =>", q2, "q3 => ", q3);
         const bestTime = [];
         bestTime.push(q1, q2, q3);
-        // console.log(bestTime);
         bestTime.sort();
-        return (bestTime[0] === undefined || bestTime[0] === "" ? "DNQ" : bestTime[0]);
+        //Remove from array if we have empty string
+        const filteredArray = bestTime.filter(item => typeof item === "string" && item.trim() !== "");
+
+        console.log(filteredArray[0]);
+        return (filteredArray[0] === undefined ? "DNQ" : filteredArray[0]);
     };
 
     if (loading) {
@@ -90,7 +103,8 @@ export default function RaceDetails(props) {
         }
     ];
 
-    console.log(raceResults);
+    // console.log(raceResults);
+    console.log(qualis);
     // console.log(raceDetails);
 
     return (
@@ -124,7 +138,7 @@ export default function RaceDetails(props) {
                 </thead>
                 <tbody>
 
-                    {filteredRaceResults.map((quali, i) => {
+                    {filteredQualis.map((quali, i) => {
                         return (
                             <tr key={i}>
                                 <td>{quali.position}</td>
