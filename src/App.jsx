@@ -27,11 +27,12 @@ export default function App() {
     // console.log(response.data);
   }
 
+  
   return (
     <BrowserRouter>
       <div className="navig">
        <div className="search-bar">
-         <label for="search-field">
+         <label htmlFor="search-field">
           <SearchOutlined />
         <input name="search" id="search-field" placeholder="Search for..." type="text" value={search}
           onChange={(e) => setSearch(e.target.value)}
