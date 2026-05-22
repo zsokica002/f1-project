@@ -11,7 +11,7 @@
 }
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: mainFontMaybe;
     margin: 0;
     padding: 0;
 }
@@ -29,7 +29,7 @@ body {
 }
 
 .navig {
-    position: fixed;
+    position: static;
 }
 
 .content {
@@ -92,7 +92,15 @@ body {
 
 .clickable {
     cursor: pointer;
-    background-color: pink;
+    // background-color: pink;
+
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+
+
 }
 
 .loader-container {
@@ -115,7 +123,7 @@ body {
     border: 1px solid black;
 
     td {
-        border: 1px solid black;
+        // border: 1px solid black;
     }
 }
 
@@ -129,4 +137,42 @@ body {
     &:hover {
         background-color: rgb(54, 54, 54);
     }
+}
+
+
+
+
+.proba {
+
+    background-color: rgba(18, 19, 20);
+    color: white;
+    padding: 10px;
+
+    .table {
+
+        width: 100%;
+        background-color: rgb(57, 62, 70);
+
+        th {
+            padding: 10px;
+            color: rgb(148, 137, 121);
+
+        }
+
+    }
+
+    tbody {
+        td {
+            text-align: center;
+            color: rgb(223, 208, 184);
+        }
+    }
+
+
+
+
+
+
+
+
 }

@@ -62,10 +62,10 @@ export default function Races(props) {
     ];
 
     return (
-        <div>
+        <div className="proba">
             <Breadcrumbs items={breadcrumbs} />
             <table className="table" border={1}>
-                <thead>
+                <thead >
                     <tr>
                         <th colSpan={5}>Race calendar 2025</th>
                     </tr>
@@ -82,11 +82,16 @@ export default function Races(props) {
                     {filteredRaces.map((race, i) => {
                         return (
                             <tr key={i}>
-                                <td>{race.round}</td>
-                                <td className="clickable" onClick={() => handleClickDetails(race.round)}> <Flag country={getFlagByRaceLocation(props.flags, race.Circuit.Location.country)} />  {race.raceName} </td>
+                                <td >{race.round}</td>
+                                <td onClick={() => handleClickDetails(race.round)}>
+                                    <div className="clickable">
+                                        <Flag country={getFlagByRaceLocation(props.flags, race.Circuit.Location.country)} />  {race.raceName}
+                                    </div>
+                                </td>
                                 <td><a target="_blank" href={race.Circuit.url}>{race.Circuit.circuitName} <ExportOutlined /></a></td>
-                                <td>{race.date}</td>
-                                <td className="clickable" onClick={() => handleClickDriver(race.Results[0].Driver.driverId)}> <Flag country={getFlagByNationality(props.flags, race.Results[0].Driver.nationality)} />{race.Results[0].Driver.familyName}</td>
+                                <td >{race.date}</td>
+                                <td onClick={() => handleClickDriver(race.Results[0].Driver.driverId)}>
+                                    <div className="clickable"><Flag country={getFlagByNationality(props.flags, race.Results[0].Driver.nationality)} />{race.Results[0].Driver.familyName}</div> </td>
                             </tr>
                         );
                     })}
