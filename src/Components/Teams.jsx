@@ -71,14 +71,22 @@ export default function AllTeams(props) {
 
 
     return (
-        <>
+        <div className="proba">
             <Breadcrumbs items={breadcrumbs} />
             <h2>Teams</h2>
-            <table className="table">
+            <table className="table" border={1}>
                 <thead>
                     <tr>
-                        <th colSpan={3}>Constructors Championship Standings - {year}</th>
-                        <th>Points</th>
+                        <th className="vodeciNaslov" colSpan={4}>Constructors Championship Standings - {year}</th>
+                   
+                    </tr>
+                    <tr>
+{/*<th>Position</th>
+<th>?</th>
+<th>Details</th>
+<th>Points</th>*/}
+
+
                     </tr>
                 </thead>
 
@@ -88,9 +96,9 @@ export default function AllTeams(props) {
                             <tr key={team.Constructor.constructorId}>
                                 <td style={{ backgroundColor: getColor(Number(team.position)) }}
                  className={getTopThreeClassName(Number(team.position))}>{team.position}</td>
-                                <td className="clickable" onClick={() => handleClickDetails(team.Constructor.constructorId)}>
-                                    <Flag country={getFlagByNationality(props.flags, team.Constructor.nationality)} />
-                                      {team.Constructor.name}  </td>
+                                <td  onClick={() => handleClickDetails(team.Constructor.constructorId)}>
+                                   <div className="clickable"> <Flag country={getFlagByNationality(props.flags, team.Constructor.nationality)} />
+                                      {team.Constructor.name}</div> </td>
 
                                 <td>Details <a target="_blank" href={team.Constructor.url}><ExportOutlined /></a></td>
 
@@ -100,6 +108,6 @@ export default function AllTeams(props) {
                     })}
                 </tbody>
             </table>
-        </>
+        </div>
     );
 }
