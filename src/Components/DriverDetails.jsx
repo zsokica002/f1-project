@@ -9,19 +9,20 @@ import { CaretDownOutlined, CaretUpOutlined, ExportOutlined } from "@ant-design/
 import { getColor, getTopThreeClassName } from "../helpers/getColor";
 
 export default function DriverDetails(props) {
-
-    const [driverInfo, setDriverInfo] = useState([]);
+    const [driverInfo, setDriverInfo] = useState(null);
     const [driverResults, setDriverResults] = useState([]);
     const [loading, setLoading] = useState(true);
     const [filteredDriverResults, setFilteredDriverResults] = useState([]);
+    const [isError, setIsError] = useState(false);
 
+    const year = props.year;
     const search = props.search;
     const params = useParams();
     const navigate = useNavigate();
-
+    console.log(props.year)
     useEffect(() => {
         getDriverDetails();
-    }, []);
+    }, [year]);
 
     useEffect(() => {
         const result = driverResults.filter((item) => {
@@ -31,21 +32,25 @@ export default function DriverDetails(props) {
             );
         });
         setFilteredDriverResults(result);
-    }, [search, driverResults]);
+    }, [search, driverResults, year]);
 
     const getDriverDetails = async () => {
-        const urlDriverInfo = `https://api.jolpi.ca/ergast/f1/2025/drivers/${params.id}/driverStandings.json`;
-        const urlDriverResults = `https://api.jolpi.ca/ergast/f1/2025/drivers/${params.id}/results.json`;
+        setIsError(false);
 
-        const response1 = await axios.get(urlDriverInfo);
-        const response2 = await axios.get(urlDriverResults);
-
-        // console.log(response1.data.MRData.StandingsTable.StandingsLists[0].DriverStandings[0]);
-        // console.log(response2.data.MRData.RaceTable.Races);
-        setDriverInfo(response1.data.MRData.StandingsTable.StandingsLists[0].DriverStandings[0]);
-        setDriverResults(response2.data.MRData.RaceTable.Races);
-
-        setLoading(false);
+        try {
+            const urlDriverInfo = `https://api.jolpi.ca/ergast/f1/${year}/drivers/${params.id}/driverStandings.json`;
+            const urlDriverResults = `https://api.jolpi.ca/ergast/f1/${year}/drivers/${params.id}/results.json`;
+            const response1 = await axios.get(urlDriverInfo);
+            const response2 = await axios.get(urlDriverResults);
+            setDriverInfo(response1.data.MRData.StandingsTable.StandingsLists[0].DriverStandings[0]);
+            setDriverResults(response2.data.MRData.RaceTable.Races);
+            console.log(year);
+        } catch (err) {
+            setIsError(true);
+            console.error(err);
+        } finally {
+            setLoading(false);
+        }
     }
 
     const handleClickDetails = (id) => {
@@ -57,24 +62,25 @@ export default function DriverDetails(props) {
     };
 
 
-
     if (loading) {
         return <Loader />
     }
 
+    console.log("driverInfo ", driverInfo);
+
     const breadcrumbs = [
-        {
-            label: "Drivers",
-            route: "/drivers"
-        },
-        {
-            label: driverInfo.Driver.familyName,
-            route: ""
-        }
+        { label: "Drivers", route: "/drivers" },
+        { label: driverInfo?.Driver?.familyName, route: "" }
     ];
 
-    // console.log(driverResults);
-
+    if (isError) {
+        return (
+            <>
+                <Breadcrumbs items={breadcrumbs} />
+                <h2>There is no info for this driver for year {year}</h2>
+            </>
+        );
+    }
 
     return (
         <>
