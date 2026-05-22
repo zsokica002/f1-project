@@ -11,18 +11,17 @@ import { getColor, getTopThreeClassName} from "../helpers/getColor";
 export default function Drivers(props) {
   const [loading, setLoading] = useState(true);
   const [drivers, setDrivers] = useState([]);
-  const [year, setYear] = useState("");
   const [filteredDrivers, setFilteredDrivers] = useState([]);
   const [positionColor, setPositionColor] = useState([]);
-  // console.log(props);
+  console.log(props);
   const search = props.search;
+  const year = props.year;
   // console.log(search);
   const navigate = useNavigate();
 
-
   useEffect(() => {
     getDrivers();
-  }, []);
+  }, [year]);
 
   useEffect(() => {
     const result = drivers.filter((item) => {
@@ -33,13 +32,13 @@ export default function Drivers(props) {
       );
     });
     setFilteredDrivers(result);
-  }, [search, drivers]);
+  }, [search, drivers, year]);
 
   const getDrivers = async () => {
-    const url = "https://api.jolpi.ca/ergast/f1/2025/driverStandings.json"
+    const url = `https://api.jolpi.ca/ergast/f1/${year}/driverStandings.json`
     const response = await axios.get(url);
     setDrivers(response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings);
-    setYear(response.data.MRData.StandingsTable.season);
+    // setYear(response.data.MRData.StandingsTable.season);
     setLoading(false);
   };
 
