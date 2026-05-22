@@ -35,6 +35,29 @@ export default function App() {
   return (
     <BrowserRouter>
       <div className="navig">
+        <div>
+          <Navigation />
+
+          <select
+            name="year"
+            value={year}
+            onChange={(e) => setYear(e.target.value)}>
+
+            <option value="" disabled>Select a year</option>
+            {yearArray.map((year) => {
+              return (
+                <option
+                  value={year}
+                  key={year}>
+                  {year}
+                </option>
+              )
+            })
+            }
+          </select>
+
+        </div>
+
         <div className="search-bar">
           <label htmlFor="search-field">
             <SearchOutlined />
@@ -44,25 +67,8 @@ export default function App() {
             />
           </label>
         </div>
-        <Navigation />
       </div>
 
-      <select name="year"
-        value={year}
-        onChange={(e) => setYear(e.target.value)}
-      >
-        <option value="" disabled>Select a year</option>
-        {yearArray.map((year) => {
-          return (
-            <option
-              value={year}
-              key={year}>
-              {year}
-            </option>
-          )
-        })
-        }
-      </select>
 
       <Routes>
         <Route path="/" element={<Home />} />

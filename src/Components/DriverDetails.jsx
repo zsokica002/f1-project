@@ -65,9 +65,9 @@ export default function DriverDetails(props) {
     if (loading) {
         return <Loader />
     }
-    
+
     console.log("driverInfo ", driverInfo);
-    
+
     const breadcrumbs = [
         { label: "Drivers", route: "/drivers" },
         { label: driverInfo?.Driver?.familyName, route: "" }
@@ -75,8 +75,10 @@ export default function DriverDetails(props) {
 
     if (isError) {
         return (
-            <><Breadcrumbs items={breadcrumbs} />
-                <h2>There is no info for this driver for year {year}</h2></>
+            <>
+                <Breadcrumbs items={breadcrumbs} />
+                <h2>There is no info for this driver for year {year}</h2>
+            </>
         );
     }
 
