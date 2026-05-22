@@ -6,6 +6,7 @@ import Flag from "react-flagkit";
 import { getFlagByNationality, getFlagByRaceLocation } from "../helpers/getFlags";
 import Breadcrumbs from "./Breadcrumbs";
 import { ExportOutlined } from "@ant-design/icons";
+import { getColor, getTopThreeClassName } from "../helpers/getColor";
 
 export default function TeamResults(props) {
 
@@ -128,8 +129,12 @@ export default function TeamResults(props) {
                             <td className="clickable" onClick={() => handleClickDetails(race.round)}
                             ><Flag country={getFlagByRaceLocation(props.flags, race.Circuit.Location.country)} />
                                 {race.raceName}</td>
-                            <td>{race.Results[0]?.position || "N/A"}</td>
-                            <td>{race.Results[1]?.position || "N/A"}</td>
+                            <td style={{ backgroundColor: getColor(Number(race.Results[0].position)) }}
+                                className={getTopThreeClassName(Number(race.Results[0].position))}
+                            >{race.Results[0]?.position || "N/A"}</td>
+                            <td style={{ backgroundColor: getColor(Number(race.Results[0].position)) }}
+                                className={getTopThreeClassName(Number(race.Results[0].position))}
+                            >{race.Results[1]?.position || "N/A"}</td>
                             <td>{race.Results[1]?.points !== undefined ? Number(race.Results[0]?.points) + Number(race.Results[1]?.points) : "N/A"}</td>
                         </tr>
                     ))}

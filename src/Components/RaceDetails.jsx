@@ -6,6 +6,7 @@ import Flag from "react-flagkit";
 import { getFlagByNationality, getFlagByRaceLocation } from "../helpers/getFlags";
 import Breadcrumbs from "./Breadcrumbs";
 import { ExportOutlined } from "@ant-design/icons";
+import { getColor, getTopThreeClassName } from "../helpers/getColor";
 
 export default function RaceDetails(props) {
 
@@ -141,7 +142,9 @@ export default function RaceDetails(props) {
                     {filteredQualis.map((quali, i) => {
                         return (
                             <tr key={i}>
-                                <td>{quali.position}</td>
+                                <td style={{backgroundColor: getColor(Number(quali.position))}}
+                                    className= {getTopThreeClassName(Number(quali.position))}
+                                >{quali.position}</td>
                                 <td className="clickable" onClick={() => handleClickDriver(quali.Driver.driverId)}
                                 > <Flag country={getFlagByNationality(props.flags, quali.Driver.nationality)} />{quali.Driver.familyName}</td>
                                 <td className="clickable" onClick={() => handleClickDetails(quali.Constructor.constructorId)}
@@ -172,7 +175,10 @@ export default function RaceDetails(props) {
                     {filteredRaceResults.map((result, i) => {
                         return (
                             <tr key={i}>
-                                <td>{result.position}</td>
+                                <td
+                                    style={{backgroundColor: getColor(Number(result.position))}}
+                                    className={getTopThreeClassName(Number(result.position))}
+                                >{result.position}</td>
                                 <td className="clickable" onClick={() => handleClickDriver(result.Driver.driverId)}
                                 > <Flag country={getFlagByNationality(props.flags, result.Driver.nationality)} />{result.Driver.familyName}</td>
                                 <td className="clickable" onClick={() => handleClickDetails(result.Constructor.constructorId)}
