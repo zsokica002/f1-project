@@ -13,7 +13,6 @@ export default function Drivers(props) {
   const [drivers, setDrivers] = useState([]);
   const [filteredDrivers, setFilteredDrivers] = useState([]);
   const [positionColor, setPositionColor] = useState([]);
-  console.log(props);
   const search = props.search;
   const year = props.year;
   // console.log(search);
@@ -63,9 +62,6 @@ export default function Drivers(props) {
     }
   ];
 
-
-  // console.log(drivers);
-
   return (
     <>
       <Breadcrumbs items={breadcrumbs} />
@@ -78,7 +74,7 @@ export default function Drivers(props) {
         </thead>
         {filteredDrivers.map((driver) => {
           return (
-            <tbody key={driver.Driver.permanentNumber}>
+            <tbody key={Number(driver.position)}>
               <tr>
                 <td style={{ backgroundColor: getColor(Number(driver.position)) }}
                  className={getTopThreeClassName(Number(driver.position))}
