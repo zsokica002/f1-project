@@ -6,6 +6,7 @@ import Flag from "react-flagkit";
 import { getFlagByNationality, getFlagByRaceLocation } from "../helpers/getFlags";
 import Breadcrumbs from "./Breadcrumbs";
 import { ExportOutlined } from "@ant-design/icons";
+import { getColor, getTopThreeClassName } from "../helpers/getColor";
 
 export default function DriverDetails(props) {
 
@@ -115,7 +116,9 @@ export default function DriverDetails(props) {
                                 <td className="clickable" onClick={() => handleClickDetails(result.Results[0].Constructor.constructorId)}
                                 >{result.Results[0].Constructor.name}</td>
                                 <td>{result.Results[0].grid}</td>
-                                <td>{result.Results[0].position}</td>
+                                <td style={{backgroundColor:getColor(Number(result.Results[0].position))}}
+                                className={getTopThreeClassName(Number(result.Results[0].position))}
+                                >{result.Results[0].position}</td>
                             </tr>
                         );
                     })}
