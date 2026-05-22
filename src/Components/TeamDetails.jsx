@@ -13,17 +13,19 @@ export default function TeamResults(props) {
     const [teamResults, setTeamResults] = useState([]);
     const [teamDetails, setTeamDetails] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [year, setYear] = useState("");
-    const [filteredTeamDetails, setFilteredTeamDetails] = useState([]);
 
+    const [filteredTeamDetails, setFilteredTeamDetails] = useState([]);
+    const [isError, setIsError] = useState(false);
+
+    const year = props.year;
     const search = props.search;
     const params = useParams();
     const navigate = useNavigate();
-
+    console.log(props.year)
 
     useEffect(() => {
         getTeamResults();
-    }, []);
+    }, [year]);
 
     useEffect(() => {
         const result = teamResults.filter((item) => {
@@ -33,10 +35,12 @@ export default function TeamResults(props) {
             );
         });
         setFilteredTeamDetails(result);
-    }, [search, teamResults]);
+    }, [search, teamResults, year]);
 
 
     const getTeamResults = async () => {
+        setIsError(false);
+        try {
         const urlResults = `https://api.jolpi.ca/ergast/f1/2025/constructors/${params.id}/results.json`;
         const urlDetails = `https://api.jolpi.ca/ergast/f1/2025/constructors/${params.id}/constructorStandings.json`;
 
@@ -50,9 +54,15 @@ export default function TeamResults(props) {
 
         setTeamResults(responseResults.data.MRData.RaceTable.Races);
         setTeamDetails(responseDetails.data.MRData.StandingsTable.StandingsLists[0].ConstructorStandings[0]);
-        setYear(responseResults.data.MRData.RaceTable.season);
-
+        console.log(year);
+    } catch (err) {
+        setIsError(true);
+        console.error(err);
+    } finally {
         setLoading(false);
+    }
+
+        
     };
 
     const handleClickDetails = (id) => {
@@ -79,10 +89,17 @@ export default function TeamResults(props) {
             route: "/teams"
         },
         {
-            label: teamResults[0].Results[0].Constructor.name,
+            label: teamResults[0]?.Results[0]?.Constructor.name,
             route: ""
         }
     ];
+
+    if (isError) {
+        return (
+            <><Breadcrumbs items={breadcrumbs} />
+                <h2>There is no info for this driver for year {year}</h2></>
+        );
+    }
 
     return (
 
