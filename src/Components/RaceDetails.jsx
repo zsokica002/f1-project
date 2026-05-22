@@ -16,14 +16,16 @@ export default function RaceDetails(props) {
     const [raceDetails, setRaceDetails] = useState("");
     const [filteredRaceResults, setFilteredRaceResults] = useState([]);
     const [filteredQualis, setFilteredQualis] = useState([]);
+    const [isError, setIsError] = useState(false);
 
+    const year = props.year;
     const search = props.search;
     const params = useParams();
     const navigate = useNavigate();
 
     useEffect(() => {
         getRaceDetails();
-    }, []);
+    }, [year]);
 
     useEffect(() => {
         const resultRaceResults = raceResults.filter((item) => {
@@ -42,31 +44,35 @@ export default function RaceDetails(props) {
 
         setFilteredRaceResults(resultRaceResults);
         setFilteredQualis(resultQualis);
-    }, [search, raceResults, qualis]);
-
-
-
-
-
-
+    }, [search, raceResults, qualis, year]);
 
     const getRaceDetails = async () => {
-        const urlRaceDetails = `https://api.jolpi.ca/ergast/f1/2025/${params.id}/results/1.json`;
-        const urlQualis = `https://api.jolpi.ca/ergast/f1/2025/${params.id}/qualifying.json`;
-        const urlRaceResults = `https://api.jolpi.ca/ergast/f1/2025/${params.id}/results.json`;
 
-        const responseRaceDetails = await axios.get(urlRaceDetails);
-        // console.log(responseRaceDetails.data.MRData.RaceTable.Races);
-        const responseQualis = await axios.get(urlQualis);
-        // console.log(responseQualis.data.MRData.RaceTable.Races[0].QualifyingResults);
-        const responseRaceResults = await axios.get(urlRaceResults);
-        // console.log(responseRaceResults.data.MRData.RaceTable.Races[0].Results);
+        setIsError(false);
+        try {
+            const urlRaceDetails = `https://api.jolpi.ca/ergast/f1/${year}/${params.id}/results/1.json`;
+            const urlQualis = `https://api.jolpi.ca/ergast/f1/${year}/${params.id}/qualifying.json`;
+            const urlRaceResults = `https://api.jolpi.ca/ergast/f1/${year}/${params.id}/results.json`;
 
-        setQualis(responseQualis.data.MRData.RaceTable.Races[0].QualifyingResults);
-        setRaceResults(responseRaceResults.data.MRData.RaceTable.Races[0].Results);
-        setRaceDetails(responseRaceDetails.data.MRData.RaceTable.Races[0]);
+            const responseRaceDetails = await axios.get(urlRaceDetails);
+            // console.log(responseRaceDetails.data.MRData.RaceTable.Races);
+            const responseQualis = await axios.get(urlQualis);
+            // console.log(responseQualis.data.MRData.RaceTable.Races[0].QualifyingResults);
+            const responseRaceResults = await axios.get(urlRaceResults);
+            // console.log(responseRaceResults.data.MRData.RaceTable.Races[0].Results);
 
-        setLoading(false);
+            setQualis(responseQualis.data.MRData.RaceTable.Races[0].QualifyingResults);
+            setRaceResults(responseRaceResults.data.MRData.RaceTable.Races[0].Results);
+            setRaceDetails(responseRaceDetails.data.MRData.RaceTable.Races[0]);
+        }
+        catch (err) {
+            setIsError(true);
+            console.error(err);
+        }
+        finally {
+            setLoading(false);
+        }
+
     };
 
     const handleClickDriver = (id) => {
@@ -78,14 +84,14 @@ export default function RaceDetails(props) {
     };
 
     const getBestTime = (q1, q2, q3) => {
-        console.log("q1 => ", q1, "q2 =>", q2, "q3 => ", q3);
+        // console.log("q1 => ", q1, "q2 =>", q2, "q3 => ", q3);
         const bestTime = [];
         bestTime.push(q1, q2, q3);
         bestTime.sort();
         //Remove from array if we have empty string
         const filteredArray = bestTime.filter(item => typeof item === "string" && item.trim() !== "");
 
-        console.log(filteredArray[0]);
+        // console.log(filteredArray[0]);
         return (filteredArray[0] === undefined ? "DNQ" : filteredArray[0]);
     };
 
@@ -99,13 +105,21 @@ export default function RaceDetails(props) {
             route: "/races"
         },
         {
-            label: raceDetails.raceName,
+            label: raceDetails?.raceName,
             route: ""
         }
     ];
 
+    if (isError) {
+        return (
+            <>
+                <Breadcrumbs items={breadcrumbs} />
+                <h2>There is no info for this race for year {year}</h2>
+            </>
+        );
+    }
     // console.log(raceResults);
-    console.log(qualis);
+    // console.log(qualis);
     // console.log(raceDetails);
 
     return (
@@ -142,8 +156,8 @@ export default function RaceDetails(props) {
                     {filteredQualis.map((quali, i) => {
                         return (
                             <tr key={i}>
-                                <td style={{backgroundColor: getColor(Number(quali.position))}}
-                                    className= {getTopThreeClassName(Number(quali.position))}
+                                <td style={{ backgroundColor: getColor(Number(quali.position)) }}
+                                    className={getTopThreeClassName(Number(quali.position))}
                                 >{quali.position}</td>
                                 <td className="clickable" onClick={() => handleClickDriver(quali.Driver.driverId)}
                                 > <Flag country={getFlagByNationality(props.flags, quali.Driver.nationality)} />{quali.Driver.familyName}</td>
@@ -176,7 +190,7 @@ export default function RaceDetails(props) {
                         return (
                             <tr key={i}>
                                 <td
-                                    style={{backgroundColor: getColor(Number(result.position))}}
+                                    style={{ backgroundColor: getColor(Number(result.position)) }}
                                     className={getTopThreeClassName(Number(result.position))}
                                 >{result.position}</td>
                                 <td className="clickable" onClick={() => handleClickDriver(result.Driver.driverId)}
