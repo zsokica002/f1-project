@@ -5,6 +5,7 @@ import Flag from "react-flagkit";
 import { useNavigate } from "react-router";
 import { getFlagByNationality } from "../helpers/getFlags";
 import Breadcrumbs from "./Breadcrumbs";
+import { getColor, getTopThreeClassName} from "../helpers/getColor";
 
 
 export default function Drivers(props) {
@@ -12,6 +13,7 @@ export default function Drivers(props) {
   const [drivers, setDrivers] = useState([]);
   const [year, setYear] = useState("");
   const [filteredDrivers, setFilteredDrivers] = useState([]);
+  const [positionColor, setPositionColor] = useState([]);
   // console.log(props);
   const search = props.search;
   // console.log(search);
@@ -79,7 +81,9 @@ export default function Drivers(props) {
           return (
             <tbody key={driver.Driver.permanentNumber}>
               <tr>
-                <td>{driver.position}</td>
+                <td style={{ backgroundColor: getColor(Number(driver.position)) }}
+                 className={getTopThreeClassName(Number(driver.position))}
+                >{driver.position}</td>
                 <td className="clickable" onClick={() => handleClickDriver(driver.Driver.driverId)}><Flag country={getFlagByNationality(props.flags, driver.Driver.nationality)} />  {driver.Driver.givenName} {driver.Driver.familyName}</td>
                 <td className="clickable" onClick={() => handleClickConstructor(driver.Constructors[0].constructorId)}>{driver.Constructors[0].name}</td>
                 <td>{driver.points}</td>
