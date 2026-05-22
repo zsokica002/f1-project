@@ -69,11 +69,11 @@ export default function Drivers(props) {
   return (
     <>
       <Breadcrumbs items={breadcrumbs} />
-      <h1>Drivers Championship</h1>
+      <h1>Drivers Championship {year}</h1>
       <table className="table">
         <thead>
           <tr>
-            <th colSpan={4}>Drivers Championship Standings - {year}</th>
+            <th colSpan={4}>Drivers Championship Standings</th>
           </tr>
         </thead>
         {filteredDrivers.map((driver) => {

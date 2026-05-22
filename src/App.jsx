@@ -51,7 +51,7 @@ export default function App() {
         value={year}
         onChange={(e) => setYear(e.target.value)}
       >
-        <option value="">Select a year</option>
+        <option value="" disabled>Select a year</option>
         {yearArray.map((year) => {
           return (
             <option
@@ -67,11 +67,11 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/drivers" element={<Drivers flags={flags} search={search} year={year} />} />
-        <Route path="/driverDetails/:id" element={<DriverDetails flags={flags} search={search} />} />
-        <Route path="/teams" element={<Teams flags={flags} search={search} />} />
-        <Route path="/teamDetails/:id" element={<TeamDetails flags={flags} search={search} />} />
-        <Route path="/races" element={<Races flags={flags} search={search} />} />
-        <Route path="/raceDetails/:id" element={<RaceDetails flags={flags} search={search} />} />
+        <Route path="/driverDetails/:id" element={<DriverDetails flags={flags} search={search} year={year} />} />
+        <Route path="/teams" element={<Teams flags={flags} search={search} year={year} />} />
+        <Route path="/teamDetails/:id" element={<TeamDetails flags={flags} search={search} year={year} />} />
+        <Route path="/races" element={<Races flags={flags} search={search} year={year} />} />
+        <Route path="/raceDetails/:id" element={<RaceDetails flags={flags} search={search} year={year} />} />
       </Routes>
 
     </BrowserRouter>
