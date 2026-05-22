@@ -73,7 +73,7 @@ export default function AllTeams(props) {
     return (
         <>
             <Breadcrumbs items={breadcrumbs} />
-            <h2>All Teams 2025</h2>
+            <h2>Teams</h2>
             <table className="table">
                 <thead>
                     <tr>
