@@ -4,6 +4,27 @@ body {
     padding: 0;
 }
 
+// .home-body {
+
+// }
+
+#pozadina {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+}
+
+.content {
+    position: fixed;
+    background: rgba(0, 0, 0, 0.5);
+    color: #f1f1f1;
+    min-width: 100%;
+    min-height: 100%;
+    padding: 20px;
+}
+
 .clickable {
     cursor: pointer;
     background-color: pink;

@@ -5,6 +5,7 @@ import Loader from "./Loader";
 import Flag from "react-flagkit";
 import { getFlagByNationality, getFlagByRaceLocation } from "../helpers/getFlags";
 import Breadcrumbs from "./Breadcrumbs";
+import { ExportOutlined } from "@ant-design/icons";
 
 export default function RaceDetails(props) {
 
@@ -105,7 +106,7 @@ export default function RaceDetails(props) {
                 <p>Country: {raceDetails.Circuit.Location.country}</p>
                 <p>Location: {raceDetails.Circuit.Location.locality}</p>
                 <p>date: {raceDetails.date}</p>
-                <p>Full report: <a target="_blank" href={raceDetails.url}>ikonica!!!</a></p>
+                <p>Full report: <a target="_blank" href={raceDetails.url}><ExportOutlined /></a></p>
             </div>
 
 
@@ -127,9 +128,9 @@ export default function RaceDetails(props) {
                         return (
                             <tr key={i}>
                                 <td>{quali.position}</td>
-                                <td onClick={() => handleClickDriver(quali.Driver.driverId)}
+                                <td className="clickable" onClick={() => handleClickDriver(quali.Driver.driverId)}
                                 > <Flag country={getFlagByNationality(props.flags, quali.Driver.nationality)} />{quali.Driver.familyName}</td>
-                                <td onClick={() => handleClickDetails(quali.Constructor.constructorId)}                          
+                                <td className="clickable" onClick={() => handleClickDetails(quali.Constructor.constructorId)}
                                 >{quali.Constructor.name}</td>
                                 <td>{getBestTime(quali.Q1, quali.Q2, quali.Q3)}</td>
                             </tr>
@@ -158,8 +159,10 @@ export default function RaceDetails(props) {
                         return (
                             <tr key={i}>
                                 <td>{result.position}</td>
-                                <td> <Flag country={getFlagByNationality(props.flags, result.Driver.nationality)} />{result.Driver.familyName}</td>
-                                <td>{result.Constructor.name}</td>
+                                <td className="clickable" onClick={() => handleClickDriver(result.Driver.driverId)}
+                                > <Flag country={getFlagByNationality(props.flags, result.Driver.nationality)} />{result.Driver.familyName}</td>
+                                <td className="clickable" onClick={() => handleClickDetails(result.Constructor.constructorId)}
+                                >{result.Constructor.name}</td>
                                 <td>{result.Time ? result.Time.time : result.status}</td>
                                 <td>{result.points}</td>
                             </tr>
