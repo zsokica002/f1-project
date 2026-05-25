@@ -37,39 +37,6 @@ export default function TeamResults(props) {
     }, [search, teamResults, year]);
 
 
-
-    const handleClickDetails = (id) => {
-        navigate(`/raceDetails/${id}`)
-    };
-
-    const handleClickDriver = (id) => {
-        navigate(`/driverDetails/${id}`);
-    };
-
-
-    if (loading) {
-        return <Loader />;
-    };
-
-    console.log("teamResults ", teamResults);
-
-    const breadcrumbs = [
-        {
-            label: "Teams",
-            route: "/teams"
-        },
-        {
-            label: teamResults[0]?.Results[0]?.Constructor?.name, route: ""
-        }];
-
-    if (isError) {
-        return (
-            <>
-                <Breadcrumbs items={breadcrumbs} />
-                <h2>There is no info for this team for year {year}</h2>
-            </>
-        );
-    }
     const getTeamResults = async () => {
 
         setIsError(false);
@@ -90,6 +57,39 @@ export default function TeamResults(props) {
         }
 
     };
+
+
+    const handleClickDetails = (id) => {
+        navigate(`/raceDetails/${id}`)
+    };
+
+    const handleClickDriver = (id) => {
+        navigate(`/driverDetails/${id}`);
+    };
+
+
+    if (loading) {
+        return <Loader />;
+    };
+
+    const breadcrumbs = [
+        {
+            label: "Teams",
+            route: "/teams"
+        },
+        {
+            label: teamResults[0]?.Results[0]?.Constructor?.name, route: ""
+        }];
+
+    if (isError) {
+        return (
+            <>
+                <Breadcrumbs items={breadcrumbs} />
+                <h2>There is no info for this team for year {year}</h2>
+            </>
+        );
+    }
+
 
     return (
 
@@ -117,7 +117,7 @@ export default function TeamResults(props) {
             <table className="table" border={1}>
                 <thead>
                     <tr>
-                        <th colSpan={5}>Formula 1 {year} Results</th>
+                        <th colSpan={5}>Formula 1 Results {year}</th>
                     </tr>
                     <tr>
                         <th>Round</th>
@@ -150,8 +150,6 @@ export default function TeamResults(props) {
 
             </table>
         </>
-
-
 
     );
 

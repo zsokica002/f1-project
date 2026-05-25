@@ -1,40 +1,40 @@
 export function getColor(position) {
-    console.log(position);
+    // console.log(position);
     switch (position) {
         case 1: return "#EFBF04";
             break;
         case 2: return "#C4C4C4";
-        break;
+            break;
         case 3: return "#C68346";
-        break;
+            break;
         case 4: return "#339933";
-        break;
+            break;
         case 5: return "#53c653";
-        break;
+            break;
         case 6: return "#79d279";
-        break;
+            break;
         case 7: return "#9fdf9f";
-        break;
+            break;
         case 8: return "#b3e6b3";
-        break
+            break
         case 9: return "#c6ecc6";
-        break;
+            break;
         case 10: return "#d9f2d9";
-        break;
+            break;
         default: return "#EDE8D0";
-        break;
+            break;
     }
 }
 
-export function getTopThreeClassName(position){
-    switch(position){
-        case 1 : "1st";
-        break;
+export function getTopThreeClassName(position) {
+    switch (position) {
+        case 1: "1st";
+            break;
         case 2: "2nd";
-        break;
+            break;
         case 3: "3rd";
-        break;
+            break;
         default: "";
-        break;
+            break;
     }
 }
