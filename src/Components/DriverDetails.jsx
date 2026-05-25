@@ -47,7 +47,6 @@ export default function DriverDetails(props) {
             console.log(year);
         } catch (err) {
             setIsError(true);
-            console.error(err);
         } finally {
             setLoading(false);
         }

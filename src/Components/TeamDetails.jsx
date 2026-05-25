@@ -21,7 +21,6 @@ export default function TeamResults(props) {
     const search = props.search;
     const params = useParams();
     const navigate = useNavigate();
-    console.log(props.year)
 
     useEffect(() => {
         getTeamResults();
@@ -41,28 +40,21 @@ export default function TeamResults(props) {
     const getTeamResults = async () => {
         setIsError(false);
         try {
-        const urlResults = `https://api.jolpi.ca/ergast/f1/2025/constructors/${params.id}/results.json`;
-        const urlDetails = `https://api.jolpi.ca/ergast/f1/2025/constructors/${params.id}/constructorStandings.json`;
+            const urlResults = `https://api.jolpi.ca/ergast/f1/${year}/constructors/${params.id}/results.json`;
+            const urlDetails = `https://api.jolpi.ca/ergast/f1/${year}/constructors/${params.id}/constructorStandings.json`;
+            const responseResults = await axios.get(urlResults);
+            const responseDetails = await axios.get(urlDetails);
+
+            setTeamResults(responseResults.data.MRData.RaceTable.Races);
+            setTeamDetails(responseDetails.data.MRData.StandingsTable.StandingsLists[0].ConstructorStandings[0]);
+
+        } catch (err) {
+            setIsError(true);
+        } finally {
+            setLoading(false);
+        }
 
 
-        const responseResults = await axios.get(urlResults);
-        const responseDetails = await axios.get(urlDetails);
-
-        // console.log(responseDetails.data.MRData.StandingsTable.StandingsLists[0].ConstructorStandings[0]);
-
-
-
-        setTeamResults(responseResults.data.MRData.RaceTable.Races);
-        setTeamDetails(responseDetails.data.MRData.StandingsTable.StandingsLists[0].ConstructorStandings[0]);
-        console.log(year);
-    } catch (err) {
-        setIsError(true);
-        console.error(err);
-    } finally {
-        setLoading(false);
-    }
-
-        
     };
 
     const handleClickDetails = (id) => {
@@ -72,11 +64,6 @@ export default function TeamResults(props) {
     const handleClickDriver = (id) => {
         navigate(`/driverDetails/${id}`);
     };
-
-    // console.log(teamResults);
-    // console.log(teamDetails);
-
-
 
 
     if (loading) {
@@ -96,8 +83,10 @@ export default function TeamResults(props) {
 
     if (isError) {
         return (
-            <><Breadcrumbs items={breadcrumbs} />
-                <h2>There is no info for this driver for year {year}</h2></>
+            <>
+                <Breadcrumbs items={breadcrumbs} />
+                <h2>There is no info for this team for year {year}</h2>
+            </>
         );
     }
 
