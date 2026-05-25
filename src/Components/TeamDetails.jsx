@@ -9,9 +9,9 @@ import { ExportOutlined } from "@ant-design/icons";
 import { getColor, getTopThreeClassName } from "../helpers/getColor";
 
 export default function TeamResults(props) {
-
+ 
     const [teamResults, setTeamResults] = useState([]);
-    const [teamDetails, setTeamDetails] = useState([]);
+    const [teamDetails, setTeamDetails] = useState(null);
     const [loading, setLoading] = useState(true);
     const [filteredTeamDetails, setFilteredTeamDetails] = useState([]);
     const [isError, setIsError] = useState(false);
@@ -42,6 +42,11 @@ export default function TeamResults(props) {
         try {
             const urlResults = `https://api.jolpi.ca/ergast/f1/${year}/constructors/${params.id}/results.json`;
             const urlDetails = `https://api.jolpi.ca/ergast/f1/${year}/constructors/${params.id}/constructorStandings.json`;
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 6ff45654f93cbd84c1cb424addc241741ce4bd6c
             const responseResults = await axios.get(urlResults);
             const responseDetails = await axios.get(urlDetails);
 
