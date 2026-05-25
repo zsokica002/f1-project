@@ -96,23 +96,25 @@ export default function TeamDetails(props) {
 
     return (
 
-        <div className="proba">
+        <div className="component-wrapper">
             <Breadcrumbs items={breadcrumbs} />
             <h1>{teamResults[0]?.Results[0].Constructor.name} results</h1>
 
-            <div>
-
+            <div className="details-card">
                 <img src={`/teamLogo/${teamDetails.Constructor.constructorId}.jpg`} alt="slika" width={250} />
 
-
-                <div>
-                    <div><Flag country={getFlagByNationality(props.flags, teamDetails.Constructor.nationality)} /></div>
+                <div className="flag-team-name">
+                    <Flag country={getFlagByNationality(props.flags, teamDetails.Constructor.nationality)} />
                     <p>{teamResults[0]?.Results[0].Constructor.name}</p>
                 </div>
+
                 <p>Nationality: {teamResults[0]?.Results[0].Constructor.nationality}</p>
                 <p>Position: {teamDetails.position}</p>
                 <p>Points: {teamDetails.points}</p>
                 <p>History: <a target="_blank" href={teamDetails.Constructor.url}><ExportOutlined /></a></p>
+
+
+
 
             </div>
 
