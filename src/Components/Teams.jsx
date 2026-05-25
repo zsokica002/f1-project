@@ -9,11 +9,11 @@ import { ExportOutlined } from "@ant-design/icons";
 import { getColor, getTopThreeClassName } from "../helpers/getColor";
 
 export default function Teams(props) {
-    const [allTeams, setAllTeams] = useState([]);
+    const [teams, setTeams] = useState([]);
     const [loading, setLoading] = useState(true);
     // const [year, setYear] = useState("");
     const [filteredTeams, setFilteredTeams] = useState([]);
-    const [positionColor, setPositionColor] = useState([]);
+ 
 
 
     const search = props.search;
@@ -25,24 +25,24 @@ export default function Teams(props) {
 
 
     useEffect(() => {
-        getAllTeams();
+        getTeams();
     }, [year]);
 
     useEffect(() => {
-        const result = allTeams.filter((item) => {
+        const result = teams.filter((item) => {
             return (
                 item.Constructor.name.toLowerCase().includes(search.toLowerCase())
             );
         });
         setFilteredTeams(result);
-    }, [search, allTeams, year]);
+    }, [search, teams, year]);
 
-    const getAllTeams = async () => {
+    const getTeams = async () => {
         const url = `https://api.jolpi.ca/ergast/f1/${year}/constructorStandings.json`;
 
         const response = await axios.get(url);
 
-        setAllTeams(response.data.MRData.StandingsTable.StandingsLists[0].ConstructorStandings);
+        setTeams(response.data.MRData.StandingsTable.StandingsLists[0].ConstructorStandings);
         //setYear(response.data.MRData.StandingsTable.season);
         setLoading(false);
     };

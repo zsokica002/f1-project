@@ -72,6 +72,7 @@ export default function TeamDetails(props) {
         return <Loader />;
     };
 
+
     const breadcrumbs = [
         {
             label: "Teams",
@@ -80,6 +81,7 @@ export default function TeamDetails(props) {
         {
             label: teamResults[0]?.Results[0]?.Constructor?.name, route: ""
         }];
+
 
     if (isError) {
         return (
@@ -114,6 +116,7 @@ export default function TeamDetails(props) {
 
             </div>
 
+
             <table className="table" border={1}>
                 <thead>
                     <tr>
@@ -129,6 +132,8 @@ export default function TeamDetails(props) {
                         <th>Points</th>
                     </tr>
                 </thead>
+
+
                 <tbody className="team">
                     {filteredTeamDetails.map((race, i) => (
                         <tr key={i}>
