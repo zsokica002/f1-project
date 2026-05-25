@@ -1,7 +1,7 @@
 import { HomeOutlined } from "@ant-design/icons";
 import { Link } from "react-router";
 
-export default function Navigacija() {
+export default function Navigation() {
     return (
         <ul className="nav" >
             <li><Link className="nav-links" to="/" ><HomeOutlined /></Link></li>

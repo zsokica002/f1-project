@@ -8,10 +8,10 @@ import Breadcrumbs from "./Breadcrumbs";
 import { ExportOutlined } from "@ant-design/icons";
 import { getColor, getTopThreeClassName } from "../helpers/getColor";
 
-export default function TeamResults(props) {
+export default function TeamDetails(props) {
 
     const [teamResults, setTeamResults] = useState([]);
-    const [teamDetails, setTeamDetails] = useState([]);
+    const [teamDetails, setTeamDetails] = useState(null);
     const [loading, setLoading] = useState(true);
     const [year, setYear] = useState("");
     const [filteredTeamDetails, setFilteredTeamDetails] = useState([]);

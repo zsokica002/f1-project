@@ -10,8 +10,8 @@ export default function Breadcrumbs(props) {
                 {props.items.map((item, i) => {
                     const isLast = i === props.items.length - 1;
                     return (
-                        <>
-                            <li key={i}>
+                        <div key={i}>
+                            <li>
                                 {
                                     !isLast ?
                                         <Link to={item.route}>{item.label}</Link>
@@ -19,7 +19,7 @@ export default function Breadcrumbs(props) {
                                 }
                             </li>
                             <li>{!isLast ? ">" : null}</li>
-                        </>
+                        </div>
 
                     );
                 })}

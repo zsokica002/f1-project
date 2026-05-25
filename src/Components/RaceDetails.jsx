@@ -13,7 +13,7 @@ export default function RaceDetails(props) {
     const [qualis, setQualis] = useState([]);
     const [loading, setLoading] = useState(true);
     const [raceResults, setRaceResults] = useState([]);
-    const [raceDetails, setRaceDetails] = useState("");
+    const [raceDetails, setRaceDetails] = useState(null);
     const [filteredRaceResults, setFilteredRaceResults] = useState([]);
     const [filteredQualis, setFilteredQualis] = useState([]);
     const [isError, setIsError] = useState(false);

@@ -5,14 +5,13 @@ import Flag from "react-flagkit";
 import { useNavigate } from "react-router";
 import { getFlagByNationality } from "../helpers/getFlags";
 import Breadcrumbs from "./Breadcrumbs";
-import { getColor, getTopThreeClassName} from "../helpers/getColor";
+import { getColor, getTopThreeClassName } from "../helpers/getColor";
 
 
 export default function Drivers(props) {
   const [loading, setLoading] = useState(true);
   const [drivers, setDrivers] = useState([]);
   const [filteredDrivers, setFilteredDrivers] = useState([]);
-  const [positionColor, setPositionColor] = useState([]);
   const search = props.search;
   const year = props.year;
   // console.log(search);
@@ -74,10 +73,10 @@ export default function Drivers(props) {
         </thead>
         {filteredDrivers.map((driver) => {
           return (
-            <tbody key={Number(driver.position)}>
+            <tbody key={driver.position}>
               <tr>
                 <td style={{ backgroundColor: getColor(Number(driver.position)) }}
-                 className={getTopThreeClassName(Number(driver.position))}
+                  className={getTopThreeClassName(Number(driver.position))}
                 >{driver.position}</td>
                 <td className="clickable" onClick={() => handleClickDriver(driver.Driver.driverId)}><Flag country={getFlagByNationality(props.flags, driver.Driver.nationality)} />  {driver.Driver.givenName} {driver.Driver.familyName}</td>
                 <td className="clickable" onClick={() => handleClickConstructor(driver.Constructors[0].constructorId)}>{driver.Constructors[0].name}</td>
