@@ -15,7 +15,7 @@ export default function TeamDetails(props) {
     const [loading, setLoading] = useState(true);
     const [filteredTeamDetails, setFilteredTeamDetails] = useState([]);
     const [isError, setIsError] = useState(false);
-
+    console.log(teamResults, teamDetails, filteredTeamDetails);
     const year = props.year;
     const search = props.search;
     const params = useParams();
@@ -97,7 +97,7 @@ export default function TeamDetails(props) {
 
         <div className="proba">
             <Breadcrumbs items={breadcrumbs} />
-            <h1>{teamResults[0].Results[0].Constructor.name} results</h1>
+            <h1>{teamResults[0]?.Results[0].Constructor.name} results</h1>
 
             <div>
 
@@ -107,9 +107,9 @@ export default function TeamDetails(props) {
                 <div>
                     <div>  <Flag country={getFlagByNationality(props.flags, teamDetails.Constructor.nationality)} /></div>
 
-                    <p>{teamResults[0].Results[0].Constructor.name}</p>
+                    <p>{teamResults[0]?.Results[0].Constructor.name}</p>
                 </div>
-                <p>Nationality: {teamResults[0].Results[0].Constructor.nationality}</p>
+                <p>Nationality: {teamResults[0]?.Results[0].Constructor.nationality}</p>
                 <p>Position: {teamDetails.position}</p>
                 <p>Points: {teamDetails.points}</p>
                 <p>History: <a target="_blank" href={teamDetails.Constructor.url}><ExportOutlined /></a></p>
@@ -125,10 +125,10 @@ export default function TeamDetails(props) {
                     <tr>
                         <th>Round</th>
                         <th>Grand Prix</th>
-                        <th className="clickable" onClick={() => handleClickDriver(teamResults[0].Results[0].Driver.driverId)}
-                        >{teamResults[0].Results[0].Driver.familyName}</th>
-                        <th className="clickable" onClick={() => handleClickDriver(teamResults[0].Results[1].Driver.driverId)}
-                        >{teamResults[0].Results[1].Driver.familyName}</th>
+                        <th className="clickable" onClick={() => handleClickDriver(teamResults[0]?.Results[0].Driver.driverId)}
+                        >{teamResults[0]?.Results[0].Driver.familyName}</th>
+                        <th className="clickable" onClick={() => handleClickDriver(teamResults[0]?.Results[1].Driver.driverId)}
+                        >{teamResults[0]?.Results[1].Driver.familyName}</th>
                         <th>Points</th>
                     </tr>
                 </thead>
