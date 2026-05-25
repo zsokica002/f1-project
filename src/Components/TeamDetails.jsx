@@ -23,7 +23,7 @@ export default function TeamDetails(props) {
 
     useEffect(() => {
 
-        getTeamResults();
+        getTeamDetails();
     }, [year]);
 
     useEffect(() => {
@@ -37,7 +37,7 @@ export default function TeamDetails(props) {
     }, [search, teamResults, year]);
 
 
-    const getTeamResults = async () => {
+    const getTeamDetails = async () => {
 
         setIsError(false);
 
