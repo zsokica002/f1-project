@@ -130,7 +130,7 @@ export default function RaceDetails(props) {
             {/* <h3>Hello from RaceResults component!</h3> */}
 
             <div>
-                <Flag country={getFlagByRaceLocation(props.flags, raceDetails.Circuit.Location.country)} />
+                <Flag country={getFlagByRaceLocation(props.flags, raceDetails?.Circuit.Location.country)} />
                 <p>{raceDetails?.raceName}</p>
                 <p>Country: {raceDetails?.Circuit.Location.country}</p>
                 <p>Location: {raceDetails?.Circuit.Location.locality}</p>
