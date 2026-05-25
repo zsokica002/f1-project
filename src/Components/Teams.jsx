@@ -6,12 +6,12 @@ import { useNavigate } from "react-router";
 import { getFlagByNationality } from "../helpers/getFlags";
 import Breadcrumbs from "./Breadcrumbs";
 import { ExportOutlined } from "@ant-design/icons";
-import { getColor, getTopThreeClassName} from "../helpers/getColor";
+import { getColor, getTopThreeClassName } from "../helpers/getColor";
 
-export default function AllTeams(props) {
+export default function Teams(props) {
     const [allTeams, setAllTeams] = useState([]);
     const [loading, setLoading] = useState(true);
-   // const [year, setYear] = useState("");
+    // const [year, setYear] = useState("");
     const [filteredTeams, setFilteredTeams] = useState([]);
     const [positionColor, setPositionColor] = useState([]);
 
@@ -78,10 +78,10 @@ export default function AllTeams(props) {
                 <thead>
                     <tr>
                         <th className="vodeciNaslov" colSpan={4}>Constructors Championship Standings - {year}</th>
-                   
+
                     </tr>
                     <tr>
-{/*<th>Position</th>
+                        {/*<th>Position</th>
 <th>?</th>
 <th>Details</th>
 <th>Points</th>*/}
@@ -95,10 +95,10 @@ export default function AllTeams(props) {
                         return (
                             <tr key={team.Constructor.constructorId}>
                                 <td style={{ backgroundColor: getColor(Number(team.position)) }}
-                 className={getTopThreeClassName(Number(team.position))}>{team.position}</td>
-                                <td  onClick={() => handleClickDetails(team.Constructor.constructorId)}>
-                                   <div className="clickable"> <Flag country={getFlagByNationality(props.flags, team.Constructor.nationality)} />
-                                      {team.Constructor.name}</div> </td>
+                                    className={getTopThreeClassName(Number(team.position))}>{team.position}</td>
+                                <td onClick={() => handleClickDetails(team.Constructor.constructorId)}>
+                                    <div className="clickable"> <Flag country={getFlagByNationality(props.flags, team.Constructor.nationality)} />
+                                        {team.Constructor.name}</div> </td>
 
                                 <td>Details <a target="_blank" href={team.Constructor.url}><ExportOutlined /></a></td>
 

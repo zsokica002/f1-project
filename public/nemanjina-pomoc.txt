@@ -1,0 +1,41 @@
+- Components folder bi trebao da bude malim slovima.
+
+- Key unutar Breadcrumbs komponente mora biti na prvom elementu uspod return-a.
+
+- Ukoliko zelite da selektujete linkove u navigaciji tako da se zna koji je link aktivan umesto Link koristiti NavLink.
+
+- Komponenta Navigacija bi trebao da bude na engleskom. Naziv fajla je dobar.
+
+- Imamo naziv fajla TeamDetails a sama komponenta se zove TeamResults. Ime mora biti jedinstveno. Isto vazi za Teams.
+
+- U Drivers komponenti visak vam je state positionColor. Proveriti da li imate u drugim komponentama state koji ne koristite.
+
+- U istoj komponenti nema potrebe da konvertuje position u broj za key, moze da stoji komotno i string. 
+
+- Proveriti da li sve map metode imaju key. Takodje, nema potrebe da se za key koristi podatak i jer svi podaci imaju neki id koji se moze iskoristiti.
+
+- Kada imate predugacak kod u jednoj liniji treba ga prelomiti na vise redova kako bi se ako je moguce izbegao horizontalni scroll.
+
+- Nakon definisanja svih statova malo odvojiti naredni kod bilo to props ili drugo kako bi se to malo grupisalo prema tipovima podataka.
+
+- Ne treba promenljie da nazovete response1 ili response2, vec recimo driverInfoResponse itd.
+
+- Malo srediti gde pocinje a gde se zatvaraju tagovi. Recimo u DriverDetails komponenti imamo tabelu za filteredDriverResults, pa je malo nepregledno. Tag bi trebao da se otvori na pocetku reda.
+
+- U DriverDetails komponenti za prvu kolonu treba da se prikaze round tj broj, kod vas je circuitName.
+
+- raceDetails state ne moze imati pocetni state prazan string, to je kasnije objekat pa staviti odgovarajucu inicijalnu vrednost.
+
+- Takodje isto i za teamDetails, nije niz vec objekat.
+
+- clickable css klasa ne treba da sadrzi flex display ukoliko je klasa setovana za td element.
+
+- Tamo gde ste zakucali godinu u api pozivu promeniti u dinamicki godinu.
+
+- Ako nije likovano dodati redirekciju za sve stranice gde prikazujete tabelu bilo na vozaca, tim ili trku.
+
+- Formatirati kod u okviru svake komponente.
+
+- Nazive klasa pisati na eng i da budu smisleniji nazivi.
+
+- Obrisati sve console logove kao i sav zakomentarisan kod.

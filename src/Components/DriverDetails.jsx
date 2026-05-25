@@ -115,7 +115,7 @@ export default function DriverDetails(props) {
                     {filteredDriverResults.map((result, i) => {
                         return (
                             <tr key={i}>
-                                <td><a target="_blank" href={result.Circuit.url}>{result.Circuit.circuitName} <ExportOutlined /></a></td>
+                                <td>{result.round}</td>
                                 <td className="clickable" onClick={() => handleRaceDetails(result.round)}
                                 ><Flag country={getFlagByRaceLocation(props.flags, result.Circuit.Location.country)} />{result.Circuit.Location.country}</td>
                                 <td className="clickable" onClick={() => handleClickDetails(result.Results[0].Constructor.constructorId)}
