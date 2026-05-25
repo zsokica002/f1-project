@@ -22,7 +22,6 @@ export default function TeamDetails(props) {
     const navigate = useNavigate();
 
     useEffect(() => {
-
         getTeamResults();
     }, [year]);
 
@@ -103,7 +102,7 @@ export default function TeamDetails(props) {
 
 
                 <div>
-                    <div>  <Flag country={getFlagByNationality(props.flags, teamDetails.Constructor.nationality)} /></div>
+                    <Flag country={getFlagByNationality(props.flags, teamDetails.Constructor.nationality)} />
 
                     <p>{teamResults[0].Results[0].Constructor.name}</p>
                 </div>
@@ -134,9 +133,12 @@ export default function TeamDetails(props) {
                         <tr key={i}>
 
                             <td>{race.round}</td>
-                            <td className="clickable" onClick={() => handleClickDetails(race.round)}
-                            ><Flag country={getFlagByRaceLocation(props.flags, race.Circuit.Location.country)} />
-                                {race.raceName}</td>
+                            <td className="clickable" onClick={() => handleClickDetails(race.round)}>
+                                <div>
+                                    <Flag country={getFlagByRaceLocation(props.flags, race.Circuit.Location.country)} />
+                                    <p>{race.raceName}</p>
+                                </div>
+                            </td>
                             <td style={{ backgroundColor: getColor(Number(race.Results[0].position)) }}
                                 className={getTopThreeClassName(Number(race.Results[0].position))}
                             >{race.Results[0]?.position || "N/A"}</td>

@@ -64,7 +64,7 @@ export default function Drivers(props) {
   return (
     <>
       <Breadcrumbs items={breadcrumbs} />
-      <h1>Drivers Championship {year}</h1>
+      <h2 className="component-title">Drivers Championship {year}</h2>
       <table className="table">
         <thead>
           <tr>

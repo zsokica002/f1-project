@@ -63,9 +63,9 @@ export default function Races(props) {
     ];
 
     return (
-        <div className="proba">
+        <div className="component-wrapper">
             <Breadcrumbs items={breadcrumbs} />
-            <table className="table" border={1}>
+            <table className="table">
                 <thead >
                     <tr>
                         <th className="vodeciNaslov" colSpan={5}>Race calendar {year}</th>
@@ -83,16 +83,27 @@ export default function Races(props) {
                     {filteredRaces.map((race, i) => {
                         return (
                             <tr key={i}>
-                                <td >{race.round}</td>
-                                <td onClick={() => handleClickDetails(race.round)}>
-                                    <div className="clickable">
-                                        <Flag country={getFlagByRaceLocation(props.flags, race.Circuit.Location.country)} />  {race.raceName}
+                                <td>{race.round}</td>
+                                <td className="clickable"
+                                    onClick={() => handleClickDetails(race.round)}>
+                                    <div>
+                                        <Flag country={getFlagByRaceLocation(props.flags, race.Circuit.Location.country)} />
+                                        <p>{race.raceName}</p>
                                     </div>
                                 </td>
-                                <td><a target="_blank" href={race.Circuit.url}>{race.Circuit.circuitName} <ExportOutlined /></a></td>
-                                <td >{race.date}</td>
-                                <td onClick={() => handleClickDriver(race.Results[0].Driver.driverId)}>
-                                    <div className="clickable"><Flag country={getFlagByNationality(props.flags, race.Results[0].Driver.nationality)} />{race.Results[0].Driver.familyName}</div> </td>
+                                <td>
+                                    <a target="_blank" href={race.Circuit.url}>
+                                        {race.Circuit.circuitName} <ExportOutlined />
+                                    </a>
+                                </td>
+                                <td>{race.date}</td>
+                                <td className="clickable"
+                                    onClick={() => handleClickDriver(race.Results[0].Driver.driverId)}>
+                                    <div>
+                                        <Flag country={getFlagByNationality(props.flags, race.Results[0].Driver.nationality)} />
+                                        <p>{race.Results[0].Driver.familyName}</p>
+                                    </div>
+                                </td>
                             </tr>
                         );
                     })}

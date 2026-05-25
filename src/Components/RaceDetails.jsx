@@ -159,10 +159,21 @@ export default function RaceDetails(props) {
                                 <td style={{ backgroundColor: getColor(Number(quali.position)) }}
                                     className={getTopThreeClassName(Number(quali.position))}
                                 >{quali.position}</td>
-                                <td className="clickable" onClick={() => handleClickDriver(quali.Driver.driverId)}
-                                > <Flag country={getFlagByNationality(props.flags, quali.Driver.nationality)} />{quali.Driver.familyName}</td>
-                                <td className="clickable" onClick={() => handleClickDetails(quali.Constructor.constructorId)}
-                                >{quali.Constructor.name}</td>
+                                <td className="clickable" onClick={() => handleClickDriver(quali.Driver.driverId)}>
+
+                                    <div>
+                                        <Flag country={getFlagByNationality(props.flags, quali.Driver.nationality)} />
+
+
+                                        <span>{quali.Driver.familyName}</span>
+                                    </div>
+
+                                </td>
+                                <td className="clickable" onClick={() => handleClickDetails(quali.Constructor.constructorId)}>
+
+                                    {quali.Constructor.name}
+
+                                </td>
                                 <td>{getBestTime(quali.Q1, quali.Q2, quali.Q3)}</td>
                             </tr>
                         );
