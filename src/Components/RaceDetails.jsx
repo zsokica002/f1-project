@@ -123,13 +123,11 @@ export default function RaceDetails(props) {
     // console.log(raceDetails);
 
     return (
-        <div className="proba">
+        <div className="component-wrapper">
 
             <Breadcrumbs items={breadcrumbs} />
 
-            {/* <h3>Hello from RaceResults component!</h3> */}
-
-            <div>
+            <div className="details-card">
                 <Flag country={getFlagByRaceLocation(props.flags, raceDetails?.Circuit.Location.country)} />
                 <p>{raceDetails?.raceName}</p>
                 <p>Country: {raceDetails?.Circuit.Location.country}</p>
@@ -139,83 +137,96 @@ export default function RaceDetails(props) {
             </div>
 
 
-            <table className="table">
-                <thead>
-                    <tr>
-                        <th className="vodeciNaslov" colSpan={5}>Qualifying Results</th>
-                    </tr>
-                    <tr>
-                        <th>Pos</th>
-                        <th>Driver</th>
-                        <th>Team</th>
-                        <th>Best Time</th>
-                    </tr>
-                </thead>
-                <tbody>
+            <div className="tables-wrapper">
 
-                    {filteredQualis.map((quali, i) => {
-                        return (
-                            <tr key={i}>
-                                <td style={{ backgroundColor: getColor(Number(quali?.position)) }}
-                                    className={getTopThreeClassName(Number(quali?.position))}
-                                >{quali.position}</td>
-                                <td className="clickable" onClick={() => handleClickDriver(quali?.Driver.driverId)}>
+                <table className="table race-details-table">
+                    <thead>
+                        <tr>
+                            <th className="vodeciNaslov" colSpan={5}>Qualifying Results</th>
+                        </tr>
+                        <tr>
+                            <th>Pos</th>
+                            <th>Driver</th>
+                            <th>Team</th>
+                            <th>Best Time</th>
+                        </tr>
+                    </thead>
+                    <tbody>
 
-                                    <div>
-                                        <Flag country={getFlagByNationality(props.flags, quali?.Driver.nationality)} />
+                        {filteredQualis.map((quali, i) => {
+                            return (
+                                <tr key={i}>
+                                    <td style={{ backgroundColor: getColor(Number(quali?.position)) }}
+                                        className={getTopThreeClassName(Number(quali?.position))}>
 
+                                        {quali.position}
+                                    </td>
+                                    <td className="clickable" onClick={() => handleClickDriver(quali?.Driver.driverId)}>
 
-                                        <span>{quali?.Driver.familyName}</span>
-                                    </div>
+                                        <div>
+                                            <Flag country={getFlagByNationality(props.flags, quali?.Driver.nationality)} />
+                                            <span>{quali?.Driver.familyName}</span>
+                                        </div>
 
-                                </td>
-                                <td className="clickable" onClick={() => handleClickDetails(quali?.Constructor.constructorId)}>
+                                    </td>
+                                    <td className="clickable" onClick={() => handleClickDetails(quali?.Constructor.constructorId)}>
 
-                                    {quali?.Constructor.name}
+                                        {quali?.Constructor.name}
 
-                                </td>
-                                <td>{getBestTime(quali?.Q1, quali?.Q2, quali?.Q3)}</td>
-                            </tr>
-                        );
-                    })}
+                                    </td>
+                                    <td>{getBestTime(quali?.Q1, quali?.Q2, quali?.Q3)}</td>
+                                </tr>
+                            );
+                        })}
 
-                </tbody>
-            </table>
-            <br /><br /><br />
-            <table className="table">
-                <thead>
-                    <tr>
-                        <th className="vodeciNaslov" colSpan={5}>Race Results</th>
-                    </tr>
-                    <tr>
-                        <th>Pos</th>
-                        <th>Driver</th>
-                        <th>Team</th>
-                        <th>Result</th>
-                        <th>Points</th>
-                    </tr>
-                </thead>
-                <tbody>
+                    </tbody>
+                </table>
+                <br /><br /><br />
+                <table className="table race-details-table">
+                    <thead>
+                        <tr>
+                            <th className="vodeciNaslov" colSpan={5}>Race Results</th>
+                        </tr>
+                        <tr>
+                            <th>Pos</th>
+                            <th>Driver</th>
+                            <th>Team</th>
+                            <th>Result</th>
+                            <th>Points</th>
+                        </tr>
+                    </thead>
+                    <tbody>
 
-                    {filteredRaceResults.map((result, i) => {
-                        return (
-                            <tr key={i}>
-                                <td
-                                    style={{ backgroundColor: getColor(Number(result.position)) }}
-                                    className={getTopThreeClassName(Number(result.position))}
-                                >{result.position}</td>
-                                <td className="clickable" onClick={() => handleClickDriver(result.Driver.driverId)}
-                                > <Flag country={getFlagByNationality(props.flags, result.Driver.nationality)} />{result.Driver.familyName}</td>
-                                <td className="clickable" onClick={() => handleClickDetails(result.Constructor.constructorId)}
-                                >{result.Constructor.name}</td>
-                                <td>{result.Time ? result.Time.time : result.status}</td>
-                                <td>{result.points}</td>
-                            </tr>
-                        );
-                    })}
+                        {filteredRaceResults.map((result, i) => {
+                            return (
+                                <tr key={i}>
+                                    <td style={{ backgroundColor: getColor(Number(result.position)) }}
+                                        className={getTopThreeClassName(Number(result.position))}>
 
-                </tbody>
-            </table>
+                                        {/* zso ubaci ovde sta ti treba za onaj pseudo element */}
+
+                                        {result.position}
+
+                                    </td>
+                                    <td className="clickable" onClick={() => handleClickDriver(result.Driver.driverId)}>
+                                        <div>
+                                            <Flag country={getFlagByNationality(props.flags, result.Driver.nationality)} />
+                                            <p>{result.Driver.familyName}</p>
+                                        </div>
+                                    </td>
+                                    <td className="clickable" onClick={() => handleClickDetails(result.Constructor.constructorId)}>
+                                        {result.Constructor.name}
+                                    </td>
+                                    <td>{result.Time ? result.Time.time : result.status}</td>
+                                    <td>{result.points}</td>
+                                </tr>
+                            );
+                        })}
+
+                    </tbody>
+                </table>
+            </div>
+
         </div>
     );
 }

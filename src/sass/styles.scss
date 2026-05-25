@@ -3,7 +3,6 @@
 }
 
 @font-face {
-    // MENJATI FONT // nije citak
     font-family: homeTitleFonts;
     src: url("/fonts/Formula1-Regular.ttf");
 }
@@ -241,20 +240,6 @@ body {
 }
 
 
-.table {
-    border-collapse: collapse;
-    border: 1px solid black;
-
-    td {
-
-        span {
-            padding: 5px;
-        }
-    }
-}
-
-
-
 
 
 .component-wrapper {
@@ -262,25 +247,57 @@ body {
     color: white;
     padding: 10px;
 
+    .details-card {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: transparent;
+        color: rgb(148, 137, 121);
+        padding: 5px 15px;
+        font-size: 14px;
+        border: 1px solid rgb(148, 137, 121);
+        border-bottom: none;
+    }
+
+    .tables-wrapper {
+        display: flex;
+        gap: 20px;
+
+        border: 1px solid rgb(148, 137, 121);
+
+        padding: 15px;
+    }
+
+    .race-details-table {
+        width: 50%;
+    }
+
     .table {
 
-        border: 1px solid black;
+        border-collapse: collapse;
+
+        border: 1px solid rgb(148, 137, 121);
 
         width: 100%;
-        // background-color: rgb(57, 62, 70);
+
+
         background-color: transparent;
         font-size: 12px;
 
+
+
+
+
         .vodeciNaslov {
             background-color: rgb(34, 40, 49);
-            border: 1px solid black;
+            border: 1px solid rgb(148, 137, 121);
         }
 
         th {
             padding: 10px;
             color: rgb(148, 137, 121);
             background-color: rgba(34, 40, 49, 0.555);
-            border: 1px solid black;
+            border: 1px solid rgb(148, 137, 121);
 
         }
 
@@ -290,10 +307,14 @@ body {
         td {
             text-align: center;
             color: rgb(223, 208, 184);
-            border: 1px solid black;
+            border: 1px solid rgb(148, 137, 121);
 
             p {
                 margin: 0;
+            }
+
+            span {
+                padding: 5px;
             }
 
             &:hover {
