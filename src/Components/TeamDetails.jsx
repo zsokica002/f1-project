@@ -15,14 +15,15 @@ export default function TeamDetails(props) {
     const [loading, setLoading] = useState(true);
     const [filteredTeamDetails, setFilteredTeamDetails] = useState([]);
     const [isError, setIsError] = useState(false);
-    console.log(teamResults, teamDetails, filteredTeamDetails);
+
+    //console.log(teamResults, teamDetails, filteredTeamDetails);
+
     const year = props.year;
     const search = props.search;
     const params = useParams();
     const navigate = useNavigate();
 
     useEffect(() => {
-
         getTeamDetails();
     }, [year]);
 
@@ -55,7 +56,6 @@ export default function TeamDetails(props) {
         } finally {
             setLoading(false);
         }
-
     };
 
 
@@ -66,6 +66,7 @@ export default function TeamDetails(props) {
     const handleClickDriver = (id) => {
         navigate(`/driverDetails/${id}`);
     };
+
 
 
     if (loading) {
@@ -105,8 +106,7 @@ export default function TeamDetails(props) {
 
 
                 <div>
-                    <div>  <Flag country={getFlagByNationality(props.flags, teamDetails.Constructor.nationality)} /></div>
-
+                    <div><Flag country={getFlagByNationality(props.flags, teamDetails.Constructor.nationality)} /></div>
                     <p>{teamResults[0]?.Results[0].Constructor.name}</p>
                 </div>
                 <p>Nationality: {teamResults[0]?.Results[0].Constructor.nationality}</p>
