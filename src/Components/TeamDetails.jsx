@@ -9,9 +9,9 @@ import { ExportOutlined } from "@ant-design/icons";
 import { getColor, getTopThreeClassName } from "../helpers/getColor";
 
 export default function TeamResults(props) {
- 
+
     const [teamResults, setTeamResults] = useState([]);
-    const [teamDetails, setTeamDetails] = useState(null);
+    const [teamDetails, setTeamDetails] = useState([]);
     const [loading, setLoading] = useState(true);
     const [filteredTeamDetails, setFilteredTeamDetails] = useState([]);
     const [isError, setIsError] = useState(false);
@@ -37,39 +37,6 @@ export default function TeamResults(props) {
     }, [search, teamResults, year]);
 
 
-    const getTeamResults = async () => {
-        setIsError(false);
-        try {
-            const urlResults = `https://api.jolpi.ca/ergast/f1/${year}/constructors/${params.id}/results.json`;
-            const urlDetails = `https://api.jolpi.ca/ergast/f1/${year}/constructors/${params.id}/constructorStandings.json`;
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 6ff45654f93cbd84c1cb424addc241741ce4bd6c
-            const responseResults = await axios.get(urlResults);
-            const responseDetails = await axios.get(urlDetails);
-
-            setTeamResults(responseResults.data.MRData.RaceTable.Races);
-            setTeamDetails(responseDetails.data.MRData.StandingsTable.StandingsLists[0].ConstructorStandings[0]);
-
-        } catch (err) {
-            setIsError(true);
-        } finally {
-            setLoading(false);
-        }
-
-        const urlResults = `https://api.jolpi.ca/ergast/f1/${year}/constructors/${params.id}/results.json`;
-        const urlDetails = `https://api.jolpi.ca/ergast/f1/${year}/constructors/${params.id}/constructorStandings.json`;
-
-
-        const responseResults = await axios.get(urlResults);
-        const responseDetails = await axios.get(urlDetails);
-
-        setTeamResults(responseResults.data.MRData.RaceTable.Races);
-        setTeamDetails(responseDetails.data.MRData.StandingsTable.StandingsLists[0].ConstructorStandings[0]);
-
-    };
 
     const handleClickDetails = (id) => {
         navigate(`/raceDetails/${id}`)
@@ -92,10 +59,8 @@ export default function TeamResults(props) {
             route: "/teams"
         },
         {
-            label: teamResults[0]?.Results[0]?.Constructor.name,
-            route: ""
-        }
-    ];
+            label: teamResults[0]?.Results[0]?.Constructor?.name, route: ""
+        }];
 
     if (isError) {
         return (
@@ -105,6 +70,26 @@ export default function TeamResults(props) {
             </>
         );
     }
+    const getTeamResults = async () => {
+
+        setIsError(false);
+
+        try {
+            const urlResults = `https://api.jolpi.ca/ergast/f1/${year}/constructors/${params.id}/results.json`;
+            const urlDetails = `https://api.jolpi.ca/ergast/f1/${year}/constructors/${params.id}/constructorStandings.json`;
+            const responseResults = await axios.get(urlResults);
+            const responseDetails = await axios.get(urlDetails);
+
+            setTeamResults(responseResults.data.MRData.RaceTable.Races);
+            setTeamDetails(responseDetails.data.MRData.StandingsTable.StandingsLists[0].ConstructorStandings[0]);
+
+        } catch (err) {
+            setIsError(true);
+        } finally {
+            setLoading(false);
+        }
+
+    };
 
     return (
 
@@ -145,8 +130,8 @@ export default function TeamResults(props) {
                     </tr>
                 </thead>
                 <tbody>
-                    {filteredTeamDetails.map((race) => (
-                        <tr key={race.round}>
+                    {filteredTeamDetails.map((race, i) => (
+                        <tr key={i}>
 
                             <td>{race.round}</td>
                             <td className="clickable" onClick={() => handleClickDetails(race.round)}
