@@ -93,7 +93,7 @@ export default function TeamResults(props) {
 
     return (
 
-        <>
+        <div className="proba">
             <Breadcrumbs items={breadcrumbs} />
             <h1>{teamResults[0].Results[0].Constructor.name} results</h1>
 
@@ -129,7 +129,7 @@ export default function TeamResults(props) {
                         <th>Points</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody className="team">
                     {filteredTeamDetails.map((race, i) => (
                         <tr key={i}>
 
@@ -149,7 +149,7 @@ export default function TeamResults(props) {
                 </tbody>
 
             </table>
-        </>
+        </div>
 
     );
 
