@@ -13,17 +13,18 @@ export default function TeamDetails(props) {
     const [teamResults, setTeamResults] = useState([]);
     const [teamDetails, setTeamDetails] = useState(null);
     const [loading, setLoading] = useState(true);
-    const [year, setYear] = useState("");
     const [filteredTeamDetails, setFilteredTeamDetails] = useState([]);
+    const [isError, setIsError] = useState(false);
 
+    const year = props.year;
     const search = props.search;
     const params = useParams();
     const navigate = useNavigate();
 
-
     useEffect(() => {
+
         getTeamResults();
-    }, []);
+    }, [year]);
 
     useEffect(() => {
         const result = teamResults.filter((item) => {
@@ -33,27 +34,30 @@ export default function TeamDetails(props) {
             );
         });
         setFilteredTeamDetails(result);
-    }, [search, teamResults]);
+    }, [search, teamResults, year]);
 
 
     const getTeamResults = async () => {
-        const urlResults = `https://api.jolpi.ca/ergast/f1/2025/constructors/${params.id}/results.json`;
-        const urlDetails = `https://api.jolpi.ca/ergast/f1/2025/constructors/${params.id}/constructorStandings.json`;
 
+        setIsError(false);
 
-        const responseResults = await axios.get(urlResults);
-        const responseDetails = await axios.get(urlDetails);
+        try {
+            const urlResults = `https://api.jolpi.ca/ergast/f1/${year}/constructors/${params.id}/results.json`;
+            const urlDetails = `https://api.jolpi.ca/ergast/f1/${year}/constructors/${params.id}/constructorStandings.json`;
+            const responseResults = await axios.get(urlResults);
+            const responseDetails = await axios.get(urlDetails);
 
-        // console.log(responseDetails.data.MRData.StandingsTable.StandingsLists[0].ConstructorStandings[0]);
+            setTeamResults(responseResults.data.MRData.RaceTable.Races);
+            setTeamDetails(responseDetails.data.MRData.StandingsTable.StandingsLists[0].ConstructorStandings[0]);
 
+        } catch (err) {
+            setIsError(true);
+        } finally {
+            setLoading(false);
+        }
 
-
-        setTeamResults(responseResults.data.MRData.RaceTable.Races);
-        setTeamDetails(responseDetails.data.MRData.StandingsTable.StandingsLists[0].ConstructorStandings[0]);
-        setYear(responseResults.data.MRData.RaceTable.season);
-
-        setLoading(false);
     };
+
 
     const handleClickDetails = (id) => {
         navigate(`/raceDetails/${id}`)
@@ -62,11 +66,6 @@ export default function TeamDetails(props) {
     const handleClickDriver = (id) => {
         navigate(`/driverDetails/${id}`);
     };
-
-    // console.log(teamResults);
-    // console.log(teamDetails);
-
-
 
 
     if (loading) {
@@ -79,14 +78,22 @@ export default function TeamDetails(props) {
             route: "/teams"
         },
         {
-            label: teamResults[0].Results[0].Constructor.name,
-            route: ""
-        }
-    ];
+            label: teamResults[0]?.Results[0]?.Constructor?.name, route: ""
+        }];
+
+    if (isError) {
+        return (
+            <>
+                <Breadcrumbs items={breadcrumbs} />
+                <h2>There is no info for this team for year {year}</h2>
+            </>
+        );
+    }
+
 
     return (
 
-        <div>
+        <>
             <Breadcrumbs items={breadcrumbs} />
             <h1>{teamResults[0].Results[0].Constructor.name} results</h1>
 
@@ -95,10 +102,11 @@ export default function TeamDetails(props) {
                 <img src={`/teamLogo/${teamDetails.Constructor.constructorId}.jpg`} alt="slika" width={250} />
 
 
+                <div>
+                    <div>  <Flag country={getFlagByNationality(props.flags, teamDetails.Constructor.nationality)} /></div>
 
-                <Flag country={getFlagByNationality(props.flags, teamDetails.Constructor.nationality)} />
-
-                <p>{teamResults[0].Results[0].Constructor.name}</p>
+                    <p>{teamResults[0].Results[0].Constructor.name}</p>
+                </div>
                 <p>Nationality: {teamResults[0].Results[0].Constructor.nationality}</p>
                 <p>Position: {teamDetails.position}</p>
                 <p>Points: {teamDetails.points}</p>
@@ -109,7 +117,7 @@ export default function TeamDetails(props) {
             <table className="table" border={1}>
                 <thead>
                     <tr>
-                        <th colSpan={5}>Formula 1 {year} Results</th>
+                        <th colSpan={5}>Formula 1 Results {year}</th>
                     </tr>
                     <tr>
                         <th>Round</th>
@@ -122,8 +130,8 @@ export default function TeamDetails(props) {
                     </tr>
                 </thead>
                 <tbody>
-                    {filteredTeamDetails.map((race) => (
-                        <tr key={race.round}>
+                    {filteredTeamDetails.map((race, i) => (
+                        <tr key={i}>
 
                             <td>{race.round}</td>
                             <td className="clickable" onClick={() => handleClickDetails(race.round)}
@@ -141,9 +149,7 @@ export default function TeamDetails(props) {
                 </tbody>
 
             </table>
-        </div>
-
-
+        </>
 
     );
 

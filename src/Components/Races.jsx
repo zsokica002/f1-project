@@ -14,10 +14,11 @@ export default function Races(props) {
 
     const search = props.search;
     const navigate = useNavigate();
+    const year = props.year;
 
     useEffect(() => {
         getRaces();
-    }, []);
+    }, [year]);
 
     useEffect(() => {
         const result = races.filter((item) => {
@@ -27,10 +28,10 @@ export default function Races(props) {
             );
         });
         setFilteredRaces(result);
-    }, [races, search])
+    }, [races, search, year])
 
     const getRaces = async () => {
-        const url = "https://api.jolpi.ca/ergast/f1/2025/results/1.json";
+        const url = `https://api.jolpi.ca/ergast/f1/${year}/results/1.json`;
 
         const response = await axios.get(url);
         // console.log(response.data.MRData.RaceTable.Races);
@@ -67,7 +68,7 @@ export default function Races(props) {
             <table className="table" border={1}>
                 <thead >
                     <tr>
-                        <th className="vodeciNaslov" colSpan={5}>Race calendar 2025</th>
+                        <th className="vodeciNaslov" colSpan={5}>Race calendar {year}</th>
                     </tr>
                     <tr>
                         <th>Round</th>

@@ -14,7 +14,7 @@ import { SearchOutlined } from "@ant-design/icons";
 export default function App() {
   const [flags, setFlags] = useState([]);
   const [search, setSearch] = useState("");
-  const [year, setYear] = useState("2013");
+  const [year, setYear] = useState("2026");
 
   useEffect(() => {
     getFlags();
