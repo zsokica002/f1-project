@@ -13,7 +13,6 @@ export default function TeamResults(props) {
     const [teamResults, setTeamResults] = useState([]);
     const [teamDetails, setTeamDetails] = useState([]);
     const [loading, setLoading] = useState(true);
-
     const [filteredTeamDetails, setFilteredTeamDetails] = useState([]);
     const [isError, setIsError] = useState(false);
 
@@ -23,6 +22,7 @@ export default function TeamResults(props) {
     const navigate = useNavigate();
 
     useEffect(() => {
+
         getTeamResults();
     }, [year]);
 
@@ -54,6 +54,15 @@ export default function TeamResults(props) {
             setLoading(false);
         }
 
+        const urlResults = `https://api.jolpi.ca/ergast/f1/${year}/constructors/${params.id}/results.json`;
+        const urlDetails = `https://api.jolpi.ca/ergast/f1/${year}/constructors/${params.id}/constructorStandings.json`;
+
+
+        const responseResults = await axios.get(urlResults);
+        const responseDetails = await axios.get(urlDetails);
+
+        setTeamResults(responseResults.data.MRData.RaceTable.Races);
+        setTeamDetails(responseDetails.data.MRData.StandingsTable.StandingsLists[0].ConstructorStandings[0]);
 
     };
 
@@ -69,6 +78,8 @@ export default function TeamResults(props) {
     if (loading) {
         return <Loader />;
     };
+
+    console.log("teamResults ", teamResults);
 
     const breadcrumbs = [
         {
@@ -92,7 +103,7 @@ export default function TeamResults(props) {
 
     return (
 
-        <div>
+        <>
             <Breadcrumbs items={breadcrumbs} />
             <h1>{teamResults[0].Results[0].Constructor.name} results</h1>
 
@@ -101,10 +112,11 @@ export default function TeamResults(props) {
                 <img src={`/teamLogo/${teamDetails.Constructor.constructorId}.jpg`} alt="slika" width={250} />
 
 
+                <div>
+                    <div>  <Flag country={getFlagByNationality(props.flags, teamDetails.Constructor.nationality)} /></div>
 
-                <Flag country={getFlagByNationality(props.flags, teamDetails.Constructor.nationality)} />
-
-                <p>{teamResults[0].Results[0].Constructor.name}</p>
+                    <p>{teamResults[0].Results[0].Constructor.name}</p>
+                </div>
                 <p>Nationality: {teamResults[0].Results[0].Constructor.nationality}</p>
                 <p>Position: {teamDetails.position}</p>
                 <p>Points: {teamDetails.points}</p>
@@ -147,7 +159,7 @@ export default function TeamResults(props) {
                 </tbody>
 
             </table>
-        </div>
+        </>
 
 
 
