@@ -67,7 +67,7 @@ export default function RaceDetails(props) {
         }
         catch (err) {
             setIsError(true);
-            console.error(err);
+            // console.error(err);
         }
         finally {
             setLoading(false);
@@ -131,11 +131,11 @@ export default function RaceDetails(props) {
 
             <div>
                 <Flag country={getFlagByRaceLocation(props.flags, raceDetails.Circuit.Location.country)} />
-                <p>{raceDetails.raceName}</p>
-                <p>Country: {raceDetails.Circuit.Location.country}</p>
-                <p>Location: {raceDetails.Circuit.Location.locality}</p>
-                <p>date: {raceDetails.date}</p>
-                <p>Full report: <a target="_blank" href={raceDetails.url}><ExportOutlined /></a></p>
+                <p>{raceDetails?.raceName}</p>
+                <p>Country: {raceDetails?.Circuit.Location.country}</p>
+                <p>Location: {raceDetails?.Circuit.Location.locality}</p>
+                <p>date: {raceDetails?.date}</p>
+                <p>Full report: <a target="_blank" href={raceDetails?.url}><ExportOutlined /></a></p>
             </div>
 
 
@@ -156,14 +156,14 @@ export default function RaceDetails(props) {
                     {filteredQualis.map((quali, i) => {
                         return (
                             <tr key={i}>
-                                <td style={{ backgroundColor: getColor(Number(quali.position)) }}
-                                    className={getTopThreeClassName(Number(quali.position))}
+                                <td style={{ backgroundColor: getColor(Number(quali?.position)) }}
+                                    className={getTopThreeClassName(Number(quali?.position))}
                                 >{quali.position}</td>
-                                <td className="clickable" onClick={() => handleClickDriver(quali.Driver.driverId)}
-                                > <Flag country={getFlagByNationality(props.flags, quali.Driver.nationality)} />{quali.Driver.familyName}</td>
-                                <td className="clickable" onClick={() => handleClickDetails(quali.Constructor.constructorId)}
-                                >{quali.Constructor.name}</td>
-                                <td>{getBestTime(quali.Q1, quali.Q2, quali.Q3)}</td>
+                                <td className="clickable" onClick={() => handleClickDriver(quali?.Driver.driverId)}
+                                > <Flag country={getFlagByNationality(props.flags, quali?.Driver.nationality)} />{quali.Driver.familyName}</td>
+                                <td className="clickable" onClick={() => handleClickDetails(quali?.Constructor.constructorId)}
+                                >{quali?.Constructor.name}</td>
+                                <td>{getBestTime(quali?.Q1, quali?.Q2, quali?.Q3)}</td>
                             </tr>
                         );
                     })}
