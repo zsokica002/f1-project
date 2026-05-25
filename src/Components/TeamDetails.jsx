@@ -16,13 +16,15 @@ export default function TeamDetails(props) {
     const [filteredTeamDetails, setFilteredTeamDetails] = useState([]);
     const [isError, setIsError] = useState(false);
 
+    //console.log(teamResults, teamDetails, filteredTeamDetails);
+
     const year = props.year;
     const search = props.search;
     const params = useParams();
     const navigate = useNavigate();
 
     useEffect(() => {
-        getTeamResults();
+        getTeamDetails();
     }, [year]);
 
     useEffect(() => {
@@ -36,7 +38,7 @@ export default function TeamDetails(props) {
     }, [search, teamResults, year]);
 
 
-    const getTeamResults = async () => {
+    const getTeamDetails = async () => {
 
         setIsError(false);
 
@@ -54,7 +56,6 @@ export default function TeamDetails(props) {
         } finally {
             setLoading(false);
         }
-
     };
 
 
@@ -67,9 +68,11 @@ export default function TeamDetails(props) {
     };
 
 
+
     if (loading) {
         return <Loader />;
     };
+
 
     const breadcrumbs = [
         {
@@ -79,6 +82,7 @@ export default function TeamDetails(props) {
         {
             label: teamResults[0]?.Results[0]?.Constructor?.name, route: ""
         }];
+
 
     if (isError) {
         return (
@@ -92,9 +96,9 @@ export default function TeamDetails(props) {
 
     return (
 
-        <>
+        <div className="proba">
             <Breadcrumbs items={breadcrumbs} />
-            <h1>{teamResults[0].Results[0].Constructor.name} results</h1>
+            <h1>{teamResults[0]?.Results[0].Constructor.name} results</h1>
 
             <div>
 
@@ -102,33 +106,35 @@ export default function TeamDetails(props) {
 
 
                 <div>
-                    <Flag country={getFlagByNationality(props.flags, teamDetails.Constructor.nationality)} />
-
-                    <p>{teamResults[0].Results[0].Constructor.name}</p>
+                    <div><Flag country={getFlagByNationality(props.flags, teamDetails.Constructor.nationality)} /></div>
+                    <p>{teamResults[0]?.Results[0].Constructor.name}</p>
                 </div>
-                <p>Nationality: {teamResults[0].Results[0].Constructor.nationality}</p>
+                <p>Nationality: {teamResults[0]?.Results[0].Constructor.nationality}</p>
                 <p>Position: {teamDetails.position}</p>
                 <p>Points: {teamDetails.points}</p>
                 <p>History: <a target="_blank" href={teamDetails.Constructor.url}><ExportOutlined /></a></p>
 
             </div>
 
+
             <table className="table" border={1}>
                 <thead>
                     <tr>
-                        <th colSpan={5}>Formula 1 Results {year}</th>
+                        <th className="vodeciNaslov" colSpan={5}>Formula 1 Results {year}</th>
                     </tr>
                     <tr>
                         <th>Round</th>
                         <th>Grand Prix</th>
-                        <th className="clickable" onClick={() => handleClickDriver(teamResults[0].Results[0].Driver.driverId)}
-                        >{teamResults[0].Results[0].Driver.familyName}</th>
-                        <th className="clickable" onClick={() => handleClickDriver(teamResults[0].Results[1].Driver.driverId)}
-                        >{teamResults[0].Results[1].Driver.familyName}</th>
+                        <th className="clickable" onClick={() => handleClickDriver(teamResults[0]?.Results[0].Driver.driverId)}
+                        >{teamResults[0]?.Results[0].Driver.familyName}</th>
+                        <th className="clickable" onClick={() => handleClickDriver(teamResults[0]?.Results[1].Driver.driverId)}
+                        >{teamResults[0]?.Results[1].Driver.familyName}</th>
                         <th>Points</th>
                     </tr>
                 </thead>
-                <tbody>
+
+
+                <tbody className="team">
                     {filteredTeamDetails.map((race, i) => (
                         <tr key={i}>
 
@@ -151,7 +157,7 @@ export default function TeamDetails(props) {
                 </tbody>
 
             </table>
-        </>
+        </div>
 
     );
 

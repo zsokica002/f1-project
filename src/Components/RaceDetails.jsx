@@ -67,7 +67,7 @@ export default function RaceDetails(props) {
         }
         catch (err) {
             setIsError(true);
-            console.error(err);
+            // console.error(err);
         }
         finally {
             setLoading(false);
@@ -123,26 +123,26 @@ export default function RaceDetails(props) {
     // console.log(raceDetails);
 
     return (
-        <>
+        <div className="proba">
 
             <Breadcrumbs items={breadcrumbs} />
 
             {/* <h3>Hello from RaceResults component!</h3> */}
 
             <div>
-                <Flag country={getFlagByRaceLocation(props.flags, raceDetails.Circuit.Location.country)} />
-                <p>{raceDetails.raceName}</p>
-                <p>Country: {raceDetails.Circuit.Location.country}</p>
-                <p>Location: {raceDetails.Circuit.Location.locality}</p>
-                <p>date: {raceDetails.date}</p>
-                <p>Full report: <a target="_blank" href={raceDetails.url}><ExportOutlined /></a></p>
+                <Flag country={getFlagByRaceLocation(props.flags, raceDetails?.Circuit.Location.country)} />
+                <p>{raceDetails?.raceName}</p>
+                <p>Country: {raceDetails?.Circuit.Location.country}</p>
+                <p>Location: {raceDetails?.Circuit.Location.locality}</p>
+                <p>date: {raceDetails?.date}</p>
+                <p>Full report: <a target="_blank" href={raceDetails?.url}><ExportOutlined /></a></p>
             </div>
 
 
             <table className="table">
                 <thead>
                     <tr>
-                        <th colSpan={4}>Qualifying Results</th>
+                        <th className="vodeciNaslov" colSpan={5}>Qualifying Results</th>
                     </tr>
                     <tr>
                         <th>Pos</th>
@@ -156,36 +156,36 @@ export default function RaceDetails(props) {
                     {filteredQualis.map((quali, i) => {
                         return (
                             <tr key={i}>
-                                <td style={{ backgroundColor: getColor(Number(quali.position)) }}
-                                    className={getTopThreeClassName(Number(quali.position))}
+                                <td style={{ backgroundColor: getColor(Number(quali?.position)) }}
+                                    className={getTopThreeClassName(Number(quali?.position))}
                                 >{quali.position}</td>
-                                <td className="clickable" onClick={() => handleClickDriver(quali.Driver.driverId)}>
+                                <td className="clickable" onClick={() => handleClickDriver(quali?.Driver.driverId)}>
 
                                     <div>
-                                        <Flag country={getFlagByNationality(props.flags, quali.Driver.nationality)} />
+                                        <Flag country={getFlagByNationality(props.flags, quali?.Driver.nationality)} />
 
 
-                                        <span>{quali.Driver.familyName}</span>
+                                        <span>{quali?.Driver.familyName}</span>
                                     </div>
 
                                 </td>
-                                <td className="clickable" onClick={() => handleClickDetails(quali.Constructor.constructorId)}>
+                                <td className="clickable" onClick={() => handleClickDetails(quali?.Constructor.constructorId)}>
 
-                                    {quali.Constructor.name}
+                                    {quali?.Constructor.name}
 
                                 </td>
-                                <td>{getBestTime(quali.Q1, quali.Q2, quali.Q3)}</td>
+                                <td>{getBestTime(quali?.Q1, quali?.Q2, quali?.Q3)}</td>
                             </tr>
                         );
                     })}
 
                 </tbody>
             </table>
-
+            <br /><br /><br />
             <table className="table">
                 <thead>
                     <tr>
-                        <th colSpan={4}>Race Results</th>
+                        <th className="vodeciNaslov" colSpan={5}>Race Results</th>
                     </tr>
                     <tr>
                         <th>Pos</th>
@@ -216,6 +216,6 @@ export default function RaceDetails(props) {
 
                 </tbody>
             </table>
-        </>
+        </div>
     );
 }
