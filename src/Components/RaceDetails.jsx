@@ -123,7 +123,7 @@ export default function RaceDetails(props) {
     // console.log(raceDetails);
 
     return (
-        <>
+        <div className="proba">
 
             <Breadcrumbs items={breadcrumbs} />
 
@@ -142,7 +142,7 @@ export default function RaceDetails(props) {
             <table className="table">
                 <thead>
                     <tr>
-                        <th colSpan={4}>Qualifying Results</th>
+                        <th className="vodeciNaslov" colSpan={5}>Qualifying Results</th>
                     </tr>
                     <tr>
                         <th>Pos</th>
@@ -170,11 +170,11 @@ export default function RaceDetails(props) {
 
                 </tbody>
             </table>
-
+<br /><br /><br />
             <table className="table">
                 <thead>
                     <tr>
-                        <th colSpan={4}>Race Results</th>
+                        <th className="vodeciNaslov" colSpan={5}>Race Results</th>
                     </tr>
                     <tr>
                         <th>Pos</th>
@@ -205,6 +205,6 @@ export default function RaceDetails(props) {
 
                 </tbody>
             </table>
-        </>
+        </div>
     );
 }
