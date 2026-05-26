@@ -81,6 +81,21 @@ export default function App() {
         <Route path="/raceDetails/:id" element={<RaceDetails flags={flags} search={search} year={year} />} />
       </Routes>
 
+      <div className="footer">
+        <h4>4LFA Team</h4>
+        <div>
+          <p>Iva <hr /> Konc</p>
+          <span>+</span>
+          <p>Svetlana <hr /> Isakov</p>
+          <span>-</span>
+          <p>Sofija <hr /> Curcic</p>
+          <span>x</span>
+          <p>Borislava <hr /> Vulic</p>
+          <span>/</span>
+          <p>Milan <hr /> Cubrilo</p>
+        </div>
+      </div>
+
     </BrowserRouter>
   )
 }

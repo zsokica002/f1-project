@@ -28,9 +28,10 @@ body {
     font-family: mainFontMaybe;
     margin: 0;
     padding: 0;
-    // OVO JE SAMO ZA PREGLEDNOST
+    // OVO JE SAMO ZA PREGLEDNOST 
+    // skloniti, i dodati boju belu na tekst na error page-u
     color: #ffffff;
-
+    /////////////////////////////////
 
     background-color: rgba(18, 19, 20);
 }
@@ -548,6 +549,33 @@ body {
             &:hover {
                 color: white;
             }
+        }
+    }
+}
+
+.footer {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(34, 40, 49);
+    color: white;
+    padding: 20px;
+    text-align: center;
+
+    h4 {
+        margin: 0 0 30px 0;
+        letter-spacing: 50%;
+    }
+
+    div {
+        display: flex;
+        justify-content: space-around;
+
+        p {
+            margin: 0;
+        }
+
+        span {
+            font-size: 30px;
         }
     }
 }
