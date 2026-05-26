@@ -13,6 +13,16 @@
     src: url("/fonts/formula1mainmaybe.ttf");
 }
 
+@keyframes rotate {
+    from {
+        transform: rotate(0);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
 
 body {
     font-family: mainFontMaybe;
@@ -334,6 +344,7 @@ body {
     }
 
     tbody {
+
         td {
             text-align: center;
             color: rgb(223, 208, 184);
@@ -350,25 +361,139 @@ body {
             &:hover {
                 background-color: rgb(34, 40, 49);
             }
-
-
-
         }
 
-        // ovaj td ce biti izabran zbg boja i to
+        //////////////  FIRST POSITION ANIMATION //// START  //////////////////////
 
-        .position-icon-td {
-            width: 10%;
+        .first {
+            // border: 5px solid red;
+            position: relative;
+            overflow: hidden;
 
-            div {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                color: rgba(18, 19, 20);
+            .inner {
+                position: relative;
+                margin: 4px;
+                z-index: 1;
+                padding: 10px;
+                background-color: rgba(18, 19, 20);
             }
         }
 
+        .first::before {
+            content: "";
+            display: block;
+            background: linear-gradient(90deg,
+                    rgba(255, 255, 255, 0) 0%,
+                    rgb(160, 131, 0) 25%,
+                    white 50%,
+                    rgb(160, 131, 0) 75%,
+                    rgba(255, 255, 255, 0) 100%);
+            height: 200px;
+            width: 30px;
+            transform: translate(0);
+            position: absolute;
+            animation: rotate 5s linear forwards infinite;
+            z-index: 0;
+            top: 50%;
+            transform-origin: top center;
+        }
+
+        //////////////  FIRST POSITION ANIMATION //// END  //////////////////////
+
+        //////////////  SECOND POSITION ANIMATION //// START  //////////////////////
+
+        .second {
+            // border: 5px solid red;
+            position: relative;
+            overflow: hidden;
+
+            .inner {
+                position: relative;
+                margin: 4px;
+                z-index: 1;
+                padding: 10px;
+                background-color: rgba(18, 19, 20);
+            }
+        }
+
+        .second::before {
+            content: "";
+            display: block;
+            background: linear-gradient(90deg,
+                    rgba(255, 255, 255, 0) 0%,
+                    rgb(72, 92, 102) 25%,
+                    white 50%,
+                    rgb(72, 92, 102) 75%,
+                    rgba(255, 255, 255, 0) 100%);
+            height: 200px;
+            width: 30px;
+            transform: translate(0);
+            position: absolute;
+            animation: rotate 5s linear forwards infinite;
+            animation-delay: 0.1s;
+            z-index: 0;
+            top: 50%;
+            transform-origin: top center;
+        }
+
+        //////////////  SECOND POSITION ANIMATION //// END  //////////////////////
+
+        //////////////  THIRD POSITION ANIMATION //// START  //////////////////////
+
+        .third {
+            // border: 5px solid red;
+            position: relative;
+            overflow: hidden;
+
+            .inner {
+                position: relative;
+                margin: 4px;
+                z-index: 1;
+                padding: 10px;
+                background-color: rgba(18, 19, 20);
+            }
+        }
+
+        .third::before {
+            content: "";
+            display: block;
+            background: linear-gradient(90deg,
+                    rgba(255, 255, 255, 0) 0%,
+                    rgb(107, 63, 26) 25%,
+                    white 50%,
+                    rgb(107, 63, 26) 75%,
+                    rgba(255, 255, 255, 0) 100%);
+            height: 200px;
+            width: 30px;
+            transform: translate(0);
+            position: absolute;
+            animation: rotate 5s linear forwards infinite;
+            animation-delay: 0.2s;
+            z-index: 0;
+            top: 50%;
+            transform-origin: top center;
+        }
+
+        //////////////  THIRD POSITION ANIMATION //// END  //////////////////////
+
+
+        // ovaj td ce biti izabran zbg boja i to
+
+        // .position-icon-td {
+        //     width: 10%;
+
+        //     div {
+        //         display: flex;
+        //         justify-content: space-between;
+        //         align-items: center;
+        //         color: rgba(18, 19, 20);
+        //     }
+        // }
+
         ///////////////////////
+        /// 
+
+
 
         a {
             text-decoration: none;

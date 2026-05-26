@@ -6,7 +6,7 @@ import Flag from "react-flagkit";
 import { getFlagByNationality, getFlagByRaceLocation } from "../helpers/getFlags";
 import Breadcrumbs from "./Breadcrumbs";
 import { ExportOutlined } from "@ant-design/icons";
-import { getColor, getTopThreeClassName } from "../helpers/getColor";
+import { getTopThreeClassName } from "../helpers/getColor";
 
 export default function RaceDetails(props) {
 
@@ -156,7 +156,7 @@ export default function RaceDetails(props) {
                         {filteredQualis.map((quali, i) => {
                             return (
                                 <tr key={i}>
-                                    <td style={{ backgroundColor: getColor(Number(quali?.position)) }}
+                                    <td
                                         className={getTopThreeClassName(Number(quali?.position))}>
 
                                         {quali.position}
@@ -200,7 +200,7 @@ export default function RaceDetails(props) {
                         {filteredRaceResults.map((result, i) => {
                             return (
                                 <tr key={i}>
-                                    <td style={{ backgroundColor: getColor(Number(result.position)) }}
+                                    <td
                                         className={getTopThreeClassName(Number(result.position))}>
 
                                         {/* zso ubaci ovde sta ti treba za onaj pseudo element */}

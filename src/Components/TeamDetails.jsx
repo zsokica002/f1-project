@@ -6,7 +6,7 @@ import Flag from "react-flagkit";
 import { getFlagByNationality, getFlagByRaceLocation } from "../helpers/getFlags";
 import Breadcrumbs from "./Breadcrumbs";
 import { ExportOutlined } from "@ant-design/icons";
-import { getColor, getTopThreeClassName } from "../helpers/getColor";
+import { getTopThreeClassName } from "../helpers/getColor";
 
 export default function TeamDetails(props) {
 
@@ -147,10 +147,10 @@ export default function TeamDetails(props) {
                                     <p>{race.raceName}</p>
                                 </div>
                             </td>
-                            <td style={{ backgroundColor: getColor(Number(race?.Results[0].position)) }}
+                            <td
                                 className={getTopThreeClassName(Number(race?.Results[0].position))}
                             >{race.Results[0]?.position || "N/A"}</td>
-                            <td style={{ backgroundColor: getColor(Number(race.Results[0].position)) }}
+                            <td
                                 className={getTopThreeClassName(Number(race.Results[0].position))}
                             >{race.Results[1]?.position || "N/A"}</td>
                             <td>{race.Results[1]?.points !== undefined ? Number(race.Results[0]?.points) + Number(race.Results[1]?.points) : "N/A"}</td>

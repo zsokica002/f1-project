@@ -6,7 +6,7 @@ import { useNavigate } from "react-router";
 import { getFlagByNationality } from "../helpers/getFlags";
 import Breadcrumbs from "./Breadcrumbs";
 import { ExportOutlined } from "@ant-design/icons";
-import { getColor, getTopThreeClassName } from "../helpers/getColor";
+import { getTopThreeClassName } from "../helpers/getColor";
 
 export default function Teams(props) {
     const [teams, setTeams] = useState([]);
@@ -92,7 +92,7 @@ export default function Teams(props) {
                     {filteredTeams.map((team) => {
                         return (
                             <tr key={team.Constructor.constructorId}>
-                                <td style={{ backgroundColor: getColor(Number(team.position)) }}
+                                <td
                                     className={getTopThreeClassName(Number(team.position))}>
 
                                     {team?.position}

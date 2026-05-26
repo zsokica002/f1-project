@@ -5,7 +5,7 @@ import Flag from "react-flagkit";
 import { useNavigate } from "react-router";
 import { getFlagByNationality } from "../helpers/getFlags";
 import Breadcrumbs from "./Breadcrumbs";
-import { getColor, getTopThreeClassName } from "../helpers/getColor";
+import { getTopThreeClassName } from "../helpers/getColor";
 
 
 export default function Drivers(props) {
@@ -75,9 +75,14 @@ export default function Drivers(props) {
           return (
             <tbody key={driver.position}>
               <tr>
-                <td style={{ backgroundColor: getColor(Number(driver.position)) }}
-                  className={getTopThreeClassName(Number(driver.position))}
-                >{driver.position}</td>
+                <td
+                  className={getTopThreeClassName(Number(driver.position))}>
+
+                  <div className="inner">
+                    {driver.position}
+                  </div>
+
+                </td>
                 <td className="clickable" onClick={() => handleClickDriver(driver.Driver.driverId)}>
                   <div>
                     <Flag country={getFlagByNationality(props.flags, driver.Driver.nationality)} />
