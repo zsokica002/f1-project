@@ -95,19 +95,19 @@ export default function Teams(props) {
                                 <td style={{ backgroundColor: getColor(Number(team.position)) }}
                                     className={getTopThreeClassName(Number(team.position))}>
 
-                                    {team.position}
+                                    {team?.position}
 
                                 </td>
                                 <td className="clickable"
-                                    onClick={() => handleClickDetails(team.Constructor.constructorId)}>
-                                    <div> <Flag country={getFlagByNationality(props.flags, team.Constructor.nationality)} />
+                                    onClick={() => handleClickDetails(team?.Constructor?.constructorId)}>
+                                    <div> <Flag country={getFlagByNationality(props.flags, team?.Constructor?.nationality)} />
                                         <p>{team.Constructor.name}</p>
                                     </div>
                                 </td>
 
-                                <td>Details <a target="_blank" href={team.Constructor.url}><ExportOutlined /></a></td>
+                                <td>Details <a target="_blank" href={team?.Constructor?.url}><ExportOutlined /></a></td>
 
-                                <td>{team.points}</td>
+                                <td>{team?.points}</td>
                             </tr>
                         );
                     })}
