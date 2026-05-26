@@ -78,8 +78,15 @@ export default function Drivers(props) {
                 <td style={{ backgroundColor: getColor(Number(driver.position)) }}
                   className={getTopThreeClassName(Number(driver.position))}
                 >{driver.position}</td>
-                <td className="clickable" onClick={() => handleClickDriver(driver.Driver.driverId)}><Flag country={getFlagByNationality(props.flags, driver.Driver.nationality)} />  {driver.Driver.givenName} {driver.Driver.familyName}</td>
-                <td className="clickable" onClick={() => handleClickConstructor(driver.Constructors[0].constructorId)}>{driver.Constructors[0].name}</td>
+                <td className="clickable" onClick={() => handleClickDriver(driver.Driver.driverId)}>
+                  <div>
+                    <Flag country={getFlagByNationality(props.flags, driver.Driver.nationality)} />
+                    <p>{driver.Driver.givenName} {driver.Driver.familyName}</p>
+                  </div>
+                </td>
+                <td className="clickable" onClick={() => handleClickConstructor(driver.Constructors[0].constructorId)}>
+                  {driver.Constructors[0].name}
+                </td>
                 <td>{driver.points}</td>
               </tr>
             </tbody>

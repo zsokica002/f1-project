@@ -82,11 +82,11 @@ export default function DriverDetails(props) {
     }
 
     return (
-        <>
+        <div className="component-wrapper">
             <Breadcrumbs items={breadcrumbs} />
             <h1>Driver Details</h1>
 
-            <div>
+            <div className="details-card">
 
                 <img src={`/drivers2025/${driverInfo.Driver.driverId}.jpg`} alt={driverInfo.Driver.driverId} width={250} />
                 <div>
@@ -116,24 +116,33 @@ export default function DriverDetails(props) {
                         return (
                             <tr key={i}>
                                 <td>{result.round}</td>
-                                <td className="clickable" onClick={() => handleRaceDetails(result.round)}
-                                ><Flag country={getFlagByRaceLocation(props.flags, result.Circuit.Location.country)} />{result.Circuit.Location.country}</td>
-                                <td className="clickable" onClick={() => handleClickDetails(result.Results[0].Constructor.constructorId)}
-                                >{result.Results[0].Constructor.name}</td>
+                                <td className="clickable" onClick={() => handleRaceDetails(result.round)}>
+                                    <div>
+                                        <Flag country={getFlagByRaceLocation(props.flags, result.Circuit.Location.country)} />
+                                        <p>{result.Circuit.Location.country}</p>
+                                    </div>
+                                </td>
+                                <td className="clickable"
+                                    onClick={() => handleClickDetails(result.Results[0].Constructor.constructorId)}>
+                                    {result.Results[0].Constructor.name}
+                                </td>
                                 <td>{result.Results[0].grid}</td>
                                 <td style={{ backgroundColor: getColor(Number(result.Results[0].position)) }}
-                                    className={getTopThreeClassName(Number(result.Results[0].position))}
-                                >{result.Results[0].position}</td>
-                                <td>{Number(result.Results[0].grid) === Number(result.Results[0].position) ?
-                                    null :
-                                    Number(result.Results[0].grid) > Number(result.Results[0].position) ?
-                                        <CaretUpOutlined style={{ color: "green" }} /> :
-                                        <CaretDownOutlined style={{ color: "red" }} />}</td>
+                                    className={getTopThreeClassName(Number(result.Results[0].position))}>
+                                    {result.Results[0].position}
+                                </td>
+                                <td>
+                                    {Number(result.Results[0].grid) === Number(result.Results[0].position) ?
+                                        null :
+                                        Number(result.Results[0].grid) > Number(result.Results[0].position) ?
+                                            <CaretUpOutlined style={{ color: "green" }} /> :
+                                            <CaretDownOutlined style={{ color: "red" }} />}
+                                </td>
                             </tr>
                         );
                     })}
                 </tbody>
             </table>
-        </>
+        </div>
     );
 }
