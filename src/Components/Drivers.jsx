@@ -12,9 +12,9 @@ export default function Drivers(props) {
   const [loading, setLoading] = useState(true);
   const [drivers, setDrivers] = useState([]);
   const [filteredDrivers, setFilteredDrivers] = useState([]);
+
   const search = props.search;
   const year = props.year;
-  // console.log(search);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -35,20 +35,18 @@ export default function Drivers(props) {
   const getDrivers = async () => {
     const url = `https://api.jolpi.ca/ergast/f1/${year}/driverStandings.json`
     const response = await axios.get(url);
+
     setDrivers(response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings);
-    // setYear(response.data.MRData.StandingsTable.season);
     setLoading(false);
   };
 
   const handleClickDriver = (id) => {
     navigate(`/driverDetails/${id}`);
-
   }
 
   const handleClickConstructor = (id) => {
     navigate(`/teamDetails/${id}`);
   }
-
 
   if (loading) {
     return <Loader />
@@ -64,7 +62,9 @@ export default function Drivers(props) {
   return (
     <div className="component-wrapper">
       <Breadcrumbs items={breadcrumbs} />
+
       <h2 className="component-title">Drivers Championship {year}</h2>
+
       <table className="table">
         <thead>
           <tr>
@@ -75,13 +75,10 @@ export default function Drivers(props) {
           return (
             <tbody key={driver.position}>
               <tr>
-                <td
-                  className={getTopThreeClassName(Number(driver.position))}>
-
+                <td className={getTopThreeClassName(Number(driver.position))}>
                   <div className="inner">
                     {driver.position}
                   </div>
-
                 </td>
                 <td className="clickable" onClick={() => handleClickDriver(driver.Driver.driverId)}>
                   <div>

@@ -16,8 +16,6 @@ export default function TeamDetails(props) {
     const [filteredTeamDetails, setFilteredTeamDetails] = useState([]);
     const [isError, setIsError] = useState(false);
 
-    //console.log(teamResults, teamDetails, filteredTeamDetails);
-
     const year = props.year;
     const search = props.search;
     const params = useParams();
@@ -34,9 +32,9 @@ export default function TeamDetails(props) {
                 item.Circuit.Location.country.toLowerCase().includes(search.toLowerCase())
             );
         });
+
         setFilteredTeamDetails(result);
     }, [search, teamResults, year]);
-
 
     const getTeamDetails = async () => {
 
@@ -58,7 +56,6 @@ export default function TeamDetails(props) {
         }
     };
 
-
     const handleClickDetails = (id) => {
         navigate(`/raceDetails/${id}`)
     };
@@ -67,12 +64,9 @@ export default function TeamDetails(props) {
         navigate(`/driverDetails/${id}`);
     };
 
-
-
     if (loading) {
         return <Loader />;
     };
-
 
     const breadcrumbs = [
         {
@@ -81,25 +75,25 @@ export default function TeamDetails(props) {
         },
         {
             label: teamResults[0]?.Results[0]?.Constructor?.name, route: ""
-        }];
-
+        }
+    ];
 
     if (isError) {
         return (
             <>
                 <Breadcrumbs items={breadcrumbs} />
                 <h2>There is no info for this team for year {year}</h2>
+                <p>Sowwie...</p>
+                <h2>:&#40;</h2>
             </>
         );
     }
-
-    console.log(filteredTeamDetails);
-
 
     return (
 
         <div className="component-wrapper">
             <Breadcrumbs items={breadcrumbs} />
+
             <h1>{teamResults[0]?.Results[0].Constructor.name} results</h1>
 
             <div className="details-card">
@@ -114,12 +108,7 @@ export default function TeamDetails(props) {
                 <p>Position: {teamDetails?.position}</p>
                 <p>Points: {teamDetails?.points}</p>
                 <p>History: <a target="_blank" href={teamDetails?.Constructor.url}><ExportOutlined /></a></p>
-
-
-
-
             </div>
-
 
             <table className="table" border={1}>
                 <thead>
@@ -137,11 +126,9 @@ export default function TeamDetails(props) {
                     </tr>
                 </thead>
 
-
                 <tbody className="team">
                     {filteredTeamDetails.map((race, i) => (
                         <tr key={i}>
-
                             <td>{race.round}</td>
                             <td className="clickable" onClick={() => handleClickDetails(race.round)}>
                                 <div>
@@ -149,21 +136,24 @@ export default function TeamDetails(props) {
                                     <p>{race.raceName}</p>
                                 </div>
                             </td>
-                            <td className={getTopThreeClassName(Number(race?.Results[0].position))}>
+                            <td className={getTopThreeClassName(Number(race?.Results[0]?.position))}>
                                 <div className="inner">
                                     {race.Results[0]?.position || "N/A"}
                                 </div>
                             </td>
-                            <td className={getTopThreeClassName(Number(race.Results[1].position))}>
+                            <td className={getTopThreeClassName(Number(race?.Results[1]?.position))}>
                                 <div className="inner">
                                     {race.Results[1]?.position || "N/A"}
                                 </div>
                             </td>
-                            <td>{race.Results[1]?.points !== undefined ? Number(race.Results[0]?.points) + Number(race.Results[1]?.points) : "N/A"}</td>
+                            <td>
+                                {race.Results[1]?.points !== undefined ?
+                                    Number(race?.Results[0]?.points) + Number(race?.Results[1]?.points) :
+                                    "N/A"}
+                            </td>
                         </tr>
                     ))}
                 </tbody>
-
             </table>
         </div>
 

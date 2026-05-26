@@ -11,18 +11,11 @@ import { getTopThreeClassName } from "../helpers/getColor";
 export default function Teams(props) {
     const [teams, setTeams] = useState([]);
     const [loading, setLoading] = useState(true);
-    // const [year, setYear] = useState("");
     const [filteredTeams, setFilteredTeams] = useState([]);
-
-
 
     const search = props.search;
     const year = props.year;
-    //console.log(search);
     const navigate = useNavigate();
-
-
-
 
     useEffect(() => {
         getTeams();
@@ -34,6 +27,7 @@ export default function Teams(props) {
                 item.Constructor.name.toLowerCase().includes(search.toLowerCase())
             );
         });
+
         setFilteredTeams(result);
     }, [search, teams, year]);
 
@@ -43,17 +37,11 @@ export default function Teams(props) {
         const response = await axios.get(url);
 
         setTeams(response.data.MRData.StandingsTable.StandingsLists[0].ConstructorStandings);
-        //setYear(response.data.MRData.StandingsTable.season);
         setLoading(false);
     };
 
-
-
-
     const handleClickDetails = (id) => {
-        // console.log("handleClickDetails ", id);
         navigate(`/teamDetails/${id}`);
-
     };
 
     if (loading) {
@@ -67,12 +55,10 @@ export default function Teams(props) {
         }
     ];
 
-    // console.log(allTeams);
-
-
     return (
         <div className="component-wrapper">
             <Breadcrumbs items={breadcrumbs} />
+
             <h2>Constructor's Championship</h2>
 
             <table className="table">
@@ -93,13 +79,9 @@ export default function Teams(props) {
                         return (
                             <tr key={team.Constructor.constructorId}>
                                 <td className={getTopThreeClassName(Number(team.position))}>
-
                                     <div className="inner">
                                         {team?.position}
                                     </div>
-
-
-
                                 </td>
                                 <td className="clickable"
                                     onClick={() => handleClickDetails(team?.Constructor?.constructorId)}>
@@ -107,14 +89,12 @@ export default function Teams(props) {
                                         <p>{team.Constructor.name}</p>
                                     </div>
                                 </td>
-
                                 <td>
                                     <div>
                                         <p>Details </p>
                                         <a target="_blank" href={team?.Constructor?.url}><ExportOutlined /></a>
                                     </div>
                                 </td>
-
                                 <td>{team?.points}</td>
                             </tr>
                         );

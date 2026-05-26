@@ -5,7 +5,8 @@ export default function Breadcrumbs(props) {
     return (
         <div className="breadcrumbs">
             <ul>
-                <li><Link to="/">Home</Link>
+                <li>
+                    <Link to="/">Home</Link>
                     <span> &gt; </span>
                 </li>
                 {props.items.map((item, i) => {
@@ -15,13 +16,11 @@ export default function Breadcrumbs(props) {
                             <div>
                                 {
                                     !isLast ?
-                                        <Link to={item.route}>{item.label}</Link>
-                                        : <span>{item.label}</span>
+                                        <Link to={item.route}>{item.label}</Link> :
+                                        <span>{item.label}</span>
                                 }
-
                                 <span>{!isLast ? " > " : null}</span>
                             </div>
-
                         </li>
                     );
                 })}

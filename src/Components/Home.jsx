@@ -5,7 +5,7 @@ export default function Home() {
     return (
         <div>
 
-            <video src="/pozadina.mp4" autoPlay muted loop id="pozadina"></video>
+            <video src="/bg-video.mp4" autoPlay muted loop id="background-video"></video>
 
             <div className="content">
                 <h1>Formula 1 Racing Info Sheets</h1>

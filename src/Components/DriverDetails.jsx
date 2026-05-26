@@ -9,6 +9,7 @@ import { CaretDownOutlined, CaretUpOutlined, ExportOutlined } from "@ant-design/
 import { getTopThreeClassName } from "../helpers/getColor";
 
 export default function DriverDetails(props) {
+
     const [driverInfo, setDriverInfo] = useState(null);
     const [driverResults, setDriverResults] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -19,7 +20,7 @@ export default function DriverDetails(props) {
     const search = props.search;
     const params = useParams();
     const navigate = useNavigate();
-    // console.log(props.year)
+
     useEffect(() => {
         getDriverDetails();
     }, [year]);
@@ -31,10 +32,12 @@ export default function DriverDetails(props) {
                 item.Circuit.Location.country.toLowerCase().includes(search.toLowerCase())
             );
         });
+
         setFilteredDriverResults(result);
     }, [search, driverResults, year]);
 
     const getDriverDetails = async () => {
+
         setIsError(false);
 
         try {
@@ -42,9 +45,9 @@ export default function DriverDetails(props) {
             const urlDriverResults = `https://api.jolpi.ca/ergast/f1/${year}/drivers/${params.id}/results.json`;
             const response1 = await axios.get(urlDriverInfo);
             const response2 = await axios.get(urlDriverResults);
+
             setDriverInfo(response1.data.MRData.StandingsTable.StandingsLists[0].DriverStandings[0]);
             setDriverResults(response2.data.MRData.RaceTable.Races);
-            console.log(year);
         } catch (err) {
             setIsError(true);
         } finally {
@@ -65,8 +68,6 @@ export default function DriverDetails(props) {
         return <Loader />
     }
 
-    console.log("driverInfo ", driverInfo);
-
     const breadcrumbs = [
         { label: "Drivers", route: "/drivers" },
         { label: driverInfo?.Driver?.familyName, route: "" }
@@ -77,6 +78,8 @@ export default function DriverDetails(props) {
             <>
                 <Breadcrumbs items={breadcrumbs} />
                 <h2>There is no info for this driver for year {year}</h2>
+                <p>Sowwie...</p>
+                <h2>:&#40;</h2>
             </>
         );
     }
@@ -94,8 +97,9 @@ export default function DriverDetails(props) {
                     <div> <Flag country={getFlagByNationality(props.flags, driverInfo.Driver.nationality)} size={50} /></div>
                 </div>
                 <p>Nationality: {driverInfo.Driver.nationality}</p>
-                <p onClick={() => handleClickDetails(driverInfo.Constructors[0].constructorId)}
-                >Team: {driverInfo.Constructors[0].name}</p>
+                <p onClick={() => handleClickDetails(driverInfo.Constructors[0].constructorId)}>
+                    Team: {driverInfo.Constructors[0].name}
+                </p>
                 <p>Birth: {driverInfo.Driver.dateOfBirth}</p>
                 <p>Biography: <a href={driverInfo.Driver.url} target="_blank"><ExportOutlined /></a></p>
 
@@ -128,7 +132,6 @@ export default function DriverDetails(props) {
                                 </td>
                                 <td>{result.Results[0].grid}</td>
                                 <td className={getTopThreeClassName(Number(result.Results[0].position))}>
-
                                     <div className="inner">
                                         <p>{result.Results[0].position}</p>
                                         <span>
