@@ -62,7 +62,7 @@ export default function Drivers(props) {
   ];
 
   return (
-    <>
+    <div className="component-wrapper">
       <Breadcrumbs items={breadcrumbs} />
       <h2 className="component-title">Drivers Championship {year}</h2>
       <table className="table">
@@ -86,6 +86,6 @@ export default function Drivers(props) {
           );
         })}
       </table>
-    </>
+    </div>
   );
 }
