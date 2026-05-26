@@ -172,7 +172,7 @@ export default function RaceDetails(props) {
 
                     </tbody>
                 </table>
-                <table>
+                <table className="table">
                     <thead>
                         <tr>
                             <th className="main-table-title" colSpan={5}>Race Results</th>

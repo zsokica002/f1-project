@@ -113,7 +113,7 @@ export default function TeamDetails(props) {
             <table className="table" border={1}>
                 <thead>
                     <tr>
-                        <th className="vodeciNaslov" colSpan={5}>Formula 1 Results {year}</th>
+                        <th className="main-table-title" colSpan={5}>Formula 1 Results {year}</th>
                     </tr>
                     <tr>
                         <th>Round</th>
