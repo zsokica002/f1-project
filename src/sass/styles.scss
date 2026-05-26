@@ -300,16 +300,17 @@ body {
 
     .tables-wrapper {
         display: flex;
+
         gap: 20px;
 
         border: 1px solid rgb(148, 137, 121);
 
         padding: 15px;
+
+        font-size: 0;
+
     }
 
-    .race-details-table {
-        width: 50%;
-    }
 
     .table {
 
@@ -333,8 +334,6 @@ body {
             color: rgb(148, 137, 121);
             background-color: rgba(34, 40, 49, 0.555);
             border: 1px solid rgb(148, 137, 121);
-
-
         }
 
         .position-th {
@@ -354,12 +353,20 @@ body {
                 margin: 0;
             }
 
-            span {
-                padding: 5px;
-            }
-
             &:hover {
                 background-color: rgb(34, 40, 49);
+            }
+
+            div {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 10px;
+
+                svg {
+                    width: 2em;
+                    height: 2em;
+                }
             }
         }
 
@@ -369,6 +376,7 @@ body {
             // border: 5px solid red;
             position: relative;
             overflow: hidden;
+            width: 10%;
 
             .inner {
                 position: relative;
@@ -376,6 +384,18 @@ body {
                 z-index: 1;
                 padding: 10px;
                 background-color: rgba(18, 19, 20);
+
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                span {
+
+                    svg {
+                        width: 2em;
+                        height: 2em;
+                    }
+                }
             }
         }
 
@@ -395,6 +415,7 @@ body {
             animation: rotate 5s linear forwards infinite;
             z-index: 0;
             top: 50%;
+            left: 10%;
             transform-origin: top center;
         }
 
@@ -406,6 +427,7 @@ body {
             // border: 5px solid red;
             position: relative;
             overflow: hidden;
+            width: 10%;
 
             .inner {
                 position: relative;
@@ -413,6 +435,10 @@ body {
                 z-index: 1;
                 padding: 10px;
                 background-color: rgba(18, 19, 20);
+
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
             }
         }
 
@@ -433,6 +459,7 @@ body {
             animation-delay: 0.1s;
             z-index: 0;
             top: 50%;
+            left: 10%;
             transform-origin: top center;
         }
 
@@ -444,6 +471,8 @@ body {
             // border: 5px solid red;
             position: relative;
             overflow: hidden;
+            width: 10%;
+
 
             .inner {
                 position: relative;
@@ -451,6 +480,10 @@ body {
                 z-index: 1;
                 padding: 10px;
                 background-color: rgba(18, 19, 20);
+
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
             }
         }
 
@@ -471,6 +504,7 @@ body {
             animation-delay: 0.2s;
             z-index: 0;
             top: 50%;
+            left: 10%;
             transform-origin: top center;
         }
 

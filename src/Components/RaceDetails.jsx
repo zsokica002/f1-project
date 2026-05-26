@@ -139,7 +139,7 @@ export default function RaceDetails(props) {
 
             <div className="tables-wrapper">
 
-                <table className="table race-details-table">
+                <table className="table">
                     <thead>
                         <tr>
                             <th className="main-table-title" colSpan={5}>Qualifying Results</th>
@@ -156,23 +156,19 @@ export default function RaceDetails(props) {
                         {filteredQualis.map((quali, i) => {
                             return (
                                 <tr key={i}>
-                                    <td
-                                        className={getTopThreeClassName(Number(quali?.position))}>
-
-                                        {quali.position}
+                                    <td className={getTopThreeClassName(Number(quali?.position))}>
+                                        <div className="inner">
+                                            {quali.position}
+                                        </div>
                                     </td>
                                     <td className="clickable" onClick={() => handleClickDriver(quali?.Driver.driverId)}>
-
                                         <div>
                                             <Flag country={getFlagByNationality(props.flags, quali?.Driver.nationality)} />
                                             <span>{quali?.Driver.familyName}</span>
                                         </div>
-
                                     </td>
                                     <td className="clickable" onClick={() => handleClickDetails(quali?.Constructor.constructorId)}>
-
                                         {quali?.Constructor.name}
-
                                     </td>
                                     <td>{getBestTime(quali?.Q1, quali?.Q2, quali?.Q3)}</td>
                                 </tr>
@@ -182,7 +178,7 @@ export default function RaceDetails(props) {
                     </tbody>
                 </table>
                 <br /><br /><br />
-                <table className="table race-details-table">
+                <table className="table">
                     <thead>
                         <tr>
                             <th className="main-table-title" colSpan={5}>Race Results</th>
@@ -200,13 +196,10 @@ export default function RaceDetails(props) {
                         {filteredRaceResults.map((result, i) => {
                             return (
                                 <tr key={i}>
-                                    <td
-                                        className={getTopThreeClassName(Number(result.position))}>
-
-                                        {/* zso ubaci ovde sta ti treba za onaj pseudo element */}
-
-                                        {result.position}
-
+                                    <td className={getTopThreeClassName(Number(result.position))}>
+                                        <div className="inner">
+                                            {result.position}
+                                        </div>
                                     </td>
                                     <td className="clickable" onClick={() => handleClickDriver(result.Driver.driverId)}>
                                         <div>

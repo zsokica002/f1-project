@@ -93,6 +93,8 @@ export default function TeamDetails(props) {
         );
     }
 
+    console.log(filteredTeamDetails);
+
 
     return (
 
@@ -147,12 +149,16 @@ export default function TeamDetails(props) {
                                     <p>{race.raceName}</p>
                                 </div>
                             </td>
-                            <td
-                                className={getTopThreeClassName(Number(race?.Results[0].position))}
-                            >{race.Results[0]?.position || "N/A"}</td>
-                            <td
-                                className={getTopThreeClassName(Number(race.Results[0].position))}
-                            >{race.Results[1]?.position || "N/A"}</td>
+                            <td className={getTopThreeClassName(Number(race?.Results[0].position))}>
+                                <div className="inner">
+                                    {race.Results[0]?.position || "N/A"}
+                                </div>
+                            </td>
+                            <td className={getTopThreeClassName(Number(race.Results[1].position))}>
+                                <div className="inner">
+                                    {race.Results[1]?.position || "N/A"}
+                                </div>
+                            </td>
                             <td>{race.Results[1]?.points !== undefined ? Number(race.Results[0]?.points) + Number(race.Results[1]?.points) : "N/A"}</td>
                         </tr>
                     ))}

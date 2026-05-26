@@ -92,10 +92,13 @@ export default function Teams(props) {
                     {filteredTeams.map((team) => {
                         return (
                             <tr key={team.Constructor.constructorId}>
-                                <td
-                                    className={getTopThreeClassName(Number(team.position))}>
+                                <td className={getTopThreeClassName(Number(team.position))}>
 
-                                    {team?.position}
+                                    <div className="inner">
+                                        {team?.position}
+                                    </div>
+
+
 
                                 </td>
                                 <td className="clickable"
@@ -105,7 +108,12 @@ export default function Teams(props) {
                                     </div>
                                 </td>
 
-                                <td>Details <a target="_blank" href={team?.Constructor?.url}><ExportOutlined /></a></td>
+                                <td>
+                                    <div>
+                                        <p>Details </p>
+                                        <a target="_blank" href={team?.Constructor?.url}><ExportOutlined /></a>
+                                    </div>
+                                </td>
 
                                 <td>{team?.points}</td>
                             </tr>

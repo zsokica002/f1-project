@@ -127,10 +127,9 @@ export default function DriverDetails(props) {
                                     {result.Results[0].Constructor.name}
                                 </td>
                                 <td>{result.Results[0].grid}</td>
-                                <td
-                                    className={getTopThreeClassName(Number(result.Results[0].position))}
-                                >
-                                    <div>
+                                <td className={getTopThreeClassName(Number(result.Results[0].position))}>
+
+                                    <div className="inner">
                                         <p>{result.Results[0].position}</p>
                                         <span>
                                             {Number(result.Results[0].grid) === Number(result.Results[0].position) ?
@@ -140,6 +139,7 @@ export default function DriverDetails(props) {
                                                     <CaretDownOutlined style={{ color: "red" }} />}
                                         </span>
                                     </div>
+
                                 </td>
                             </tr>
                         );
