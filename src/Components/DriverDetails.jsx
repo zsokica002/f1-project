@@ -19,7 +19,7 @@ export default function DriverDetails(props) {
     const search = props.search;
     const params = useParams();
     const navigate = useNavigate();
-    console.log(props.year)
+    // console.log(props.year)
     useEffect(() => {
         getDriverDetails();
     }, [year]);

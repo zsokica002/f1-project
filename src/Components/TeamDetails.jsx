@@ -15,15 +15,16 @@ export default function TeamDetails(props) {
     const [loading, setLoading] = useState(true);
     const [filteredTeamDetails, setFilteredTeamDetails] = useState([]);
     const [isError, setIsError] = useState(false);
-    console.log(teamResults, teamDetails, filteredTeamDetails);
+
+    //console.log(teamResults, teamDetails, filteredTeamDetails);
+
     const year = props.year;
     const search = props.search;
     const params = useParams();
     const navigate = useNavigate();
 
     useEffect(() => {
-
-        getTeamResults();
+        getTeamDetails();
     }, [year]);
 
     useEffect(() => {
@@ -37,7 +38,7 @@ export default function TeamDetails(props) {
     }, [search, teamResults, year]);
 
 
-    const getTeamResults = async () => {
+    const getTeamDetails = async () => {
 
         setIsError(false);
 
@@ -55,7 +56,6 @@ export default function TeamDetails(props) {
         } finally {
             setLoading(false);
         }
-
     };
 
 
@@ -66,6 +66,7 @@ export default function TeamDetails(props) {
     const handleClickDriver = (id) => {
         navigate(`/driverDetails/${id}`);
     };
+
 
 
     if (loading) {
@@ -95,24 +96,25 @@ export default function TeamDetails(props) {
 
     return (
 
-        <div className="proba">
+        <div className="component-wrapper">
             <Breadcrumbs items={breadcrumbs} />
             <h1>{teamResults[0]?.Results[0].Constructor.name} results</h1>
 
-            <div>
-
+            <div className="details-card">
                 <img src={`/teamLogo/${teamDetails.Constructor.constructorId}.jpg`} alt="slika" width={250} />
 
-
-                <div>
-                    <div>  <Flag country={getFlagByNationality(props.flags, teamDetails.Constructor.nationality)} /></div>
-
+                <div className="flag-team-name">
+                    <Flag country={getFlagByNationality(props.flags, teamDetails.Constructor.nationality)} />
                     <p>{teamResults[0]?.Results[0].Constructor.name}</p>
                 </div>
+
                 <p>Nationality: {teamResults[0]?.Results[0].Constructor.nationality}</p>
                 <p>Position: {teamDetails.position}</p>
                 <p>Points: {teamDetails.points}</p>
                 <p>History: <a target="_blank" href={teamDetails.Constructor.url}><ExportOutlined /></a></p>
+
+
+
 
             </div>
 
@@ -120,7 +122,7 @@ export default function TeamDetails(props) {
             <table className="table" border={1}>
                 <thead>
                     <tr>
-                        <th colSpan={5}>Formula 1 Results {year}</th>
+                        <th className="vodeciNaslov" colSpan={5}>Formula 1 Results {year}</th>
                     </tr>
                     <tr>
                         <th>Round</th>
@@ -139,9 +141,12 @@ export default function TeamDetails(props) {
                         <tr key={i}>
 
                             <td>{race.round}</td>
-                            <td className="clickable" onClick={() => handleClickDetails(race.round)}
-                            ><Flag country={getFlagByRaceLocation(props.flags, race.Circuit.Location.country)} />
-                                {race.raceName}</td>
+                            <td className="clickable" onClick={() => handleClickDetails(race.round)}>
+                                <div>
+                                    <Flag country={getFlagByRaceLocation(props.flags, race.Circuit.Location.country)} />
+                                    <p>{race.raceName}</p>
+                                </div>
+                            </td>
                             <td style={{ backgroundColor: getColor(Number(race.Results[0].position)) }}
                                 className={getTopThreeClassName(Number(race.Results[0].position))}
                             >{race.Results[0]?.position || "N/A"}</td>

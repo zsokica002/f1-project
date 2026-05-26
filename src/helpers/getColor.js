@@ -1,5 +1,4 @@
 export function getColor(position) {
-    // console.log(position);
     switch (position) {
         case 1: return "#EFBF04";
             break;

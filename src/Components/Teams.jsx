@@ -13,7 +13,7 @@ export default function Teams(props) {
     const [loading, setLoading] = useState(true);
     // const [year, setYear] = useState("");
     const [filteredTeams, setFilteredTeams] = useState([]);
- 
+
 
 
     const search = props.search;
@@ -71,34 +71,39 @@ export default function Teams(props) {
 
 
     return (
-        <div className="proba">
+        <div className="component-wrapper">
             <Breadcrumbs items={breadcrumbs} />
-            <h2>Teams</h2>
-            <table className="table" border={1}>
+            <h2>Constructor's Championship</h2>
+
+            <table className="table">
                 <thead>
                     <tr>
-                        <th className="vodeciNaslov" colSpan={4}>Constructors Championship Standings - {year}</th>
-
+                        <th className="main-table-title" colSpan={4}>Constructors Championship Standings - {year}</th>
                     </tr>
                     <tr>
-                        {/*<th>Position</th>
-<th>?</th>
-<th>Details</th>
-<th>Points</th>*/}
-
-
+                        <th className="position-th">Position</th>
+                        <th>Constructor</th>
+                        <th>Details</th>
+                        <th>Points</th>
                     </tr>
                 </thead>
 
-                <tbody className="team">
+                <tbody>
                     {filteredTeams.map((team) => {
                         return (
                             <tr key={team.Constructor.constructorId}>
                                 <td style={{ backgroundColor: getColor(Number(team.position)) }}
-                                    className={getTopThreeClassName(Number(team.position))}>{team.position}</td>
-                                <td onClick={() => handleClickDetails(team.Constructor.constructorId)}>
-                                    <div className="clickable"> <Flag country={getFlagByNationality(props.flags, team.Constructor.nationality)} />
-                                        {team.Constructor.name}</div> </td>
+                                    className={getTopThreeClassName(Number(team.position))}>
+
+                                    {team.position}
+
+                                </td>
+                                <td className="clickable"
+                                    onClick={() => handleClickDetails(team.Constructor.constructorId)}>
+                                    <div> <Flag country={getFlagByNationality(props.flags, team.Constructor.nationality)} />
+                                        <p>{team.Constructor.name}</p>
+                                    </div>
+                                </td>
 
                                 <td>Details <a target="_blank" href={team.Constructor.url}><ExportOutlined /></a></td>
 
