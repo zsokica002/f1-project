@@ -84,7 +84,7 @@ body {
             border-radius: 20px 0;
 
             &:hover {
-                background-color: rgba(255, 0, 0, 0.507);
+                background-color: rgba(116, 0, 0, 0.507);
                 // border: 5px solid black;
             }
         }
@@ -100,7 +100,7 @@ body {
     align-items: center;
     justify-content: space-between;
     // margin: 0 50px;
-    padding: 20px 10px 20px 10px;
+    padding: 0 10px 20px 10px;
 
     select {
         font-family: mainFontMaybe;
@@ -139,8 +139,12 @@ body {
     padding: 5px;
     text-decoration: none;
 
+    // border: 1px solid white;
+    // border-radius: 10px 0;
+
     &:hover {
-        background-color: rgb(34, 40, 49);
+        // background-color: rgb(34, 40, 49);
+        color: rgb(116, 0, 0);
     }
 }
 
@@ -148,21 +152,26 @@ body {
     background-color: transparent;
     color: white;
     font-size: 20px;
-    height: fit-content;
     font-family: mainFontMaybe;
+    border: 1px solid white;
+    border-radius: 10px 0;
+    padding: 5px;
 
-    span {
-        padding: 50px 0;
-        margin: 10px;
-    }
+    // clear ikonica momenat
+    position: relative;
+
+
+    // .clear-icon {
+    //     position: absolute;
+    // }
 
     input {
         // padding: 10px;
         // margin: 10px 30px 10px 10px;
-        height: 40px;
+
+        // height: 40px;
         background-color: transparent;
-        border: 1px solid white;
-        border-radius: 10px 0;
+        border: transparent;
         caret-color: white;
         color: white;
         font-family: mainFontMaybe;
@@ -181,8 +190,9 @@ body {
 }
 
 .breadcrumbs {
-    margin: 10px;
+    // margin: 10px;
     // padding: 10px 0;
+    // height: 30px;
     width: 100%;
     display: flex;
     justify-content: left;
@@ -204,12 +214,13 @@ body {
             color: white;
 
             background-color: transparent;
-            border: 1px solid white;
-            border-radius: 10px 0;
+            // border: 1px solid white;
+            // border-radius: 10px 0;
             padding: 5px;
 
             &:hover {
-                background-color: rgba(255, 0, 0, 0.507);
+                color: rgb(116, 0, 0);
+
             }
         }
     }
@@ -246,11 +257,13 @@ body {
 
     color: white;
     padding: 10px;
+    padding-top: 0;
 
     text-align: center;
 
     h2 {
         font-size: 30px;
+        margin-top: 0;
     }
 
     .details-card {
@@ -337,14 +350,32 @@ body {
             &:hover {
                 background-color: rgb(34, 40, 49);
             }
+
+
+
         }
+
+        // ovaj td ce biti izabran zbg boja i to
+
+        .position-icon-td {
+            width: 10%;
+
+            div {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: rgba(18, 19, 20);
+            }
+        }
+
+        ///////////////////////
 
         a {
             text-decoration: none;
             color: rgb(223, 208, 184);
 
             &:visited {
-                color: brown;
+                color: rgba(116, 0, 0, 0.507);
                 // transition: 0.3s;
             }
 

@@ -101,17 +101,17 @@ export default function TeamDetails(props) {
             <h1>{teamResults[0]?.Results[0].Constructor.name} results</h1>
 
             <div className="details-card">
-                <img src={`/teamLogo/${teamDetails.Constructor.constructorId}.jpg`} alt="slika" width={250} />
+                <img src={`/teamLogo/${teamDetails?.Constructor.constructorId}.jpg`} alt="slika" width={250} />
 
                 <div className="flag-team-name">
-                    <Flag country={getFlagByNationality(props.flags, teamDetails.Constructor.nationality)} />
+                    <Flag country={getFlagByNationality(props.flags, teamDetails?.Constructor.nationality)} />
                     <p>{teamResults[0]?.Results[0].Constructor.name}</p>
                 </div>
 
                 <p>Nationality: {teamResults[0]?.Results[0].Constructor.nationality}</p>
-                <p>Position: {teamDetails.position}</p>
-                <p>Points: {teamDetails.points}</p>
-                <p>History: <a target="_blank" href={teamDetails.Constructor.url}><ExportOutlined /></a></p>
+                <p>Position: {teamDetails?.position}</p>
+                <p>Points: {teamDetails?.points}</p>
+                <p>History: <a target="_blank" href={teamDetails?.Constructor.url}><ExportOutlined /></a></p>
 
 
 
@@ -143,12 +143,12 @@ export default function TeamDetails(props) {
                             <td>{race.round}</td>
                             <td className="clickable" onClick={() => handleClickDetails(race.round)}>
                                 <div>
-                                    <Flag country={getFlagByRaceLocation(props.flags, race.Circuit.Location.country)} />
+                                    <Flag country={getFlagByRaceLocation(props.flags, race?.Circuit.Location.country)} />
                                     <p>{race.raceName}</p>
                                 </div>
                             </td>
-                            <td style={{ backgroundColor: getColor(Number(race.Results[0].position)) }}
-                                className={getTopThreeClassName(Number(race.Results[0].position))}
+                            <td style={{ backgroundColor: getColor(Number(race?.Results[0].position)) }}
+                                className={getTopThreeClassName(Number(race?.Results[0].position))}
                             >{race.Results[0]?.position || "N/A"}</td>
                             <td style={{ backgroundColor: getColor(Number(race.Results[0].position)) }}
                                 className={getTopThreeClassName(Number(race.Results[0].position))}

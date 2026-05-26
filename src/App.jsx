@@ -9,7 +9,7 @@ import Races from "./components/Races";
 import RaceDetails from "./components/RaceDetails";
 import DriverDetails from "./components/DriverDetails";
 import TeamDetails from "./components/TeamDetails";
-import { SearchOutlined } from "@ant-design/icons";
+import { CloseOutlined, SearchOutlined } from "@ant-design/icons";
 
 export default function App() {
   const [flags, setFlags] = useState([]);
@@ -63,9 +63,10 @@ export default function App() {
             <SearchOutlined />
             <input name="search" id="search-field" placeholder="Search for..." type="text" value={search}
               onChange={(e) => setSearch(e.target.value)}
-              onBlur={() => setSearch("")}
             />
+            <span onClick={() => setSearch("")} className="clear-icon">{search !== "" ? <CloseOutlined /> : null}</span>
           </label>
+
         </div>
       </div>
 

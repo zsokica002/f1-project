@@ -108,7 +108,7 @@ export default function DriverDetails(props) {
                         <th>Grand Prix</th>
                         <th>Team</th>
                         <th>Grid</th>
-                        <th>Position</th>
+                        <th colSpan={2}>Position</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -127,16 +127,18 @@ export default function DriverDetails(props) {
                                     {result.Results[0].Constructor.name}
                                 </td>
                                 <td>{result.Results[0].grid}</td>
-                                <td style={{ backgroundColor: getColor(Number(result.Results[0].position)) }}
-                                    className={getTopThreeClassName(Number(result.Results[0].position))}>
-                                    {result.Results[0].position}
-                                </td>
-                                <td>
-                                    {Number(result.Results[0].grid) === Number(result.Results[0].position) ?
-                                        null :
-                                        Number(result.Results[0].grid) > Number(result.Results[0].position) ?
-                                            <CaretUpOutlined style={{ color: "green" }} /> :
-                                            <CaretDownOutlined style={{ color: "red" }} />}
+                                <td className="position-icon-td" style={{ backgroundColor: getColor(Number(result.Results[0].position)) }}
+                                // className={getTopThreeClassName(Number(result.Results[0].position))}
+                                >
+                                    <div>
+                                        <p>{result.Results[0].position}</p>
+                                        <span>{Number(result.Results[0].grid) === Number(result.Results[0].position) ?
+                                            null :
+                                            Number(result.Results[0].grid) > Number(result.Results[0].position) ?
+                                                <CaretUpOutlined style={{ color: "green" }} /> :
+                                                <CaretDownOutlined style={{ color: "red" }} />}
+                                        </span>
+                                    </div>
                                 </td>
                             </tr>
                         );
