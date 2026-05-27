@@ -107,15 +107,15 @@ export default function RaceDetails(props) {
 
     if (isError) {
         return (
-            <>
-                <div className="errWithStyle">
-                    <Breadcrumbs items={breadcrumbs} />
-                    <h2>There is no info for this race for year {year}</h2>
-                    <p>Sowwie...</p>
-                    <h2>:&#40;</h2>
-                    <img src="/imgs/red-flag.gif" />
-                </div>
-            </>
+            <div className="errWithStyle">
+                <Breadcrumbs items={breadcrumbs} />
+                <h2>We have no info for this race for {year}</h2>
+                <p>Sowwie...</p>
+                <h2>: &#40;</h2>
+                <video onClick={() => navigate("/driverDetails/lizardson")}
+                    className="liz-video" src="/data.mp4" autoPlay muted loop>
+                </video>
+            </div>
         );
     }
 

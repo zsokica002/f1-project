@@ -22,6 +22,25 @@
     }
 }
 
+.errWithStyle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .sowwie {
+        text-align: center;
+    }
+
+    .liz-video {
+        width: 200px;
+        cursor: pointer;
+    }
+
+    .red-flag {
+        cursor: pointer;
+    }
+}
+
 body {
     font-family: mainFontMaybe;
     margin: 0;
@@ -273,6 +292,8 @@ body {
         background-color: transparent;
         font-size: 12px;
 
+
+
         .main-table-title {
             background-color: rgb(34, 40, 49);
             border: 1px solid rgb(148, 137, 121);
@@ -301,8 +322,10 @@ body {
                 margin: 0;
             }
 
-            &:hover {
-                background-color: rgb(34, 40, 49);
+            .inner {
+                display: flex;
+                justify-content: center;
+                align-items: center;
             }
 
             div {
@@ -314,6 +337,7 @@ body {
                 svg {
                     width: 2em;
                     height: 2em;
+                    margin-left: 10px;
                 }
             }
         }
@@ -332,7 +356,7 @@ body {
                 padding: 10px;
                 background-color: rgba(18, 19, 20);
                 display: flex;
-                justify-content: space-between;
+                justify-content: center;
                 align-items: center;
 
                 span {
@@ -381,7 +405,7 @@ body {
                 padding: 10px;
                 background-color: rgba(18, 19, 20);
                 display: flex;
-                justify-content: space-between;
+                justify-content: center;
                 align-items: center;
             }
         }
@@ -423,7 +447,7 @@ body {
                 padding: 10px;
                 background-color: rgba(18, 19, 20);
                 display: flex;
-                justify-content: space-between;
+                justify-content: center;
                 align-items: center;
             }
         }

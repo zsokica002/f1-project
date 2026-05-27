@@ -5,7 +5,7 @@ import axios from "axios";
 import Flag from "react-flagkit";
 import { getFlagByNationality, getFlagByRaceLocation } from "../helpers/getFlags";
 import Breadcrumbs from "./Breadcrumbs";
-import { CaretDownOutlined, CaretUpOutlined, ExportOutlined } from "@ant-design/icons";
+import { CaretDownOutlined, CaretUpOutlined, ExportOutlined, MinusOutlined } from "@ant-design/icons";
 import { getTopThreeClassName } from "../helpers/getColor";
 
 export default function DriverDetails(props) {
@@ -77,16 +77,17 @@ export default function DriverDetails(props) {
 
     if (isError) {
         return (
-            <>
-
-                <div className="errWithStyle">
-                    <Breadcrumbs items={breadcrumbs} />
-                    <h2>There is no info for this driver for year {year}</h2>
-                    <p>Sowwie...</p>
-                    <h2>:&#40;</h2>
-                    <img src="/imgs/red-flag.gif" />
+            <div className="errWithStyle">
+                <Breadcrumbs items={breadcrumbs} />
+                <h2>We don't have any info on this driver for {year}.</h2>
+                <p>We are sorry you got off track.</p>
+                <div className="sowwie">
+                    <h2>: &#40;</h2>
                 </div>
-            </>
+                <video onClick={() => navigate("/driverDetails/lizardson")}
+                    className="liz-video" src="/data.mp4" autoPlay muted loop>
+                </video>
+            </div>
         );
     }
 
@@ -150,7 +151,7 @@ export default function DriverDetails(props) {
                                         <p>{result.Results[0].position}</p>
                                         <span>
                                             {Number(result.Results[0].grid) === Number(result.Results[0].position) ?
-                                                null :
+                                                <MinusOutlined /> :
                                                 Number(result.Results[0].grid) > Number(result.Results[0].position) ?
                                                     <CaretUpOutlined style={{ color: "green" }} /> :
                                                     <CaretDownOutlined style={{ color: "red" }} />}
