@@ -135,6 +135,7 @@ export default function TeamDetails(props) {
                                 <div>
                                     <Flag country={getFlagByRaceLocation(props.flags, race?.Circuit.Location.country)} />
                                     <p>{race.raceName}</p>
+                                    <span className="invisible"></span>
                                 </div>
                             </td>
                             <td className={getTopThreeClassName(Number(race?.Results[0]?.position))}>

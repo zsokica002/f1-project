@@ -162,7 +162,8 @@ export default function RaceDetails(props) {
                                     <td className="clickable" onClick={() => handleClickDriver(quali?.Driver.driverId)}>
                                         <div>
                                             <Flag country={getFlagByNationality(props.flags, quali?.Driver.nationality)} />
-                                            <span>{quali?.Driver.familyName}</span>
+                                            <p>{quali?.Driver.familyName}</p>
+                                            <span className="invisible"></span>
                                         </div>
                                     </td>
                                     <td className="clickable" onClick={() => handleClickDetails(quali?.Constructor.constructorId)}>
@@ -201,6 +202,7 @@ export default function RaceDetails(props) {
                                         <div>
                                             <Flag country={getFlagByNationality(props.flags, result.Driver.nationality)} />
                                             <p>{result.Driver.familyName}</p>
+                                            <span className="invisible"></span>
                                         </div>
                                     </td>
                                     <td className="clickable" onClick={() => handleClickDetails(result.Constructor.constructorId)}>

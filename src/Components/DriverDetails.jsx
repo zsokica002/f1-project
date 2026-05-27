@@ -110,7 +110,7 @@ export default function DriverDetails(props) {
                 />
                 <div>
                     <p>{driverInfo.Driver.givenName} {driverInfo.Driver.familyName}</p>
-                    <div> <Flag country={getFlagByNationality(props.flags, driverInfo.Driver.nationality)} size={50} /></div>
+                    <Flag country={getFlagByNationality(props.flags, driverInfo.Driver.nationality)} size={50} />
                 </div>
                 <p>Nationality: {driverInfo.Driver.nationality}</p>
                 <p>
@@ -140,6 +140,7 @@ export default function DriverDetails(props) {
                                     <div>
                                         <Flag country={getFlagByRaceLocation(props.flags, result.Circuit.Location.country)} />
                                         <p>{result.Circuit.Location.country}</p>
+                                        <span className="invisible"></span>
                                     </div>
                                 </td>
                                 <td className="clickable"

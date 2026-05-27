@@ -87,10 +87,12 @@ export default function Teams(props) {
                                     onClick={() => handleClickDetails(team?.Constructor?.constructorId)}>
                                     <div> <Flag country={getFlagByNationality(props.flags, team?.Constructor?.nationality)} />
                                         <p>{team.Constructor.name}</p>
+                                        <span className="invisible"></span>
                                     </div>
                                 </td>
                                 <td>
                                     <div>
+                                        <span className="invisible"></span>
                                         <p>Details </p>
                                         <a target="_blank" href={team?.Constructor?.url}><ExportOutlined /></a>
                                     </div>

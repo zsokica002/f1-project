@@ -90,6 +90,7 @@ export default function Drivers(props) {
                   <div>
                     <Flag country={getFlagByNationality(props.flags, driver.Driver.nationality)} />
                     <p>{driver.Driver.givenName} {driver.Driver.familyName}</p>
+                    <span className="invisible"></span>
                   </div>
                 </td>
                 <td className="clickable" onClick={() => handleClickConstructor(driver.Constructors[0].constructorId)}>

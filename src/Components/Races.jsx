@@ -89,6 +89,7 @@ export default function Races(props) {
                                     <div>
                                         <Flag country={getFlagByRaceLocation(props.flags, race.Circuit.Location.country)} />
                                         <p>{race.raceName}</p>
+                                        <span className="invisible"></span>
                                     </div>
                                 </td>
                                 <td>
@@ -102,6 +103,7 @@ export default function Races(props) {
                                     <div>
                                         <Flag country={getFlagByNationality(props.flags, race.Results[0].Driver.nationality)} />
                                         <p>{race.Results[0].Driver.familyName}</p>
+
                                     </div>
                                 </td>
                             </tr>
