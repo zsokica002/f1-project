@@ -22,6 +22,26 @@
     }
 }
 
+@keyframes buttonFade {
+    from {
+        background-color: transparent;
+    }
+
+    to {
+        background-color: rgba(116, 0, 0, 0.507);
+    }
+}
+
+@keyframes imageEnlarge {
+    from {
+        width: 100px;
+    }
+
+    to {
+        width: 300px;
+    }
+}
+
 .errWithStyle {
     display: flex;
     flex-direction: column;
@@ -106,6 +126,7 @@ body {
             border-radius: 20px 0;
 
             &:hover {
+                animation: buttonFade 0.15s ease-in;
                 background-color: rgba(116, 0, 0, 0.507);
             }
         }
@@ -264,7 +285,7 @@ body {
             align-items: center;
         }
 
-        img {
+        .driver-image {
             width: 100px;
         }
 

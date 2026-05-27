@@ -95,7 +95,7 @@ export default function DriverDetails(props) {
     return (
         <div className="component-wrapper">
             <Breadcrumbs items={breadcrumbs} />
-            <h1>Driver Details</h1>
+            <h1>{driverInfo.Driver.givenName} {driverInfo.Driver.familyName} {year}</h1>
 
             <div className="details-card">
 
@@ -107,9 +107,10 @@ export default function DriverDetails(props) {
                     // }}
                     alt={driverInfo.Driver.driverId}
                     width={250}
+                    className="driver-image"
                 />
                 <div>
-                    <p>{driverInfo.Driver.givenName} {driverInfo.Driver.familyName}</p>
+
                     <Flag country={getFlagByNationality(props.flags, driverInfo.Driver.nationality)} size={50} />
                 </div>
                 <p>Nationality: {driverInfo.Driver.nationality}</p>
