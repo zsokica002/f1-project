@@ -8,7 +8,6 @@
 }
 
 @font-face {
-    // za sada zadrzavamo!!
     font-family: mainFontMaybe;
     src: url("/fonts/formula1mainmaybe.ttf");
 }
@@ -23,20 +22,11 @@
     }
 }
 
-
 body {
     font-family: mainFontMaybe;
     margin: 0;
     padding: 0;
-
-    // OVO JE SAMO ZA PREGLEDNOST 
-    // skloniti, i dodati boju belu na tekst na error page-u
-    color: #ffffff;
-    /////////////////////////////////
-    /// 
-    /// https://www.youtube.com/shorts/I4jsV3iOsGk
-    /// GUSTER
-
+    color: rgb(223, 208, 184);
     background-color: rgba(18, 19, 20);
 }
 
@@ -63,7 +53,6 @@ body {
     justify-content: center;
     align-items: center;
 
-
     h1 {
         font-family: homeTitleFonts;
         font-size: 70px;
@@ -79,7 +68,6 @@ body {
     }
 
     .buttons {
-
         margin: 30px;
         width: 100%;
         display: flex;
@@ -100,7 +88,6 @@ body {
 
             &:hover {
                 background-color: rgba(116, 0, 0, 0.507);
-                // border: 5px solid black;
             }
         }
     }
@@ -108,18 +95,15 @@ body {
 
 
 .navig {
-    // position: fixed;
     display: flex;
     height: 100px;
     width: 100%;
     align-items: center;
     justify-content: space-between;
-    // margin: 0 50px;
     padding: 0 10px 20px 10px;
 
     select {
         font-family: mainFontMaybe;
-        // height: 40%;
         width: 235px;
         background-color: transparent;
         color: white;
@@ -135,30 +119,20 @@ body {
 }
 
 .nav {
-    // position: fixed;
     list-style: none;
     display: flex;
     align-items: center;
     margin-bottom: 10px;
     padding: 0;
-    // font-size: 10px;
-    // background-color: grey;
-
-
 }
 
 .nav-links {
-    // background-color: grey;
     color: white;
     margin: 0;
     padding: 5px;
     text-decoration: none;
 
-    // border: 1px solid white;
-    // border-radius: 10px 0;
-
     &:hover {
-        // background-color: rgb(34, 40, 49);
         color: rgb(116, 0, 0);
     }
 }
@@ -171,32 +145,19 @@ body {
     border: 1px solid white;
     border-radius: 10px 0;
     padding: 5px;
-
-    // clear ikonica momenat
     position: relative;
 
-
-    // .clear-icon {
-    //     position: absolute;
-    // }
-
     input {
-        // padding: 10px;
-        // margin: 10px 30px 10px 10px;
-
-        // height: 40px;
         background-color: transparent;
         border: transparent;
         caret-color: white;
         color: white;
         font-family: mainFontMaybe;
 
-
         &:focus {
             outline: none;
         }
     }
-
 }
 
 .component-title {
@@ -205,37 +166,24 @@ body {
 }
 
 .breadcrumbs {
-    // margin: 10px;
-    // padding: 10px 0;
-    // height: 30px;
     width: 100%;
     display: flex;
     justify-content: left;
-    // position: absolute;
-
-    // .breadcrumb-divider {
-    //     padding: 50px;
-    // }
 
     ul {
         list-style: none;
         display: flex;
         gap: 10px;
         padding: 0;
-        // margin: 10px;
 
         a {
             text-decoration: none;
             color: white;
-
             background-color: transparent;
-            // border: 1px solid white;
-            // border-radius: 10px 0;
             padding: 5px;
 
             &:hover {
                 color: rgb(116, 0, 0);
-
             }
         }
     }
@@ -269,11 +217,9 @@ body {
 
 
 .component-wrapper {
-
     color: white;
     padding: 10px;
     padding-top: 0;
-
     text-align: center;
 
     h2 {
@@ -313,27 +259,17 @@ body {
 
     .tables-wrapper {
         display: flex;
-
         gap: 20px;
-
         border: 1px solid rgb(148, 137, 121);
-
         padding: 15px;
-
         font-size: 0;
-
     }
 
 
     .table {
-
         border-collapse: collapse;
-
         border: 1px solid rgb(148, 137, 121);
-
         width: 100%;
-
-
         background-color: transparent;
         font-size: 12px;
 
@@ -352,7 +288,6 @@ body {
         .position-th {
             width: 5%;
         }
-
     }
 
     tbody {
@@ -386,7 +321,6 @@ body {
         //////////////  FIRST POSITION ANIMATION //// START  //////////////////////
 
         .first {
-            // border: 5px solid red;
             position: relative;
             overflow: hidden;
             width: 10%;
@@ -397,7 +331,6 @@ body {
                 z-index: 1;
                 padding: 10px;
                 background-color: rgba(18, 19, 20);
-
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
@@ -437,7 +370,6 @@ body {
         //////////////  SECOND POSITION ANIMATION //// START  //////////////////////
 
         .second {
-            // border: 5px solid red;
             position: relative;
             overflow: hidden;
             width: 10%;
@@ -448,7 +380,6 @@ body {
                 z-index: 1;
                 padding: 10px;
                 background-color: rgba(18, 19, 20);
-
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
@@ -481,11 +412,9 @@ body {
         //////////////  THIRD POSITION ANIMATION //// START  //////////////////////
 
         .third {
-            // border: 5px solid red;
             position: relative;
             overflow: hidden;
             width: 10%;
-
 
             .inner {
                 position: relative;
@@ -493,7 +422,6 @@ body {
                 z-index: 1;
                 padding: 10px;
                 background-color: rgba(18, 19, 20);
-
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
@@ -520,27 +448,6 @@ body {
             left: 10%;
             transform-origin: top center;
         }
-
-        //////////////  THIRD POSITION ANIMATION //// END  //////////////////////
-
-
-        // ovaj td ce biti izabran zbg boja i to
-
-        // .position-icon-td {
-        //     width: 10%;
-
-        //     div {
-        //         display: flex;
-        //         justify-content: space-between;
-        //         align-items: center;
-        //         color: rgba(18, 19, 20);
-        //     }
-        // }
-
-        ///////////////////////
-        /// 
-
-
 
         a {
             text-decoration: none;
@@ -569,9 +476,7 @@ body {
         color: white;
         padding: 20px;
         text-align: center;
-
         margin-top: auto;
-
 
         h4 {
             margin: 0 0 30px 0;
@@ -587,9 +492,7 @@ body {
                 p {
                     margin: 0;
                 }
-
             }
-
 
             span {
                 font-size: 30px;

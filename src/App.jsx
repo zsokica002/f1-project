@@ -10,6 +10,7 @@ import RaceDetails from "./components/RaceDetails";
 import DriverDetails from "./components/DriverDetails";
 import TeamDetails from "./components/TeamDetails";
 import { CloseOutlined, SearchOutlined } from "@ant-design/icons";
+import Data from "./components/Data";
 
 export default function App() {
   const [flags, setFlags] = useState([]);
@@ -79,6 +80,7 @@ export default function App() {
         <Route path="/teamDetails/:id" element={<TeamDetails flags={flags} search={search} year={year} />} />
         <Route path="/races" element={<Races flags={flags} search={search} year={year} />} />
         <Route path="/raceDetails/:id" element={<RaceDetails flags={flags} search={search} year={year} />} />
+        <Route path="/driverDetails/lizardson" element={<Data />} flags={flags} />
       </Routes>
 
       <div className="footer-wrapper">
