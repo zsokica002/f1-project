@@ -48,12 +48,14 @@ export default function DriverDetails(props) {
 
             setDriverInfo(response1.data.MRData.StandingsTable.StandingsLists[0].DriverStandings[0]);
             setDriverResults(response2.data.MRData.RaceTable.Races);
+
         } catch (err) {
             setIsError(true);
         } finally {
             setLoading(false);
         }
     }
+
 
     const handleClickDetails = (id) => {
         navigate(`/teamDetails/${id}`);
@@ -91,7 +93,15 @@ export default function DriverDetails(props) {
 
             <div className="details-card">
 
-                <img src={`/drivers2025/${driverInfo.Driver.driverId}.jpg`} alt={driverInfo.Driver.driverId} width={250} />
+                <img src={`/drivers2025/${driverInfo.Driver.driverId}.jpg`}
+                    onError={(e) => {
+                        if (e.target.src !== `/drivers2025/${driverInfo.Driver.driverId}.jpg`) {
+                            e.target.src = "/drivers2025/driver.jpg";
+                        }
+                    }}
+                    alt={driverInfo.Driver.driverId}
+                    width={250}
+                />
                 <div>
                     <p>{driverInfo.Driver.givenName} {driverInfo.Driver.familyName}</p>
                     <div> <Flag country={getFlagByNationality(props.flags, driverInfo.Driver.nationality)} size={50} /></div>
