@@ -78,10 +78,14 @@ export default function DriverDetails(props) {
     if (isError) {
         return (
             <>
-                <Breadcrumbs items={breadcrumbs} />
-                <h2>There is no info for this driver for year {year}</h2>
-                <p>Sowwie...</p>
-                <h2>:&#40;</h2>
+
+                <div className="errWithStyle">
+                    <Breadcrumbs items={breadcrumbs} />
+                    <h2>There is no info for this driver for year {year}</h2>
+                    <p>Sowwie...</p>
+                    <h2>:&#40;</h2>
+                    <img src="/imgs/red-flag.gif" />
+                </div>
             </>
         );
     }
