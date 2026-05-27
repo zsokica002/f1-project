@@ -7,7 +7,6 @@ import { getFlagByNationality } from "../helpers/getFlags";
 import Breadcrumbs from "./Breadcrumbs";
 import { getTopThreeClassName } from "../helpers/getColor";
 
-
 export default function Drivers(props) {
   const [loading, setLoading] = useState(true);
   const [drivers, setDrivers] = useState([]);
@@ -33,7 +32,8 @@ export default function Drivers(props) {
   }, [search, drivers, year]);
 
   const getDrivers = async () => {
-    const url = `https://api.jolpi.ca/ergast/f1/${year}/driverStandings.json`
+    const url = `https://api.jolpi.ca/ergast/f1/${year}/driverStandings.json`;
+
     const response = await axios.get(url);
 
     setDrivers(response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings);
@@ -70,11 +70,17 @@ export default function Drivers(props) {
           <tr>
             <th colSpan={4}>Drivers Championship Standings</th>
           </tr>
+          <tr>
+            <th>Pos</th>
+            <th>Driver</th>
+            <th>Constructor</th>
+            <th>Points</th>
+          </tr>
         </thead>
-        {filteredDrivers.map((driver) => {
-          return (
-            <tbody key={driver.position}>
-              <tr>
+        <tbody >
+          {filteredDrivers.map((driver) => {
+            return (
+              <tr key={driver.position}>
                 <td className={getTopThreeClassName(Number(driver.position))}>
                   <div className="inner">
                     {driver.position}
@@ -91,10 +97,10 @@ export default function Drivers(props) {
                 </td>
                 <td>{driver.points}</td>
               </tr>
-            </tbody>
-          );
-        })}
+            );
+          })}
+        </tbody>
       </table>
-    </div>
+    </div >
   );
 }

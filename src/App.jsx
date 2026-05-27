@@ -81,18 +81,30 @@ export default function App() {
         <Route path="/raceDetails/:id" element={<RaceDetails flags={flags} search={search} year={year} />} />
       </Routes>
 
-      <div className="footer">
-        <h4>4LFA Team</h4>
-        <div>
-          <p>Iva <hr /> Konc</p>
-          <span>+</span>
-          <p>Svetlana <hr /> Isakov</p>
-          <span>-</span>
-          <p>Sofija <hr /> Curcic</p>
-          <span>x</span>
-          <p>Borislava <hr /> Vulic</p>
-          <span>/</span>
-          <p>Milan <hr /> Cubrilo</p>
+      <div className="footer-wrapper">
+        <div className="footer">
+          <h4>4LFA Team</h4>
+          <div className="names-wrapper">
+            <div><p>Iva</p> <hr /> <p>Konc</p></div>
+
+            <span>+</span>
+
+            <div><p>Svetlana</p> <hr /> <p>Isakov</p></div>
+
+            <span>-</span>
+
+            <div><p>Sofija</p> <hr /> <p>Curcic</p></div>
+
+            <span>x</span>
+
+            <div><p>Borislava</p> <hr /> <p>Vulic</p></div>
+
+            <span>/</span>
+
+            <div><p>Milan</p> <hr /> <p>Cubrilo</p></div>
+          </div>
+
+          <p className="rights-reserved">&copy; All Rights Reserved - 2026</p>
         </div>
       </div>
 
