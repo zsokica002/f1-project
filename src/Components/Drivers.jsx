@@ -6,9 +6,6 @@ import { useNavigate } from "react-router";
 import { getFlagByNationality } from "../helpers/getFlags";
 import Breadcrumbs from "./Breadcrumbs";
 import { getTopThreeClassName } from "../helpers/getColor";
-import lizardson from "../helpers/lizardson.json";
-
-
 
 export default function Drivers(props) {
   const [loading, setLoading] = useState(true);
@@ -62,8 +59,6 @@ export default function Drivers(props) {
     }
   ];
 
-  console.log(lizardson.DriverStandings[0]);
-
   return (
     <div className="component-wrapper">
       <Breadcrumbs items={breadcrumbs} />
@@ -104,35 +99,8 @@ export default function Drivers(props) {
               </tr>
             );
           })}
-
         </tbody>
-
-        {year === "2024" ? <tbody>{
-          <tr>
-            <td>
-              <div className="inner">
-                {lizardson.DriverStandings[0].position}
-              </div>
-            </td>
-            <td className="clickable" onClick={() => handleClickDriver(lizardson.DriverStandings[0].Driver.driverId)}>
-              <div>
-                <Flag country={getFlagByNationality(props.flags, lizardson.DriverStandings[0].Driver.nationality)} />
-                <p>{lizardson.DriverStandings[0].Driver.givenName} {lizardson.DriverStandings[0].Driver.familyName}</p>
-              </div>
-            </td>
-            <td className="clickable"
-              onClick={() => handleClickConstructor(lizardson.DriverStandings[0].Constructors[0].constructorId)}>
-              {lizardson.DriverStandings[0].Constructors[0].name}
-            </td>
-            <td>
-              {lizardson.DriverStandings[0].points}
-            </td>
-          </tr>
-        }</tbody> : null}
-
-
       </table>
-
     </div >
   );
 }
