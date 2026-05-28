@@ -98,7 +98,14 @@ export default function TeamDetails(props) {
             <h1>{teamResults[0]?.Results[0].Constructor.name} results</h1>
 
             <div className="details-card">
-                <img src={`/teamLogo/${teamDetails?.Constructor.constructorId}.jpg`} alt="slika" width={250} />
+                <img src={`/teamLogo/${teamDetails?.Constructor.constructorId}.jpg`}
+                    onError={(e) => {
+                        if (e.target.src !== `/teamLogo/${teamDetails?.Constructor.constructorId}.jpg`) {
+                            e.target.src = "/teamLogo/logo.jpg";
+                        }
+                    }}
+
+                    alt="slika" width={250} />
 
                 <div className="flag-team-name">
                     <Flag country={getFlagByNationality(props.flags, teamDetails?.Constructor.nationality)} />
