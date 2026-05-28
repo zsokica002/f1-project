@@ -24,7 +24,8 @@ export default function Races(props) {
         const result = races.filter((item) => {
             return (
                 item.Circuit.Location.country.toLowerCase().includes(search.toLowerCase()) ||
-                item.Circuit.circuitName.toLowerCase().includes(search.toLowerCase())
+                item.Circuit.circuitName.toLowerCase().includes(search.toLowerCase()) ||
+                item.Results[0].Driver.familyName.toLowerCase().includes(search.toLowerCase())
             );
         });
         setFilteredRaces(result);
