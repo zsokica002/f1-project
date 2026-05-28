@@ -100,9 +100,7 @@ export default function DriverDetails(props) {
             <h1>{driverInfo.Driver.givenName} {driverInfo.Driver.familyName} {year}</h1>
 
             <div className="details-card">
-                <div
-                    className="hover-tooltip"
-                >
+                <div className="hover-tooltip">
                     <img
                         className="hover-tooltip"
                         src={`/driver-images/${driverInfo.Driver.driverId}.jpg`}
@@ -114,7 +112,6 @@ export default function DriverDetails(props) {
                         alt={driverInfo.Driver.driverId}
                         width={100}
                     />
-
                     <div className="driver-image-tooltip">
                         <img src={`/driver-images/${driverInfo.Driver.driverId}.jpg`}
                             onError={(e) => {
@@ -137,7 +134,7 @@ export default function DriverDetails(props) {
                     Team: {driverInfo.Constructors[0].name}
                 </p>
                 <p>Birth: {driverInfo.Driver.dateOfBirth}</p>
-                <p>Biography: <a href={driverInfo.Driver.url} target="_blank"><ExportOutlined /></a></p>
+                <p><a href={driverInfo.Driver.url} target="_blank">Biography: <ExportOutlined /></a></p>
 
             </div>
 

@@ -115,7 +115,7 @@ export default function TeamDetails(props) {
                 <p>Nationality: {teamResults[0]?.Results[0].Constructor.nationality}</p>
                 <p>Position: {teamDetails?.position}</p>
                 <p>Points: {teamDetails?.points}</p>
-                <p>History: <a target="_blank" href={teamDetails?.Constructor.url}><ExportOutlined /></a></p>
+                <p><a target="_blank" href={teamDetails?.Constructor.url}>History: <ExportOutlined /></a></p>
             </div>
 
             <table className="table" border={1}>

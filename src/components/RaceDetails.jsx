@@ -133,7 +133,7 @@ export default function RaceDetails(props) {
                 <p>Country: {raceDetails?.Circuit.Location.country}</p>
                 <p>Location: {raceDetails?.Circuit.Location.locality}</p>
                 <p>date: {raceDetails?.date}</p>
-                <p>Full report: <a target="_blank" href={raceDetails?.url}><ExportOutlined /></a></p>
+                <p><a target="_blank" href={raceDetails?.url}>Full report: <ExportOutlined /></a></p>
             </div>
 
 
