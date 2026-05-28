@@ -99,10 +99,10 @@ export default function DriverDetails(props) {
 
             <div className="details-card">
 
-                <img src={`/drivers2025/${driverInfo.Driver.driverId}.jpg`}
+                <img src={`/driver-images/${driverInfo.Driver.driverId}.jpg`}
                     onError={(e) => {
-                        if (e.target.src !== `/drivers2025/${driverInfo.Driver.driverId}.jpg`) {
-                            e.target.src = "/drivers2025/driver.jpg";
+                        if (e.target.src !== `/driver-images/${driverInfo.Driver.driverId}.jpg`) {
+                            e.target.src = "/driver-images/driver.jpg";
                         }
                     }}
                     alt={driverInfo.Driver.driverId}
