@@ -20,7 +20,7 @@ export default function Data() {
 
             <div className="details-card">
 
-                <img src="/drivers2025/lizardson.jpg" alt="lizardson" width={250} />
+                <img src="/driver-images/lizardson.jpg" alt="lizardson" width={250} />
                 <div>
                     <p>Lizard Lizardson</p>
                     <div> <Flag country="SG" size={50} /></div>
