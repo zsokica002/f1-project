@@ -68,7 +68,7 @@ export default function Drivers(props) {
       <table className="table">
         <thead>
           <tr>
-            <th colSpan={4}>Drivers Championship Standings</th>
+            <th colSpan={4}>Drivers Championship Standings - {year}</th>
           </tr>
           <tr>
             <th>Position</th>

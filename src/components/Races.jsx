@@ -64,7 +64,7 @@ export default function Races(props) {
         <div className="component-wrapper">
             <Breadcrumbs items={breadcrumbs} />
 
-            <h2>Race Calendar {year}</h2>
+            <h2>Race Calendar - {year}</h2>
 
             <table className="table">
                 <thead >
