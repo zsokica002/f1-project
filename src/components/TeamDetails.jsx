@@ -85,7 +85,9 @@ export default function TeamDetails(props) {
                 <h2>We do not have any info for this team for {year}</h2>
                 <p>Sowwie about that...</p>
                 <h2>: - &#40;</h2>
-                <img className="red-flag" onClick={() => navigate("/driverDetails/lizardson")} src="/imgs/red-flag.gif" />
+                <video onClick={() => navigate("/driverDetails/lizardson")}
+                    className="liz-video" src="/data.mp4" autoPlay muted loop>
+                </video>
             </div>
         );
     }
