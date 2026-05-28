@@ -42,6 +42,17 @@
     }
 }
 
+@keyframes tooltip {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+
 .errWithStyle {
     display: flex;
     flex-direction: column;
@@ -239,8 +250,6 @@ body {
         justify-content: space-between;
         align-items: center;
         padding: 5px 10px;
-
-
     }
 
     &:hover {
@@ -271,53 +280,6 @@ body {
         margin-top: 0;
     }
 
-    .hover-tooltip {
-        position: relative;
-        display: inline-block;
-        z-index: 999;
-
-        .driver-image {
-            position: relative;
-            z-index: -1;
-        }
-
-        .driver-image-tooltip {
-            width: 300px;
-            visibility: hidden;
-            padding: 5px 0;
-            position: absolute;
-            z-index: 10;
-            top: -100px;
-            left: 550%;
-            margin-left: -60px;
-            display: block;
-
-            //// ANIMIRAJ ////
-        }
-
-        .dark-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: rgb(0, 0, 0);
-            visibility: hidden;
-            // transition: opacity 0.3s ease, visibility 0.3s ease;
-            z-index: -100;
-        }
-    }
-
-    .hover-tooltip:hover {
-        ~.driver-image-tooltip {
-            visibility: visible;
-        }
-
-        ~.dark-overlay {
-            visibility: visible;
-        }
-    }
-
     .details-card {
         display: flex;
         justify-content: space-between;
@@ -341,6 +303,62 @@ body {
 
             &:visited {
                 color: rgba(116, 0, 0, 0.507);
+            }
+        }
+
+        .hover-tooltip {
+            position: relative;
+            display: inline-block;
+            z-index: 999;
+
+            .driver-image {
+                display: inline-block;
+                position: relative;
+                z-index: -1;
+                visibility: visible;
+            }
+
+            .driver-image-tooltip {
+                width: 300px;
+                visibility: hidden;
+                padding: 5px 0;
+                position: absolute;
+                z-index: 10;
+                top: -100px;
+                left: 550%;
+                margin-left: -60px;
+                display: block;
+                opacity: 1;
+                //// ANIMIRAJ ////
+            }
+
+            .dark-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100vw;
+                height: 100vh;
+                background: rgba(0, 0, 0, 0.800);
+                visibility: hidden;
+                opacity: 1;
+                // transition: opacity 0.3s ease, visibility 0.3s ease;
+                z-index: -100;
+            }
+        }
+
+        .hover-tooltip:hover {
+            ~.driver-image-tooltip {
+                visibility: visible;
+                animation: tooltip 0.2s ease;
+            }
+
+            ~.dark-overlay {
+                visibility: visible;
+                animation: tooltip 0.2s ease;
+            }
+
+            ~.driver-image {
+                visibility: hidden;
             }
         }
     }

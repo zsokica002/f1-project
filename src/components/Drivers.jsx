@@ -71,7 +71,7 @@ export default function Drivers(props) {
             <th colSpan={4}>Drivers Championship Standings</th>
           </tr>
           <tr>
-            <th>Pos</th>
+            <th>Position</th>
             <th>Driver</th>
             <th>Constructor</th>
             <th>Points</th>

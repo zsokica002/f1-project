@@ -44,11 +44,11 @@ export default function DriverDetails(props) {
         try {
             const urlDriverInfo = `https://api.jolpi.ca/ergast/f1/${year}/drivers/${params.id}/driverStandings.json`;
             const urlDriverResults = `https://api.jolpi.ca/ergast/f1/${year}/drivers/${params.id}/results.json`;
-            const response1 = await axios.get(urlDriverInfo);
-            const response2 = await axios.get(urlDriverResults);
+            const responseDriverInfo = await axios.get(urlDriverInfo);
+            const responseDriverResults = await axios.get(urlDriverResults);
 
-            setDriverInfo(response1.data.MRData.StandingsTable.StandingsLists[0].DriverStandings[0]);
-            setDriverResults(response2.data.MRData.RaceTable.Races);
+            setDriverInfo(responseDriverInfo.data.MRData.StandingsTable.StandingsLists[0].DriverStandings[0]);
+            setDriverResults(responseDriverResults.data.MRData.RaceTable.Races);
 
         } catch (err) {
             setIsError(true);
@@ -56,7 +56,6 @@ export default function DriverDetails(props) {
             setLoading(false);
         }
     }
-
 
     const handleClickDetails = (id) => {
         navigate(`/teamDetails/${id}`);
@@ -101,12 +100,12 @@ export default function DriverDetails(props) {
             <h1>{driverInfo.Driver.givenName} {driverInfo.Driver.familyName} {year}</h1>
 
             <div className="details-card">
-
                 <div
                     className="hover-tooltip"
                 >
-                    <div className="dark-overlay"></div>
-                    <img src={`/driver-images/${driverInfo.Driver.driverId}.jpg`}
+                    <img
+                        className="hover-tooltip"
+                        src={`/driver-images/${driverInfo.Driver.driverId}.jpg`}
                         onError={(e) => {
                             if (e.target.src !== `/driver-images/${driverInfo.Driver.driverId}.jpg`) {
                                 e.target.src = "/driver-images/driver.jpg";
@@ -114,7 +113,6 @@ export default function DriverDetails(props) {
                         }}
                         alt={driverInfo.Driver.driverId}
                         width={100}
-                        className="hover-tooltip"
                     />
 
                     <div className="driver-image-tooltip">
@@ -128,10 +126,10 @@ export default function DriverDetails(props) {
                             width={350}
                         />
                     </div>
+                    <div className="dark-overlay"></div>
                 </div>
 
                 <div>
-
                     <Flag country={getFlagByNationality(props.flags, driverInfo.Driver.nationality)} size={50} />
                 </div>
                 <p>Nationality: {driverInfo.Driver.nationality}</p>
