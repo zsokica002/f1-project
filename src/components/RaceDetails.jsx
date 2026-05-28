@@ -125,6 +125,8 @@ export default function RaceDetails(props) {
 
             <Breadcrumbs items={breadcrumbs} />
 
+            <h1>{raceDetails?.raceName} {year}</h1>
+
             <div className="details-card">
                 <Flag country={getFlagByRaceLocation(props.flags, raceDetails?.Circuit.Location.country)} />
                 <p>{raceDetails?.raceName}</p>

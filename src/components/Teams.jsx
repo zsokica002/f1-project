@@ -59,7 +59,7 @@ export default function Teams(props) {
         <div className="component-wrapper">
             <Breadcrumbs items={breadcrumbs} />
 
-            <h2>Constructor's Championship</h2>
+            <h2>Constructor's Championship {year}</h2>
 
             <table className="table">
                 <thead>

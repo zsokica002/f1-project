@@ -95,7 +95,7 @@ export default function TeamDetails(props) {
         <div className="component-wrapper">
             <Breadcrumbs items={breadcrumbs} />
 
-            <h1>{teamResults[0]?.Results[0].Constructor.name} results</h1>
+            <h1>{teamResults[0]?.Results[0].Constructor.name} results {year}</h1>
 
             <div className="details-card">
                 <img src={`/teamLogo/${teamDetails?.Constructor.constructorId}.jpg`}
