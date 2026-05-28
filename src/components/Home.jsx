@@ -7,7 +7,7 @@ export default function Home() {
             <video src="/bg-video.mp4" autoPlay muted loop id="background-video"></video>
 
             <div className="content">
-                <h1>Formula 1 Racing Info Sheets</h1>
+                <h1>Formula 1 Racing Info</h1>
 
                 <p>Welcome to the landing page, nerd! Retire your janky Excel spredsheet and make way for this super sleek and sexy website for all your F1 needs that you totally can't find anywhere else, only here! Stay informed about all your favorite drivers with our thorough database and organized with our state of the art filter and search super-combo! </p>
 
