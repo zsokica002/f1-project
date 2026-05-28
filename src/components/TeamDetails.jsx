@@ -105,7 +105,7 @@ export default function TeamDetails(props) {
                         }
                     }}
 
-                    alt="slika" width={250} />
+                    alt="slika" width={150} />
 
                 <div className="flag-team-name">
                     <Flag country={getFlagByNationality(props.flags, teamDetails?.Constructor.nationality)} />

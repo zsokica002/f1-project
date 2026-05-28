@@ -264,9 +264,58 @@ body {
     padding-top: 0;
     text-align: center;
 
+    position: relative;
+
     h2 {
         font-size: 30px;
         margin-top: 0;
+    }
+
+    .hover-tooltip {
+        position: relative;
+        display: inline-block;
+        z-index: 999;
+
+        .driver-image {
+            position: relative;
+            z-index: -1;
+        }
+
+        .driver-image-tooltip {
+            width: 300px;
+            visibility: hidden;
+            padding: 5px 0;
+            position: absolute;
+            z-index: 10;
+            top: -100px;
+            left: 550%;
+            margin-left: -60px;
+            display: block;
+
+            //// ANIMIRAJ ////
+        }
+
+        .dark-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgb(0, 0, 0);
+            visibility: hidden;
+            // transition: opacity 0.3s ease, visibility 0.3s ease;
+            z-index: -100;
+        }
+    }
+
+    .hover-tooltip:hover {
+        ~.driver-image-tooltip {
+            visibility: visible;
+        }
+
+        ~.dark-overlay {
+            visibility: visible;
+        }
     }
 
     .details-card {
@@ -283,10 +332,7 @@ body {
         .flag-team-name {
             display: flex;
             align-items: center;
-        }
-
-        .driver-image {
-            width: 100px;
+            gap: 10px;
         }
 
         a {

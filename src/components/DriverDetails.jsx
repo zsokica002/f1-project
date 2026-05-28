@@ -94,21 +94,42 @@ export default function DriverDetails(props) {
 
     return (
         <div className="component-wrapper">
+
+
+
             <Breadcrumbs items={breadcrumbs} />
             <h1>{driverInfo.Driver.givenName} {driverInfo.Driver.familyName} {year}</h1>
 
             <div className="details-card">
 
-                <img src={`/driver-images/${driverInfo.Driver.driverId}.jpg`}
-                    onError={(e) => {
-                        if (e.target.src !== `/driver-images/${driverInfo.Driver.driverId}.jpg`) {
-                            e.target.src = "/driver-images/driver.jpg";
-                        }
-                    }}
-                    alt={driverInfo.Driver.driverId}
-                    width={250}
-                    className="driver-image"
-                />
+                <div
+                    className="hover-tooltip"
+                >
+                    <div className="dark-overlay"></div>
+                    <img src={`/driver-images/${driverInfo.Driver.driverId}.jpg`}
+                        onError={(e) => {
+                            if (e.target.src !== `/driver-images/${driverInfo.Driver.driverId}.jpg`) {
+                                e.target.src = "/driver-images/driver.jpg";
+                            }
+                        }}
+                        alt={driverInfo.Driver.driverId}
+                        width={100}
+                        className="hover-tooltip"
+                    />
+
+                    <div className="driver-image-tooltip">
+                        <img src={`/driver-images/${driverInfo.Driver.driverId}.jpg`}
+                            onError={(e) => {
+                                if (e.target.src !== `/driver-images/${driverInfo.Driver.driverId}.jpg`) {
+                                    e.target.src = "/driver-images/driver.jpg";
+                                }
+                            }}
+                            alt={driverInfo.Driver.driverId}
+                            width={350}
+                        />
+                    </div>
+                </div>
+
                 <div>
 
                     <Flag country={getFlagByNationality(props.flags, driverInfo.Driver.nationality)} size={50} />
