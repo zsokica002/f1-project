@@ -634,6 +634,18 @@ body {
             text-align: center;
         }
     }
+
+    .tables-wrapper {
+        flex-direction: column;
+    }
+
+    .details-card {
+        flex-direction: column;
+
+        p {
+            margin: 2px;
+        }
+    }
 }
 
 @media screen and (max-width: 680px) {
@@ -678,7 +690,7 @@ body {
     }
 }
 
-@media screen and (max-width: 465px) {
+@media screen and (max-width: 520px) {
     .content {
         font-size: 10px;
 
@@ -688,6 +700,114 @@ body {
 
         p {
             padding: 0;
+        }
+    }
+
+    .navig {
+        flex-direction: column;
+
+        .navigation-select {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            select {
+                width: 100%;
+                margin-top: 10px;
+            }
+        }
+
+        .nav {
+            width: 100%;
+            justify-content: space-between;
+        }
+
+        .search-bar {
+            width: 100%;
+            margin: 10px 0;
+        }
+    }
+
+    .component-wrapper {
+        .tables-wrapper {
+            flex-direction: column;
+            padding: 0;
+            gap: 10px;
+        }
+
+        .breadcrumbs {
+            justify-content: center;
+            margin-top: 50px;
+        }
+
+        .invisible {
+            display: none;
+        }
+
+        tbody {
+            td {
+                div {
+                    padding: 2px;
+                }
+            }
+        }
+
+    }
+
+    /// .component-wrapper tbody td div
+
+    .details-card {
+        flex-direction: column;
+
+        p {
+            margin: 2px;
+        }
+    }
+
+    .footer-wrapper {
+        // font-size: 10px;
+
+        .names-wrapper {
+            flex-direction: column;
+            gap: 10px;
+
+            hr {
+                width: 20%;
+            }
+        }
+    }
+
+}
+
+@media screen and (max-width: 450px) {
+    .component-wrapper {
+        width: 100%;
+
+        .breadcrumbs {
+            ul {
+                gap: 0;
+            }
+        }
+    }
+
+    .tables-wrapper {
+        flex-wrap: wrap;
+
+        .table {
+            font-size: 10px;
+
+            .clickable {
+                div {
+                    padding: 2px;
+                }
+            }
+        }
+    }
+
+    .clickable {
+        span {
+            display: none;
         }
     }
 }

@@ -36,7 +36,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <div className="navig">
-        <div>
+        <div className="navigation-select">
           <Navigation />
 
           <select
@@ -56,7 +56,6 @@ export default function App() {
             })
             }
           </select>
-
         </div>
 
         <div className="search-bar">
