@@ -19,8 +19,15 @@ export default function Data() {
             <h1>Extra Special Driver Details - 2024</h1>
 
             <div className="details-card">
+                <div className="hover-tooltip">
+                    <img className="hover-tooltip" src="/driver-images/lizardson.jpg" alt="lizardson" width={100} />
+                    <div className="driver-image-tooltip">
+                        <img src="/driver-images/lizardson.jpg" alt="lizardson" width={350} />
+                    </div>
+                    <div className="dark-overlay"></div>
+                </div>
 
-                <img src="/driver-images/lizardson.jpg" alt="lizardson" width={100} />
+
                 <div>
                     <p>Lizard Lizardson</p>
                     <div> <Flag country="SG" size={50} /></div>

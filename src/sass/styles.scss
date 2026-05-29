@@ -360,10 +360,6 @@ body {
                 visibility: visible;
                 animation: tooltip 0.2s ease;
             }
-
-            ~.driver-image {
-                visibility: hidden;
-            }
         }
     }
 
@@ -628,6 +624,34 @@ body {
 }
 
 @media screen and (max-width: 900px) {
+
+
+
+    .component-wrapper {
+        .details-card {
+            flex-direction: column;
+
+            p {
+                margin: 2px;
+            }
+
+            .hover-tooltip {
+                pointer-events: none;
+
+                .driver-image-tooltip {
+                    display: none;
+                    position: relative;
+                    left: 0;
+                    top: 0;
+                }
+
+                .dark-overlay {
+                    display: none;
+                }
+            }
+        }
+    }
+
     .content {
         h1 {
             font-size: 94px;
@@ -639,24 +663,11 @@ body {
         flex-direction: column;
     }
 
-    .details-card {
-        flex-direction: column;
 
-        p {
-            margin: 2px;
-        }
-    }
+
 }
 
 @media screen and (max-width: 680px) {
-    .content {
-        .buttons {
-            gap: 5%;
-        }
-    }
-}
-
-@media screen and (max-width: 620px) {
     body {
 
         .content {
@@ -733,7 +744,7 @@ body {
         .tables-wrapper {
             flex-direction: column;
             padding: 0;
-            gap: 10px;
+            gap: 30px;
         }
 
         .breadcrumbs {
@@ -753,6 +764,11 @@ body {
             }
         }
 
+        .clickable {
+            div {
+                flex-direction: row-reverse;
+            }
+        }
     }
 
     /// .component-wrapper tbody td div
